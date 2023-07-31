@@ -1,0 +1,73 @@
+{
+  "$schema": "https://www.sift.net/hddl/draft/2023-07-28/domain",
+  "constants": [],
+  "name": "toll-domain",
+  "predicates": [
+    {
+      "name": "tollArea",
+      "parameters": [
+        {
+          "name": "?r",
+          "type": "region"
+        }
+      ]
+    },
+    {
+      "name": "road",
+      "parameters": [
+        {
+          "name": "?arg0",
+          "type": "location"
+        },
+        {
+          "name": "?arg1",
+          "type": "location"
+        }
+      ]
+    },
+    {
+      "name": "at",
+      "parameters": [
+        {
+          "name": "?arg1",
+          "type": "location"
+        }
+      ]
+    },
+    {
+      "name": "payLocation",
+      "parameters": [
+        {
+          "name": "?l",
+          "type": "location"
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    "negative-preconditions",
+    "typing",
+    "hierarchy"
+  ],
+  "tasks": [
+    {
+      "name": "move",
+      "parameters": [
+        {
+          "name": "?l1",
+          "type": "location"
+        },
+        {
+          "name": "?l2",
+          "type": "location"
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "supertype": "object",
+      "type": "location"
+    }
+  ]
+}
