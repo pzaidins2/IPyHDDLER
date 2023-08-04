@@ -1,0 +1,355 @@
+C:\Users\paulz\anaconda3\envs\IPyHOP\python.exe "C:/Users/paulz/OneDrive/Documents/UMD/Research/Planning Nau/HIDEHO/IPyHDDLER/IPyHDDLER/hddl_parser.py"
+['l1', 'l2']
+['l1', 'l3']
+['l1', 'l1']
+['l1', 'l2']
+['l1', 'l3']
+**IPyHOP, verbose = 3: **
+	state = init_state
+	tasks/goals = [('move', 'a', 'h')].
+Iteration 0, Refining node ('move', 'a', 'h').
+Iteration 0, Task ('move', 'a', 'h') successfully refined
+Iteration 0, Parent node modified to ('move', 'a', 'h').
+Iteration 1, Refining node ('drive', 'a', 'd').
+Iteration 1, Action ('drive', 'a', 'd') failed.
+Iteration 1, Backtracking to ('move', 'a', 'h').
+Iteration 2, Refining node ('move', 'a', 'h').
+Iteration 2, Task ('move', 'a', 'h') successfully refined
+Iteration 2, Parent node modified to ('move', 'a', 'h').
+Iteration 3, Refining node ('drive', 'a', 'e').
+Iteration 3, Action ('drive', 'a', 'e') failed.
+Iteration 3, Backtracking to ('move', 'a', 'h').
+Iteration 4, Refining node ('move', 'a', 'h').
+Iteration 4, Task ('move', 'a', 'h') successfully refined
+Iteration 4, Parent node modified to ('move', 'a', 'h').
+Iteration 5, Refining node ('drive', 'a', 'f').
+Iteration 5, Action ('drive', 'a', 'f') failed.
+Iteration 5, Backtracking to ('move', 'a', 'h').
+Iteration 6, Refining node ('move', 'a', 'h').
+Iteration 6, Task ('move', 'a', 'h') successfully refined
+Iteration 6, Parent node modified to ('move', 'a', 'h').
+Iteration 7, Refining node ('drive', 'a', 'h').
+Iteration 7, Action ('drive', 'a', 'h') failed.
+Iteration 7, Backtracking to ('move', 'a', 'h').
+Iteration 8, Refining node ('move', 'a', 'h').
+Iteration 8, Task ('move', 'a', 'h') successfully refined
+Iteration 8, Parent node modified to ('move', 'a', 'h').
+Iteration 9, Refining node ('drive', 'a', 'b').
+Iteration 9, Action ('drive', 'a', 'b') failed.
+Iteration 9, Backtracking to ('move', 'a', 'h').
+Iteration 10, Refining node ('move', 'a', 'h').
+Iteration 10, Task ('move', 'a', 'h') successfully refined
+Iteration 10, Parent node modified to ('move', 'a', 'h').
+Iteration 11, Refining node ('drive', 'a', 'c').
+Iteration 11, Action ('drive', 'a', 'c') successful.
+Iteration 12, Refining node ('move', 'c', 'h').
+Iteration 12, Task ('move', 'c', 'h') successfully refined
+Iteration 12, Parent node modified to ('move', 'c', 'h').
+Iteration 13, Refining node ('drive', 'c', 'd').
+Iteration 13, Action ('drive', 'c', 'd') failed.
+Iteration 13, Backtracking to ('move', 'c', 'h').
+Iteration 14, Refining node ('move', 'c', 'h').
+Iteration 14, Task ('move', 'c', 'h') successfully refined
+Iteration 14, Parent node modified to ('move', 'c', 'h').
+Iteration 15, Refining node ('drive', 'c', 'e').
+Iteration 15, Action ('drive', 'c', 'e') failed.
+Iteration 15, Backtracking to ('move', 'c', 'h').
+Iteration 16, Refining node ('move', 'c', 'h').
+Iteration 16, Task ('move', 'c', 'h') successfully refined
+Iteration 16, Parent node modified to ('move', 'c', 'h').
+Iteration 17, Refining node ('drive', 'c', 'f').
+Iteration 17, Action ('drive', 'c', 'f') failed.
+Iteration 17, Backtracking to ('move', 'c', 'h').
+Iteration 18, Refining node ('move', 'c', 'h').
+Iteration 18, Task ('move', 'c', 'h') successfully refined
+Iteration 18, Parent node modified to ('move', 'c', 'h').
+Iteration 19, Refining node ('drive', 'c', 'h').
+Iteration 19, Action ('drive', 'c', 'h') failed.
+Iteration 19, Backtracking to ('move', 'c', 'h').
+Iteration 20, Refining node ('move', 'c', 'h').
+Iteration 20, Task ('move', 'c', 'h') successfully refined
+Iteration 20, Parent node modified to ('move', 'c', 'h').
+Iteration 21, Refining node ('drive', 'c', 'b').
+Iteration 21, Action ('drive', 'c', 'b') failed.
+Iteration 21, Backtracking to ('move', 'c', 'h').
+Iteration 22, Refining node ('move', 'c', 'h').
+Iteration 22, Task ('move', 'c', 'h') successfully refined
+Iteration 22, Parent node modified to ('move', 'c', 'h').
+Iteration 23, Refining node ('drive', 'c', 'c').
+Iteration 23, Action ('drive', 'c', 'c') failed.
+Iteration 23, Backtracking to ('move', 'c', 'h').
+Iteration 24, Refining node ('move', 'c', 'h').
+Iteration 24, Task ('move', 'c', 'h') successfully refined
+Iteration 24, Parent node modified to ('move', 'c', 'h').
+Iteration 25, Refining node ('drive', 'c', 'i').
+Iteration 25, Action ('drive', 'c', 'i') failed.
+Iteration 25, Backtracking to ('move', 'c', 'h').
+Iteration 26, Refining node ('move', 'c', 'h').
+Iteration 26, Task ('move', 'c', 'h') successfully refined
+Iteration 26, Parent node modified to ('move', 'c', 'h').
+Iteration 27, Refining node ('drive', 'c', 'a').
+Iteration 27, Action ('drive', 'c', 'a') failed.
+Iteration 27, Backtracking to ('move', 'c', 'h').
+Iteration 28, Refining node ('move', 'c', 'h').
+Iteration 28, Task ('move', 'c', 'h') successfully refined
+Iteration 28, Parent node modified to ('move', 'c', 'h').
+Iteration 29, Refining node ('drive', 'c', 'g').
+Iteration 29, Action ('drive', 'c', 'g') failed.
+Iteration 29, Backtracking to ('move', 'c', 'h').
+Iteration 30, Refining node ('move', 'c', 'h').
+Iteration 30, Task ('move', 'c', 'h') successfully refined
+Iteration 30, Parent node modified to ('move', 'c', 'h').
+Iteration 31, Refining node ('driveta', 'c', 'h').
+Iteration 31, Action ('driveta', 'c', 'h') failed.
+Iteration 31, Backtracking to ('move', 'c', 'h').
+Iteration 32, Refining node ('move', 'c', 'h').
+Iteration 32, Task ('move', 'c', 'h') successfully refined
+Iteration 32, Parent node modified to ('move', 'c', 'h').
+Iteration 33, Refining node ('drive', 'c', 'h').
+Iteration 33, Action ('drive', 'c', 'h') failed.
+Iteration 33, Backtracking to ('move', 'c', 'h').
+Iteration 34, Refining node ('move', 'c', 'h').
+Iteration 34, Task ('move', 'c', 'h') successfully refined
+Iteration 34, Parent node modified to ('move', 'c', 'h').
+Iteration 35, Refining node ('driveta', 'c', 'd').
+Iteration 35, Action ('driveta', 'c', 'd') successful.
+Iteration 36, Refining node ('move', 'd', 'h').
+Iteration 36, Task ('move', 'd', 'h') successfully refined
+Iteration 36, Parent node modified to ('move', 'd', 'h').
+Iteration 37, Refining node ('drive', 'd', 'd').
+Iteration 37, Action ('drive', 'd', 'd') failed.
+Iteration 37, Backtracking to ('move', 'd', 'h').
+Iteration 38, Refining node ('move', 'd', 'h').
+Iteration 38, Task ('move', 'd', 'h') successfully refined
+Iteration 38, Parent node modified to ('move', 'd', 'h').
+Iteration 39, Refining node ('drive', 'd', 'e').
+Iteration 39, Action ('drive', 'd', 'e') failed.
+Iteration 39, Backtracking to ('move', 'd', 'h').
+Iteration 40, Refining node ('move', 'd', 'h').
+Iteration 40, Task ('move', 'd', 'h') successfully refined
+Iteration 40, Parent node modified to ('move', 'd', 'h').
+Iteration 41, Refining node ('drive', 'd', 'f').
+Iteration 41, Action ('drive', 'd', 'f') failed.
+Iteration 41, Backtracking to ('move', 'd', 'h').
+Iteration 42, Refining node ('move', 'd', 'h').
+Iteration 42, Task ('move', 'd', 'h') successfully refined
+Iteration 42, Parent node modified to ('move', 'd', 'h').
+Iteration 43, Refining node ('drive', 'd', 'h').
+Iteration 43, Action ('drive', 'd', 'h') failed.
+Iteration 43, Backtracking to ('move', 'd', 'h').
+Iteration 44, Refining node ('move', 'd', 'h').
+Iteration 44, Task ('move', 'd', 'h') successfully refined
+Iteration 44, Parent node modified to ('move', 'd', 'h').
+Iteration 45, Refining node ('drive', 'd', 'b').
+Iteration 45, Action ('drive', 'd', 'b') failed.
+Iteration 45, Backtracking to ('move', 'd', 'h').
+Iteration 46, Refining node ('move', 'd', 'h').
+Iteration 46, Task ('move', 'd', 'h') successfully refined
+Iteration 46, Parent node modified to ('move', 'd', 'h').
+Iteration 47, Refining node ('drive', 'd', 'c').
+Iteration 47, Action ('drive', 'd', 'c') failed.
+Iteration 47, Backtracking to ('move', 'd', 'h').
+Iteration 48, Refining node ('move', 'd', 'h').
+Iteration 48, Task ('move', 'd', 'h') successfully refined
+Iteration 48, Parent node modified to ('move', 'd', 'h').
+Iteration 49, Refining node ('drive', 'd', 'i').
+Iteration 49, Action ('drive', 'd', 'i') failed.
+Iteration 49, Backtracking to ('move', 'd', 'h').
+Iteration 50, Refining node ('move', 'd', 'h').
+Iteration 50, Task ('move', 'd', 'h') successfully refined
+Iteration 50, Parent node modified to ('move', 'd', 'h').
+Iteration 51, Refining node ('drive', 'd', 'a').
+Iteration 51, Action ('drive', 'd', 'a') failed.
+Iteration 51, Backtracking to ('move', 'd', 'h').
+Iteration 52, Refining node ('move', 'd', 'h').
+Iteration 52, Task ('move', 'd', 'h') successfully refined
+Iteration 52, Parent node modified to ('move', 'd', 'h').
+Iteration 53, Refining node ('drive', 'd', 'g').
+Iteration 53, Action ('drive', 'd', 'g') failed.
+Iteration 53, Backtracking to ('move', 'd', 'h').
+Iteration 54, Refining node ('move', 'd', 'h').
+Iteration 54, Task ('move', 'd', 'h') successfully refined
+Iteration 54, Parent node modified to ('move', 'd', 'h').
+Iteration 55, Refining node ('driveta', 'd', 'h').
+Iteration 55, Action ('driveta', 'd', 'h') failed.
+Iteration 55, Backtracking to ('move', 'd', 'h').
+Iteration 56, Refining node ('move', 'd', 'h').
+Iteration 56, Task ('move', 'd', 'h') successfully refined
+Iteration 56, Parent node modified to ('move', 'd', 'h').
+Iteration 57, Refining node ('drive', 'd', 'h').
+Iteration 57, Action ('drive', 'd', 'h') failed.
+Iteration 57, Backtracking to ('move', 'd', 'h').
+Iteration 58, Refining node ('move', 'd', 'h').
+Iteration 58, Task ('move', 'd', 'h') successfully refined
+Iteration 58, Parent node modified to ('move', 'd', 'h').
+Iteration 59, Refining node ('driveta', 'd', 'd').
+Iteration 59, Action ('driveta', 'd', 'd') failed.
+Iteration 59, Backtracking to ('move', 'd', 'h').
+Iteration 60, Refining node ('move', 'd', 'h').
+Iteration 60, Task ('move', 'd', 'h') successfully refined
+Iteration 60, Parent node modified to ('move', 'd', 'h').
+Iteration 61, Refining node ('driveta', 'd', 'e').
+Iteration 61, Action ('driveta', 'd', 'e') successful.
+Iteration 62, Refining node ('move', 'e', 'h').
+Iteration 62, Task ('move', 'e', 'h') successfully refined
+Iteration 62, Parent node modified to ('move', 'e', 'h').
+Iteration 63, Refining node ('drive', 'e', 'd').
+Iteration 63, Action ('drive', 'e', 'd') failed.
+Iteration 63, Backtracking to ('move', 'e', 'h').
+Iteration 64, Refining node ('move', 'e', 'h').
+Iteration 64, Task ('move', 'e', 'h') successfully refined
+Iteration 64, Parent node modified to ('move', 'e', 'h').
+Iteration 65, Refining node ('drive', 'e', 'e').
+Iteration 65, Action ('drive', 'e', 'e') failed.
+Iteration 65, Backtracking to ('move', 'e', 'h').
+Iteration 66, Refining node ('move', 'e', 'h').
+Iteration 66, Task ('move', 'e', 'h') successfully refined
+Iteration 66, Parent node modified to ('move', 'e', 'h').
+Iteration 67, Refining node ('drive', 'e', 'f').
+Iteration 67, Action ('drive', 'e', 'f') failed.
+Iteration 67, Backtracking to ('move', 'e', 'h').
+Iteration 68, Refining node ('move', 'e', 'h').
+Iteration 68, Task ('move', 'e', 'h') successfully refined
+Iteration 68, Parent node modified to ('move', 'e', 'h').
+Iteration 69, Refining node ('drive', 'e', 'h').
+Iteration 69, Action ('drive', 'e', 'h') failed.
+Iteration 69, Backtracking to ('move', 'e', 'h').
+Iteration 70, Refining node ('move', 'e', 'h').
+Iteration 70, Task ('move', 'e', 'h') successfully refined
+Iteration 70, Parent node modified to ('move', 'e', 'h').
+Iteration 71, Refining node ('drive', 'e', 'b').
+Iteration 71, Action ('drive', 'e', 'b') failed.
+Iteration 71, Backtracking to ('move', 'e', 'h').
+Iteration 72, Refining node ('move', 'e', 'h').
+Iteration 72, Task ('move', 'e', 'h') successfully refined
+Iteration 72, Parent node modified to ('move', 'e', 'h').
+Iteration 73, Refining node ('drive', 'e', 'c').
+Iteration 73, Action ('drive', 'e', 'c') failed.
+Iteration 73, Backtracking to ('move', 'e', 'h').
+Iteration 74, Refining node ('move', 'e', 'h').
+Iteration 74, Task ('move', 'e', 'h') successfully refined
+Iteration 74, Parent node modified to ('move', 'e', 'h').
+Iteration 75, Refining node ('drive', 'e', 'i').
+Iteration 75, Action ('drive', 'e', 'i') failed.
+Iteration 75, Backtracking to ('move', 'e', 'h').
+Iteration 76, Refining node ('move', 'e', 'h').
+Iteration 76, Task ('move', 'e', 'h') successfully refined
+Iteration 76, Parent node modified to ('move', 'e', 'h').
+Iteration 77, Refining node ('drive', 'e', 'a').
+Iteration 77, Action ('drive', 'e', 'a') failed.
+Iteration 77, Backtracking to ('move', 'e', 'h').
+Iteration 78, Refining node ('move', 'e', 'h').
+Iteration 78, Task ('move', 'e', 'h') successfully refined
+Iteration 78, Parent node modified to ('move', 'e', 'h').
+Iteration 79, Refining node ('drive', 'e', 'g').
+Iteration 79, Action ('drive', 'e', 'g') failed.
+Iteration 79, Backtracking to ('move', 'e', 'h').
+Iteration 80, Refining node ('move', 'e', 'h').
+Iteration 80, Task ('move', 'e', 'h') successfully refined
+Iteration 80, Parent node modified to ('move', 'e', 'h').
+Iteration 81, Refining node ('driveta', 'e', 'h').
+Iteration 81, Action ('driveta', 'e', 'h') failed.
+Iteration 81, Backtracking to ('move', 'e', 'h').
+Iteration 82, Refining node ('move', 'e', 'h').
+Iteration 82, Task ('move', 'e', 'h') successfully refined
+Iteration 82, Parent node modified to ('move', 'e', 'h').
+Iteration 83, Refining node ('drive', 'e', 'h').
+Iteration 83, Action ('drive', 'e', 'h') failed.
+Iteration 83, Backtracking to ('move', 'e', 'h').
+Iteration 84, Refining node ('move', 'e', 'h').
+Iteration 84, Task ('move', 'e', 'h') successfully refined
+Iteration 84, Parent node modified to ('move', 'e', 'h').
+Iteration 85, Refining node ('driveta', 'e', 'd').
+Iteration 85, Action ('driveta', 'e', 'd') failed.
+Iteration 85, Backtracking to ('move', 'e', 'h').
+Iteration 86, Refining node ('move', 'e', 'h').
+Iteration 86, Task ('move', 'e', 'h') successfully refined
+Iteration 86, Parent node modified to ('move', 'e', 'h').
+Iteration 87, Refining node ('driveta', 'e', 'e').
+Iteration 87, Action ('driveta', 'e', 'e') failed.
+Iteration 87, Backtracking to ('move', 'e', 'h').
+Iteration 88, Refining node ('move', 'e', 'h').
+Iteration 88, Task ('move', 'e', 'h') successfully refined
+Iteration 88, Parent node modified to ('move', 'e', 'h').
+Iteration 89, Refining node ('driveta', 'e', 'f').
+Iteration 89, Action ('driveta', 'e', 'f') successful.
+Iteration 90, Refining node ('move', 'f', 'h').
+Iteration 90, Task ('move', 'f', 'h') successfully refined
+Iteration 90, Parent node modified to ('move', 'f', 'h').
+Iteration 91, Refining node ('drive', 'f', 'd').
+Iteration 91, Action ('drive', 'f', 'd') failed.
+Iteration 91, Backtracking to ('move', 'f', 'h').
+Iteration 92, Refining node ('move', 'f', 'h').
+Iteration 92, Task ('move', 'f', 'h') successfully refined
+Iteration 92, Parent node modified to ('move', 'f', 'h').
+Iteration 93, Refining node ('drive', 'f', 'e').
+Iteration 93, Action ('drive', 'f', 'e') failed.
+Iteration 93, Backtracking to ('move', 'f', 'h').
+Iteration 94, Refining node ('move', 'f', 'h').
+Iteration 94, Task ('move', 'f', 'h') successfully refined
+Iteration 94, Parent node modified to ('move', 'f', 'h').
+Iteration 95, Refining node ('drive', 'f', 'f').
+Iteration 95, Action ('drive', 'f', 'f') failed.
+Iteration 95, Backtracking to ('move', 'f', 'h').
+Iteration 96, Refining node ('move', 'f', 'h').
+Iteration 96, Task ('move', 'f', 'h') successfully refined
+Iteration 96, Parent node modified to ('move', 'f', 'h').
+Iteration 97, Refining node ('drive', 'f', 'h').
+Iteration 97, Action ('drive', 'f', 'h') failed.
+Iteration 97, Backtracking to ('move', 'f', 'h').
+Iteration 98, Refining node ('move', 'f', 'h').
+Iteration 98, Task ('move', 'f', 'h') successfully refined
+Iteration 98, Parent node modified to ('move', 'f', 'h').
+Iteration 99, Refining node ('drive', 'f', 'b').
+Iteration 99, Action ('drive', 'f', 'b') failed.
+Iteration 99, Backtracking to ('move', 'f', 'h').
+Iteration 100, Refining node ('move', 'f', 'h').
+Iteration 100, Task ('move', 'f', 'h') successfully refined
+Iteration 100, Parent node modified to ('move', 'f', 'h').
+Iteration 101, Refining node ('drive', 'f', 'c').
+Iteration 101, Action ('drive', 'f', 'c') failed.
+Iteration 101, Backtracking to ('move', 'f', 'h').
+Iteration 102, Refining node ('move', 'f', 'h').
+Iteration 102, Task ('move', 'f', 'h') successfully refined
+Iteration 102, Parent node modified to ('move', 'f', 'h').
+Iteration 103, Refining node ('drive', 'f', 'i').
+Iteration 103, Action ('drive', 'f', 'i') failed.
+Iteration 103, Backtracking to ('move', 'f', 'h').
+Iteration 104, Refining node ('move', 'f', 'h').
+Iteration 104, Task ('move', 'f', 'h') successfully refined
+Iteration 104, Parent node modified to ('move', 'f', 'h').
+Iteration 105, Refining node ('drive', 'f', 'a').
+Iteration 105, Action ('drive', 'f', 'a') failed.
+Iteration 105, Backtracking to ('move', 'f', 'h').
+Iteration 106, Refining node ('move', 'f', 'h').
+Iteration 106, Task ('move', 'f', 'h') successfully refined
+Iteration 106, Parent node modified to ('move', 'f', 'h').
+Iteration 107, Refining node ('drive', 'f', 'g').
+Iteration 107, Action ('drive', 'f', 'g') failed.
+Iteration 107, Backtracking to ('move', 'f', 'h').
+Iteration 108, Refining node ('move', 'f', 'h').
+Iteration 108, Task ('move', 'f', 'h') successfully refined
+Iteration 108, Parent node modified to ('move', 'f', 'h').
+Iteration 109, Refining node ('driveta', 'f', 'h').
+Iteration 109, Action ('driveta', 'f', 'h') successful.
+Iteration 110, Refining node ('paytoll', 'h').
+Iteration 110, Action ('paytoll', 'h') successful.
+Iteration 111, Parent node modified to ('move', 'e', 'h').
+Iteration 111, Child nodes are now: [('driveta', 'e', 'f'), ('move', 'f', 'h'), ('paytoll', 'h')].
+Iteration 112, Refining node ('paytoll', 'h').
+Iteration 112, Action ('paytoll', 'h') successful.
+Iteration 113, Parent node modified to ('move', 'd', 'h').
+Iteration 113, Child nodes are now: [('driveta', 'd', 'e'), ('move', 'e', 'h'), ('paytoll', 'h')].
+Iteration 114, Refining node ('paytoll', 'h').
+Iteration 114, Action ('paytoll', 'h') successful.
+Iteration 115, Parent node modified to ('move', 'c', 'h').
+Iteration 115, Child nodes are now: [('driveta', 'c', 'd'), ('move', 'd', 'h'), ('paytoll', 'h')].
+Iteration 116, Refining node ('paytoll', 'h').
+Iteration 116, Action ('paytoll', 'h') successful.
+Iteration 117, Parent node modified to ('move', 'a', 'h').
+Iteration 117, Child nodes are now: [('drive', 'a', 'c'), ('move', 'c', 'h')].
+Iteration 118, Parent node modified to ('root',).
+Iteration 118, Child nodes are now: [('move', 'a', 'h')].
+[('drive', 'a', 'c'), ('driveta', 'c', 'd'), ('driveta', 'd', 'e'), ('driveta', 'e', 'f'), ('driveta', 'f', 'h'), ('paytoll', 'h'), ('paytoll', 'h'), ('paytoll', 'h'), ('paytoll', 'h')]
+
+Process finished with exit code 0

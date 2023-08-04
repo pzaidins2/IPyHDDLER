@@ -169,7 +169,15 @@
         "predicate": "move"
       },
       "taskNetwork": {
-        "orderedSubtasks": []
+        "orderedSubtasks": [
+          {
+            "args": [
+              "?l1",
+              "?l2"
+            ],
+            "predicate": "drive"
+          }
+        ]
       }
     },
     {
@@ -197,7 +205,22 @@
         "predicate": "move"
       },
       "taskNetwork": {
-        "orderedSubtasks": []
+        "orderedSubtasks": [
+          {
+            "args": [
+              "?l1",
+              "?l2"
+            ],
+            "predicate": "drive"
+          },
+          {
+            "args": [
+              "?l2",
+              "?l3"
+            ],
+            "predicate": "move"
+          }
+        ]
       }
     },
     {
@@ -241,7 +264,21 @@
         "predicate": "move"
       },
       "taskNetwork": {
-        "orderedSubtasks": []
+        "orderedSubtasks": [
+          {
+            "args": [
+              "?l1",
+              "?l2"
+            ],
+            "predicate": "driveTa"
+          },
+          {
+            "args": [
+              "?l2"
+            ],
+            "predicate": "payToll"
+          }
+        ]
       }
     },
     {
@@ -269,7 +306,28 @@
         "predicate": "move"
       },
       "taskNetwork": {
-        "orderedSubtasks": []
+        "orderedSubtasks": [
+          {
+            "args": [
+              "?l1",
+              "?l2"
+            ],
+            "predicate": "driveTa"
+          },
+          {
+            "args": [
+              "?l2",
+              "?l3"
+            ],
+            "predicate": "move"
+          },
+          {
+            "args": [
+              "?l3"
+            ],
+            "predicate": "payToll"
+          }
+        ]
       }
     }
   ],

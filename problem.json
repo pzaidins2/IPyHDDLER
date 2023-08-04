@@ -1,0 +1,203 @@
+{
+  "$schema": "https:\/\/www.sift.net\/hddl\/draft\/2023-07-28\/problem",
+  "name": "toll-problem",
+  "domain": "toll-domain",
+  "requirements": null,
+  "objects": [
+    {
+      "name": "a",
+      "type": "location"
+    },
+    {
+      "name": "b",
+      "type": "location"
+    },
+    {
+      "name": "c",
+      "type": "location"
+    },
+    {
+      "name": "d",
+      "type": "location"
+    },
+    {
+      "name": "e",
+      "type": "location"
+    },
+    {
+      "name": "f",
+      "type": "location"
+    },
+    {
+      "name": "g",
+      "type": "location"
+    },
+    {
+      "name": "h",
+      "type": "location"
+    },
+    {
+      "name": "i",
+      "type": "location"
+    }
+  ],
+  "init": [
+    {
+      "predicate": "at",
+      "args": [
+        "a"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "a",
+        "c"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "b",
+        "c"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "c",
+        "g"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "c",
+        "d"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "c",
+        "e"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "d",
+        "e"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "d",
+        "f"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "e",
+        "g"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "e",
+        "f"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "g",
+        "i"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "g",
+        "f"
+      ]
+    },
+    {
+      "predicate": "road",
+      "args": [
+        "f",
+        "h"
+      ]
+    },
+    {
+      "predicate": "payLocation",
+      "args": [
+        "a"
+      ]
+    },
+    {
+      "predicate": "payLocation",
+      "args": [
+        "b"
+      ]
+    },
+    {
+      "predicate": "payLocation",
+      "args": [
+        "i"
+      ]
+    },
+    {
+      "predicate": "payLocation",
+      "args": [
+        "h"
+      ]
+    },
+    {
+      "predicate": "tollArea",
+      "args": [
+        "c"
+      ]
+    },
+    {
+      "predicate": "tollArea",
+      "args": [
+        "d"
+      ]
+    },
+    {
+      "predicate": "tollArea",
+      "args": [
+        "e"
+      ]
+    },
+    {
+      "predicate": "tollArea",
+      "args": [
+        "f"
+      ]
+    },
+    {
+      "predicate": "tollArea",
+      "args": [
+        "g"
+      ]
+    }
+  ],
+  "goal": null,
+  "htn": {
+    "parameters": [],
+    "orderedSubtasks": [
+      {
+        "predicate": "move",
+        "args": [
+          "a",
+          "h"
+        ]
+      }
+    ]
+  }
+}

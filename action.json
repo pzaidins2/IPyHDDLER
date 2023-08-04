@@ -1,0 +1,60 @@
+{
+  "effect": {
+    "effects": [
+      {
+        "op": "not",
+        "operand": {
+          "args": [
+            "?l1"
+          ],
+          "predicate": "at"
+        }
+      },
+      {
+        "args": [
+          "?l2"
+        ],
+        "predicate": "at"
+      }
+    ],
+    "op": "and"
+  },
+  "name": "drive",
+  "parameters": [
+    {
+      "name": "?l1",
+      "type": "location"
+    },
+    {
+      "name": "?l2",
+      "type": "location"
+    }
+  ],
+  "precondition": {
+    "op": "and",
+    "operands": [
+      {
+        "args": [
+          "?l1"
+        ],
+        "predicate": "at"
+      },
+      {
+        "op": "not",
+        "operand": {
+          "args": [
+            "?l1"
+          ],
+          "predicate": "tollArea"
+        }
+      },
+      {
+        "args": [
+          "?l1",
+          "?l2"
+        ],
+        "predicate": "road"
+      }
+    ]
+  }
+}
