@@ -4,8 +4,9 @@ import re
 import json
 from copy import deepcopy
 import os
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Set, Tuple
 from ipyhop import State, IPyHOP
+import sympy
 
 # takes PDDL strings and makes them assignable to python variables
 def clean_string( input_str: str ) -> str:
@@ -170,6 +171,7 @@ def append_action_function_str( action: Dict[str,Union[str,Dict]], actions_str: 
     # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
     precondition = action["precondition"]
     actions_str += "\tif " + make_precondition_str( precondition ) + ":\n"
+    print( make_precondition_str( precondition ) )
     # effect
     # add and delete from state in order
     effect = action["effect"]
@@ -179,8 +181,8 @@ def append_action_function_str( action: Dict[str,Union[str,Dict]], actions_str: 
     return actions_str
 
 # takes text representation of methods.py and appends method
-# act: Dict representing a single method template
-# actions_str: text representation of existing methods.py file
+# method: Dict representing a single method template
+# methods_str: text representation of existing methods.py file
 def append_method_function_str( method: Dict[str,Union[str,Dict]], methods_str: str, domain_dict: Dict[str,Union[str,Dict]]) -> str:
     # space out methods
     methods_str += "\n"
@@ -228,7 +230,7 @@ def append_method_function_str( method: Dict[str,Union[str,Dict]], methods_str: 
     for i, parameter_name in enumerate(parameter_set_diff):
         methods_str += "\t" * ( i + 1 )
         methods_str += "for " + parameter_name + " in state." + parameter_name_type_dict[ parameter_name ] + ":\n"
-
+    # print( iteration_optimizer( [*parameter_set_diff], ))
 
     # if precondition
     # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
@@ -242,6 +244,7 @@ def append_method_function_str( method: Dict[str,Union[str,Dict]], methods_str: 
             for t_l, f_l in precondition_equalities:
                 methods_str += task_parameter_names[ t_l ] + " == " + task_parameter_names[ f_l ] + ", "
             methods_str += "] ):\n"
+
         # yield statement with task network
         methods_str += ( len(parameter_set_diff) + 2 ) * "\t" + "yield " + \
                        make_task_network_str( method[ "taskNetwork"][ "orderedSubtasks"]) +"\n"
@@ -345,6 +348,57 @@ def make_task_network_str( tasks: List[Dict[str,Union[str,Dict]]] ) -> str:
         task_net_str += make_task_str( task ) + ", "
     task_net_str += "]"
     return task_net_str
+
+# add N number of tabs for every line in string
+def tabify( input_str: str, N: int ):
+    return ( N * '\t' ).join( ("\n" + input_str).splitlines() )
+
+
+# take predicate tree and return CNF as list of clauses
+# clauses dictate how predicates are evaluated together
+def make_predicate_cnf_list( precondition: Dict[str,Union[str,Dict]] ):
+    pass
+
+# iteration optimizer
+# NEEDS INTEGRATION AND TESTING
+# NEED WAY TO CONVERT PREDICATES INTO CNF
+predicate_to_var_set = lambda x: { *x[ 1: ] }
+predicate_set_to_var_set_set = lambda y: { { *map( predicate_to_var_set, y ) } }
+predicate_set_to_var_union_set = lambda z: set().update( *predicate_set_to_var_set_set( z ) )
+def iteration_optimizer( unbound_vars: List[str], predicates: List[Tuple] ) -> List[Tuple[str,List[Tuple]]]:
+    # need iteration for all unbound vars
+    ordering = []
+    while len( unbound_vars > 0 ):
+        # get predicates with each unbound var
+        var_pred_dict = dict()
+        for var in unbound_vars:
+            var_pred_dict[var] = set()
+            for predicate in predicates:
+                if var in predicate:
+                    var_pred_dict.add( predicate )
+        # sort unbound variables by number of associated predicates
+        # sort by size of union set of all unique unbound variable for all predicates associated with each variable
+        # graph version: minimize increase in frontier size, pick vertex with smallest neighborhood discounting
+        # for vertices that have already been picked or neighbor a pick
+        unbound_vars.sort( key=lambda x: len( predicate_set_to_var_union_set( var_pred_dict[ x ] ).intersect_update(
+            { *unbound_vars } ) ) )
+
+        # bind variable with fewest untouched neighbors
+        binding_var = unbound_vars.pop(0)
+        # get predicates that only have binding variable as unbound
+        # these predicates are safe to check now as all variables will be grounded
+        for var in unbound_vars:
+            var_pred_dict[binding_var] -= var_pred_dict[var]
+        ordering.append( ( binding_var, [*var_pred_dict[binding_var]] ) )
+        # remove these predicates from list
+        # dont do duplicate checks
+        for predicate in var_pred_dict[binding_var]:
+            predicates.remove( predicate )
+    return ordering
+
+
+
+
 
 
 if __name__ == '__main__':

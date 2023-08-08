@@ -1,10 +1,10 @@
 from ipyhop import State
 
 init_state = State( 'init_state' )
-init_state.location = {'d', 'e', 'f', 'h', 'b', 'c', 'i', 'a', 'g'}
+init_state.location = {'g', 'f', 'a', 'i', 'c', 'b', 'd', 'e', 'h'}
 init_state.at = { ('a',), }
-init_state.road = { ('c', 'e'), ('c', 'd'), ('a', 'c'), ('d', 'f'), ('g', 'i'), ('b', 'c'), ('c', 'g'), ('d', 'e'), ('e', 'g'), ('g', 'f'), ('f', 'h'), ('e', 'f'), }
-init_state.paylocation = { ('i',), ('a',), ('b',), ('h',), }
-init_state.tollarea = { ('e',), ('d',), ('g',), ('c',), ('f',), }
+init_state.road = { ('g', 'i'), ('b', 'c'), ('a', 'c'), ('e', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'g'), ('f', 'h'), ('c', 'g'), ('d', 'f'), ('c', 'e'), ('g', 'f'), }
+init_state.paylocation = { ('h',), ('i',), ('a',), ('b',), }
+init_state.tollarea = { ('f',), ('d',), ('g',), ('e',), ('c',), }
 
 task_list = [('move', 'a', 'h')]
