@@ -6,7 +6,6 @@ from copy import deepcopy
 import os
 from typing import List, Dict, Union, Set, Tuple
 from ipyhop import State, IPyHOP
-import sympy
 
 # takes PDDL strings and makes them assignable to python variables
 def clean_string( input_str: str ) -> str:
@@ -354,46 +353,219 @@ def tabify( input_str: str, N: int ):
     return ( N * '\t' ).join( ("\n" + input_str).splitlines() )
 
 
+# make precondition cnf
+def make_precondition_cnf( precondition: Dict[str,Union[str,Dict]] ) -> Dict[str,Union[str,Dict]]:
+    # move negations downward until either negation of simple predicate or doubly negated and removed
+    # BFS while calling negation helper when we encounter negation
+    new_precondition = cnf_negation_helper( precondition )
+    # move ors downward until only disjunction of predicates and negations of predicates
+    # BFS while calling disjunction helper when we encounter disjunction
+    new_precondition = cnf_disjunction_helper( new_precondition )
+    return new_precondition
+
+# propagates negation downward
+def cnf_negation_helper( precondition: Dict[str,Union[str,Dict]] ):
+    if "op" in precondition.keys() and precondition[ "op" ] == "not":
+        # do nothing single predicate negation
+        if "operand" in precondition.keys() and "predicate" in precondition["operand"].keys():
+            return precondition
+        # negate negation and continue downward
+        elif "operand" in precondition.keys() and precondition["operand"][ "op" ] == "not":
+            return cnf_negation_helper( precondition[ "operand" ][ "operand" ] )
+        # propagate negation over conjunction
+        elif precondition["operand"][ "op" ] == "and":
+            return {
+                "op": "or",
+                "operands": [
+                    cnf_negation_helper( {
+                        "op": "not",
+                        "operand": operand
+                    } ) for operand in precondition[ "operands" ]
+                ]
+            }
+        # propagate negation over disjunction
+        elif precondition[ "op" ] == "or":
+            return {
+                "op": "and",
+                "operands": [
+                    cnf_negation_helper( {
+                        "op": "not",
+                        "operand": operand
+                    } ) for operand in precondition[ "operands" ]
+                ]
+            }
+        else:
+            raise( "unsupported precondtion encountered during negation propagation")
+    else:
+        return precondition
+
+
+# propagates disjunction downward
+# merge nested ors and propagate over ands
+def cnf_disjunction_helper( precondition: Dict[str,Union[str,Dict]] ):
+    if "op" in precondition.keys() and precondition[ "op" ] == "or":
+        # pull descendant ors to top
+        # iterate over operands if or encountered, pop that operand and append to back
+        new_or_precondtion = {
+            "op": "or",
+            "operands": []
+        }
+        for operand in precondition[ "operands" ]:
+            # remove and append operands to top
+            if "op" in operand.keys() and operand[ "op" ] == "or":
+                new_or_precondtion["operands"] += [ *map( cnf_disjunction_helper, operand[ "operands" ] ) ]
+            # do nothing
+            else:
+                new_or_precondtion["operands"].append( cnf_disjunction_helper( operand ) )
+
+        # merge subordinate ands into single subordinate and
+
+        new_and = {
+            "op": "and",
+            "operands": [ ]
+        }
+        if any( map( lambda x: "op" in x.keys() and x[ "op" ] == "and", new_or_precondtion[ "operands" ] ) ):
+
+            new_and_precondtion = {
+                "op": "or",
+                "operands": [
+                    new_and
+                ]
+            }
+            for operand in new_or_precondtion[ "operands" ]:
+                # remove and append operands to top
+                if "op" in operand.keys() and operand[ "op" ] == "and":
+                    new_and[ "operands" ] += [ *map( cnf_disjunction_helper, operand[ "operands" ] ) ]
+                # do nothing
+                else:
+                    new_and_precondtion["operands"].append( cnf_disjunction_helper( operand ) )
+        else:
+            new_and_precondtion = {
+                "op": "or",
+                "operands": [
+                ]
+            }
+
+
+        # replace current with and where the operands are now or statements with each such statement containing all the
+        # non-and original operands with a single operand from the and operands
+        new_precondition = {
+            "op": "and",
+            "operands": [
+            ]
+        }
+        new_and_precondtion[ "operands" ] = [ *filter( lambda x: "op" in x.keys() and x[ "op" ] != "and",
+                                                   new_and_precondtion[ "operands" ] ) ]
+        for operand in new_and[ "operands" ]:
+            new_precondition[ "operands" ].append(
+                {
+                    "op": "or",
+                    "operands": [
+                        operand,
+                        *map( cnf_disjunction_helper, new_and_precondtion[ "operands" ] )
+                    ]
+                }
+            )
+        return new_precondition
+    else:
+        return precondition
+
 # take predicate tree and return CNF as list of clauses
 # clauses dictate how predicates are evaluated together
-def make_predicate_cnf_list( precondition: Dict[str,Union[str,Dict]] ):
-    pass
+# IN PROGRESS
+def make_clause_cnf_list( precondition: Dict[ str, Union[ str, Dict ] ] ) -> List[Tuple[List,List]]:
+    # simplify to CNF
+    cnf_precondition = make_precondition_cnf( deepcopy( precondition ) )
+    # make into list
+    clause_list = [ ]
+    # PREDICATE
+    # NOT PREDICATE
+    # AND [ UNION[ PREDICATE, NOT PREDICATE, OR ] ]
+    # OR [ UNION[ PREDICATE, NOT PREDICATE ] ]
+    # form
+    # [ AND [ OR ( [IS], [NOT] ), ] ]
+    # NOTE THERE MUST BE A CLEANER WAY
+    # single predicate
+    if "predicate" in cnf_precondition.keys():
+        clause_list = [ ( [ ( cnf_precondition[ "predicate" ], *cnf_precondition[ "args" ], ), ], [ ] ) ]
+    # negation of predicate
+    elif cnf_precondition[ "op" ] == "not":
+        clause_list = [ ( [ ], [ ( cnf_precondition["operand"][ "predicate" ], *cnf_precondition["operand"][ "args" ], ), ] ) ]
+    # conjunction
+    elif cnf_precondition[ "op" ] == "and":
+        clause_list = []
+        for conjunct in cnf_precondition[ "operands" ]:
+            clause = ( [], [] )
+            if "predicate" in conjunct.keys():
+                clause[0].append( ( conjunct[ "predicate" ], *conjunct[ "args" ], ) )
+            # negation of predicate
+            elif conjunct[ "op" ] == "not":
+                clause[1].append( ( conjunct["operand"][ "predicate" ], *conjunct["operand"][ "args" ], ) )
+            # disjunction of predicates annd negations
+            elif conjunct[ "op" ] == "or":
+                for conjunct_disjunct in conjunct[ "operands" ]:
+                    if "predicate" in conjunct_disjunct.keys():
+                        clause[ 0 ].append( (conjunct_disjunct[ "predicate" ], *conjunct_disjunct[ "args" ],) )
+                    # negation of predicate
+                    elif conjunct_disjunct[ "op" ] == "not":
+                        clause[ 1 ].append(
+                            (conjunct_disjunct[ "operand" ][ "predicate" ], *conjunct_disjunct[ "operand" ][ "args" ],) )
+            else:
+                raise( "not CNF form")
+            clause_list.append( clause )
+    # disjunction
+    elif cnf_precondition[ "op" ] == "or":
+        clause = ([ ], [ ])
+        for disjunct in cnf_precondition[ "operands" ]:
+            if "predicate" in disjunct.keys():
+                clause[ 0 ].append( (disjunct[ "predicate" ], *disjunct[ "args" ],) )
+            # negation of predicate
+            elif disjunct[ "op" ] == "not":
+                clause[ 1 ].append(
+                    (disjunct[ "operand" ][ "predicate" ], *disjunct[ "operand" ][ "args" ],) )
+        clause_list = [ clause ]
+    else:
+        raise( "unsupport op found while making clause list")
+    return clause_list
 
 # iteration optimizer
 # NEEDS INTEGRATION AND TESTING
 # NEED WAY TO CONVERT PREDICATES INTO CNF
 predicate_to_var_set = lambda x: { *x[ 1: ] }
-predicate_set_to_var_set_set = lambda y: { { *map( predicate_to_var_set, y ) } }
-predicate_set_to_var_union_set = lambda z: set().update( *predicate_set_to_var_set_set( z ) )
-def iteration_optimizer( unbound_vars: List[str], predicates: List[Tuple] ) -> List[Tuple[str,List[Tuple]]]:
+clause_to_var_set_set = lambda x: { predicate_to_var_set( predicate ) for predicate in x }
+var_set_set_flatten = lambda x: set().update( *x )
+clause_to_var_set = lambda x: var_set_set_flatten( clause_to_var_set_set( x ) )
+count_intersection_size = lambda x, y: len( y.intersect_update( clause_to_var_set( x ) ) )
+
+def iteration_optimizer( unbound_vars: List[str], clauses: List[Tuple[List,List]] ):
     # need iteration for all unbound vars
     ordering = []
     while len( unbound_vars > 0 ):
-        # get predicates with each unbound var
-        var_pred_dict = dict()
+        # get clauses with each unbound var
+        var_clause_dict = dict()
         for var in unbound_vars:
-            var_pred_dict[var] = set()
-            for predicate in predicates:
-                if var in predicate:
-                    var_pred_dict.add( predicate )
+            var_clause_dict[var] = set()
+            for clause in clauses:
+                # if variable in any predicate of clause associate clause with var
+                if any( map( lambda x: var in x, [ *clause[0], *clause[ 1 ] ] ) ):
+                    var_clause_dict.add( clause )
         # sort unbound variables by number of associated predicates
         # sort by size of union set of all unique unbound variable for all predicates associated with each variable
         # graph version: minimize increase in frontier size, pick vertex with smallest neighborhood discounting
         # for vertices that have already been picked or neighbor a pick
-        unbound_vars.sort( key=lambda x: len( predicate_set_to_var_union_set( var_pred_dict[ x ] ).intersect_update(
-            { *unbound_vars } ) ) )
+        unbound_vars.sort( key=lambda x: count_intersection_size( x, unbound_vars ) )
 
         # bind variable with fewest untouched neighbors
         binding_var = unbound_vars.pop(0)
         # get predicates that only have binding variable as unbound
         # these predicates are safe to check now as all variables will be grounded
         for var in unbound_vars:
-            var_pred_dict[binding_var] -= var_pred_dict[var]
-        ordering.append( ( binding_var, [*var_pred_dict[binding_var]] ) )
+            var_clause_dict[binding_var] -= var_clause_dict[var]
+        ordering.append( ( binding_var, [*var_clause_dict[binding_var]] ) )
         # remove these predicates from list
         # dont do duplicate checks
-        for predicate in var_pred_dict[binding_var]:
-            predicates.remove( predicate )
+        for clause in var_clause_dict[binding_var]:
+            clauses.remove( clause )
     return ordering
 
 
