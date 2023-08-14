@@ -67,17 +67,20 @@ class HDDL_Parser:
         domain_path = dir_path + "/domain"
         # write actions.py
         actions_str = "from ipyhop import Actions\n"
+
         # for every action in actions
         for action in domain_dict["actions"]:
             # append action function to actions.py str
-            actions_str = append_action_function_str( action, actions_str )
+            actions_str += make_action_function_str( action )
         # Create a IPyHOP Actions object
         # NEED TO RESERVE KEYWORDS: actions, methods
+
         actions_str += "\nactions = Actions()\n"
         actions_str += "actions.declare_actions( [ "
         for action in domain_dict[ "actions" ]:
             actions_str += clean_string( action[ "name" ] ) + ", "
         actions_str += "] )\n"
+
         with open( domain_path + "/actions.py", "w" ) as actions_file:
             actions_file.write(actions_str)
         # write methods.py
@@ -153,14 +156,15 @@ class HDDL_Parser:
 
 # add N number of tabs for every line in string
 def tabify( input_str: str, N: int ):
-    return ( N * '\t' ).join( ("\n" + input_str).splitlines() )
+    return ( "\n" + N * '\t' ).join( ( input_str).splitlines() )
+
 
 # takes text representation of actions.py and appends action
 # act: Dict representing a single action template
 # actions_str: text representation of existing actions.py file
-def append_action_function_str( action: Dict[str,Union[str,Dict]], actions_str: str) -> str:
+def make_action_function_str( action: Dict[ str, Union[ str, Dict ] ] ) -> str:
     # space out actions
-    actions_str += "\n"
+    actions_str = "\n"
     # def <action_name>( state, *parameter_names ):
     actions_str += "def " + clean_string( action["name"] ) + "( state"
     parameters = action["parameters"]
@@ -171,14 +175,14 @@ def append_action_function_str( action: Dict[str,Union[str,Dict]], actions_str: 
     # if precondition
     # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
     precondition = action["precondition"]
-    actions_str += "\tif " + make_precondition_str( precondition ) + ":\n"
+    actions_str += "\tif " + make_precondition_str( precondition ) + ":"
     print( make_precondition_str( precondition ) )
     # effect
     # add and delete from state in order
     effect = action["effect"]
     if effect != None:
-        actions_str += "\t\t" + make_effects_str( effect ) + "\n"
-    actions_str += "\t\treturn state\n"
+        actions_str += make_effects_str( effect )
+    actions_str += "\n\t\treturn state\n"
     return actions_str
 
 # takes text representation of methods.py and appends method
@@ -215,6 +219,7 @@ def append_method_function_str( method: Dict[str,Union[str,Dict]], methods_str: 
         check_name = task_parameter_names[i]
         count = 0
         for j in range(i+1,len(task_parameter_names)):
+            curr_name = task_parameter_names[j]
             curr_name = task_parameter_names[j]
             if check_name == curr_name:
                 count += 1
@@ -297,7 +302,7 @@ def make_precondition_str( precondition: Dict[str,Union[str,Dict]] ) -> str:
         return predicate_str
 
 # recursively write effect expressions in equivalent python syntax
-def make_effects_str( effects: Dict[str,Union[str,Dict]] ) -> str:
+def make_effects_str( effects: Dict[str,Union[str,Dict]], tab_level=0 ) -> str:
     # effects with operation
     if "op" in effects.keys():
         op = effects[ "op" ]
@@ -307,7 +312,7 @@ def make_effects_str( effects: Dict[str,Union[str,Dict]] ) -> str:
             operands = effects[ "effects" ]
             effects_str = ""
             for operand in operands:
-                effects_str += make_effects_str(operand) + "; "
+                effects_str += tabify( "\n" + make_effects_str(operand), tab_level+2)
             return effects_str
         # operand will remove predicate
         elif op == "not":
