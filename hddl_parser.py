@@ -151,7 +151,9 @@ class HDDL_Parser:
             f.write(task_list_str)
 
 
-
+# add N number of tabs for every line in string
+def tabify( input_str: str, N: int ):
+    return ( N * '\t' ).join( ("\n" + input_str).splitlines() )
 
 # takes text representation of actions.py and appends action
 # act: Dict representing a single action template
@@ -226,6 +228,7 @@ def append_method_function_str( method: Dict[str,Union[str,Dict]], methods_str: 
 
     # nesting type iteration loops in alphabetic order
     # CURRENTLY UNTESTED
+
     for i, parameter_name in enumerate(parameter_set_diff):
         methods_str += "\t" * ( i + 1 )
         methods_str += "for " + parameter_name + " in state." + parameter_name_type_dict[ parameter_name ] + ":\n"
@@ -234,6 +237,7 @@ def append_method_function_str( method: Dict[str,Union[str,Dict]], methods_str: 
     # if precondition
     # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
     precondition = method[ "precondition" ]
+    # cnf_precondition = make_precondition_cnf(precondition)
     if precondition != None:
         if len( precondition_equalities ) == 0:
             methods_str += ( len(parameter_set_diff) + 1 ) * "\t" + "if " + make_precondition_str( precondition ) + ":\n"
@@ -348,16 +352,16 @@ def make_task_network_str( tasks: List[Dict[str,Union[str,Dict]]] ) -> str:
     task_net_str += "]"
     return task_net_str
 
-# add N number of tabs for every line in string
-def tabify( input_str: str, N: int ):
-    return ( N * '\t' ).join( ("\n" + input_str).splitlines() )
-
 
 # make precondition cnf
 def make_precondition_cnf( precondition: Dict[str,Union[str,Dict]] ) -> Dict[str,Union[str,Dict]]:
     # move negations downward until either negation of simple predicate or doubly negated and removed
     # BFS while calling negation helper when we encounter negation
-    new_precondition = cnf_negation_helper( precondition )
+    if precondition != None:
+        new_precondition = cnf_negation_helper( precondition )
+    else:
+        new_precondition = None
+        return new_precondition
     # move ors downward until only disjunction of predicates and negations of predicates
     # BFS while calling disjunction helper when we encounter disjunction
     new_precondition = cnf_disjunction_helper( new_precondition )
