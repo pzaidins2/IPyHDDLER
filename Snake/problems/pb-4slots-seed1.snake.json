@@ -1,0 +1,3942 @@
+{
+  "$schema": "https://www.sift.net/hddl/draft/2023-07-31/problem",
+  "name": "pb-4slots-seed1",
+  "domain": "snake",
+  "objects": [
+    {
+      "name": "viper",
+      "type": "snake"
+    },
+    {
+      "name": "px0y0",
+      "type": "location"
+    },
+    {
+      "name": "px1y0",
+      "type": "location"
+    },
+    {
+      "name": "px2y0",
+      "type": "location"
+    },
+    {
+      "name": "px3y0",
+      "type": "location"
+    },
+    {
+      "name": "px4y0",
+      "type": "location"
+    },
+    {
+      "name": "px5y0",
+      "type": "location"
+    },
+    {
+      "name": "px6y0",
+      "type": "location"
+    },
+    {
+      "name": "px7y0",
+      "type": "location"
+    },
+    {
+      "name": "px8y0",
+      "type": "location"
+    },
+    {
+      "name": "px9y0",
+      "type": "location"
+    },
+    {
+      "name": "px10y0",
+      "type": "location"
+    },
+    {
+      "name": "px11y0",
+      "type": "location"
+    },
+    {
+      "name": "px12y0",
+      "type": "location"
+    },
+    {
+      "name": "px0y1",
+      "type": "location"
+    },
+    {
+      "name": "px1y1",
+      "type": "location"
+    },
+    {
+      "name": "px2y1",
+      "type": "location"
+    },
+    {
+      "name": "px3y1",
+      "type": "location"
+    },
+    {
+      "name": "px4y1",
+      "type": "location"
+    },
+    {
+      "name": "px5y1",
+      "type": "location"
+    },
+    {
+      "name": "px6y1",
+      "type": "location"
+    },
+    {
+      "name": "px7y1",
+      "type": "location"
+    },
+    {
+      "name": "px8y1",
+      "type": "location"
+    },
+    {
+      "name": "px9y1",
+      "type": "location"
+    },
+    {
+      "name": "px10y1",
+      "type": "location"
+    },
+    {
+      "name": "px11y1",
+      "type": "location"
+    },
+    {
+      "name": "px12y1",
+      "type": "location"
+    },
+    {
+      "name": "px0y2",
+      "type": "location"
+    },
+    {
+      "name": "px1y2",
+      "type": "location"
+    },
+    {
+      "name": "px2y2",
+      "type": "location"
+    },
+    {
+      "name": "px3y2",
+      "type": "location"
+    },
+    {
+      "name": "px4y2",
+      "type": "location"
+    },
+    {
+      "name": "px5y2",
+      "type": "location"
+    },
+    {
+      "name": "px6y2",
+      "type": "location"
+    },
+    {
+      "name": "px7y2",
+      "type": "location"
+    },
+    {
+      "name": "px8y2",
+      "type": "location"
+    },
+    {
+      "name": "px9y2",
+      "type": "location"
+    },
+    {
+      "name": "px10y2",
+      "type": "location"
+    },
+    {
+      "name": "px11y2",
+      "type": "location"
+    },
+    {
+      "name": "px12y2",
+      "type": "location"
+    },
+    {
+      "name": "px0y3",
+      "type": "location"
+    },
+    {
+      "name": "px1y3",
+      "type": "location"
+    },
+    {
+      "name": "px2y3",
+      "type": "location"
+    },
+    {
+      "name": "px3y3",
+      "type": "location"
+    },
+    {
+      "name": "px4y3",
+      "type": "location"
+    },
+    {
+      "name": "px5y3",
+      "type": "location"
+    },
+    {
+      "name": "px6y3",
+      "type": "location"
+    },
+    {
+      "name": "px7y3",
+      "type": "location"
+    },
+    {
+      "name": "px8y3",
+      "type": "location"
+    },
+    {
+      "name": "px9y3",
+      "type": "location"
+    },
+    {
+      "name": "px10y3",
+      "type": "location"
+    },
+    {
+      "name": "px11y3",
+      "type": "location"
+    },
+    {
+      "name": "px12y3",
+      "type": "location"
+    },
+    {
+      "name": "px0y4",
+      "type": "location"
+    },
+    {
+      "name": "px1y4",
+      "type": "location"
+    },
+    {
+      "name": "px2y4",
+      "type": "location"
+    },
+    {
+      "name": "px3y4",
+      "type": "location"
+    },
+    {
+      "name": "px4y4",
+      "type": "location"
+    },
+    {
+      "name": "px5y4",
+      "type": "location"
+    },
+    {
+      "name": "px6y4",
+      "type": "location"
+    },
+    {
+      "name": "px7y4",
+      "type": "location"
+    },
+    {
+      "name": "px8y4",
+      "type": "location"
+    },
+    {
+      "name": "px9y4",
+      "type": "location"
+    },
+    {
+      "name": "px10y4",
+      "type": "location"
+    },
+    {
+      "name": "px11y4",
+      "type": "location"
+    },
+    {
+      "name": "px12y4",
+      "type": "location"
+    },
+    {
+      "name": "px0y5",
+      "type": "location"
+    },
+    {
+      "name": "px1y5",
+      "type": "location"
+    },
+    {
+      "name": "px2y5",
+      "type": "location"
+    },
+    {
+      "name": "px3y5",
+      "type": "location"
+    },
+    {
+      "name": "px4y5",
+      "type": "location"
+    },
+    {
+      "name": "px5y5",
+      "type": "location"
+    },
+    {
+      "name": "px6y5",
+      "type": "location"
+    },
+    {
+      "name": "px7y5",
+      "type": "location"
+    },
+    {
+      "name": "px8y5",
+      "type": "location"
+    },
+    {
+      "name": "px9y5",
+      "type": "location"
+    },
+    {
+      "name": "px10y5",
+      "type": "location"
+    },
+    {
+      "name": "px11y5",
+      "type": "location"
+    },
+    {
+      "name": "px12y5",
+      "type": "location"
+    },
+    {
+      "name": "px0y6",
+      "type": "location"
+    },
+    {
+      "name": "px1y6",
+      "type": "location"
+    },
+    {
+      "name": "px2y6",
+      "type": "location"
+    },
+    {
+      "name": "px3y6",
+      "type": "location"
+    },
+    {
+      "name": "px4y6",
+      "type": "location"
+    },
+    {
+      "name": "px5y6",
+      "type": "location"
+    },
+    {
+      "name": "px6y6",
+      "type": "location"
+    },
+    {
+      "name": "px7y6",
+      "type": "location"
+    },
+    {
+      "name": "px8y6",
+      "type": "location"
+    },
+    {
+      "name": "px9y6",
+      "type": "location"
+    },
+    {
+      "name": "px10y6",
+      "type": "location"
+    },
+    {
+      "name": "px11y6",
+      "type": "location"
+    },
+    {
+      "name": "px12y6",
+      "type": "location"
+    },
+    {
+      "name": "px0y7",
+      "type": "location"
+    },
+    {
+      "name": "px1y7",
+      "type": "location"
+    },
+    {
+      "name": "px2y7",
+      "type": "location"
+    },
+    {
+      "name": "px3y7",
+      "type": "location"
+    },
+    {
+      "name": "px4y7",
+      "type": "location"
+    },
+    {
+      "name": "px5y7",
+      "type": "location"
+    },
+    {
+      "name": "px6y7",
+      "type": "location"
+    },
+    {
+      "name": "px7y7",
+      "type": "location"
+    },
+    {
+      "name": "px8y7",
+      "type": "location"
+    },
+    {
+      "name": "px9y7",
+      "type": "location"
+    },
+    {
+      "name": "px10y7",
+      "type": "location"
+    },
+    {
+      "name": "px11y7",
+      "type": "location"
+    },
+    {
+      "name": "px12y7",
+      "type": "location"
+    },
+    {
+      "name": "px0y8",
+      "type": "location"
+    },
+    {
+      "name": "px1y8",
+      "type": "location"
+    },
+    {
+      "name": "px2y8",
+      "type": "location"
+    },
+    {
+      "name": "px3y8",
+      "type": "location"
+    },
+    {
+      "name": "px4y8",
+      "type": "location"
+    },
+    {
+      "name": "px5y8",
+      "type": "location"
+    },
+    {
+      "name": "px6y8",
+      "type": "location"
+    },
+    {
+      "name": "px7y8",
+      "type": "location"
+    },
+    {
+      "name": "px8y8",
+      "type": "location"
+    },
+    {
+      "name": "px9y8",
+      "type": "location"
+    },
+    {
+      "name": "px10y8",
+      "type": "location"
+    },
+    {
+      "name": "px11y8",
+      "type": "location"
+    },
+    {
+      "name": "px12y8",
+      "type": "location"
+    }
+  ],
+  "init": [
+    {
+      "predicate": "head",
+      "args": [
+        "viper",
+        "px1y0"
+      ]
+    },
+    {
+      "predicate": "connected",
+      "args": [
+        "viper",
+        "px1y0",
+        "px0y0"
+      ]
+    },
+    {
+      "predicate": "tail",
+      "args": [
+        "viper",
+        "px0y0"
+      ]
+    },
+    {
+      "predicate": "mouse-at",
+      "args": [
+        "px4y3"
+      ]
+    },
+    {
+      "predicate": "mouse-at",
+      "args": [
+        "px5y3"
+      ]
+    },
+    {
+      "predicate": "mouse-at",
+      "args": [
+        "px10y4"
+      ]
+    },
+    {
+      "predicate": "mouse-at",
+      "args": [
+        "px11y4"
+      ]
+    },
+    {
+      "predicate": "mouse-at",
+      "args": [
+        "px7y5"
+      ]
+    },
+    {
+      "predicate": "mouse-at",
+      "args": [
+        "px8y5"
+      ]
+    },
+    {
+      "predicate": "mouse-at",
+      "args": [
+        "px1y6"
+      ]
+    },
+    {
+      "predicate": "mouse-at",
+      "args": [
+        "px2y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px0y0"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px1y0"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px0y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px2y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px3y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px5y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px6y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px8y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px9y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px11y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px12y1"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px0y2"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px3y2"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px6y2"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px9y2"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px12y2"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px0y3"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px3y3"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px4y3"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px5y3"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px6y3"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px9y3"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px12y3"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px0y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px3y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px4y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px5y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px6y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px9y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px10y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px11y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px12y4"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px0y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px3y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px4y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px5y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px6y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px7y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px8y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px9y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px10y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px11y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px12y5"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px0y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px1y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px2y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px3y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px4y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px5y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px6y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px7y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px8y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px9y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px10y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px11y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px12y6"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px0y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px1y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px2y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px3y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px4y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px5y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px6y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px7y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px8y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px9y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px10y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px11y7"
+      ]
+    },
+    {
+      "predicate": "occupied",
+      "args": [
+        "px12y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y0",
+        "px1y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y0",
+        "px0y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y0",
+        "px2y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y0",
+        "px1y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y0",
+        "px3y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y0",
+        "px2y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y0",
+        "px4y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y0",
+        "px3y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y0",
+        "px5y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y0",
+        "px4y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y0",
+        "px6y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y0",
+        "px5y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y0",
+        "px7y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y0",
+        "px6y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y0",
+        "px8y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y0",
+        "px7y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y0",
+        "px9y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y0",
+        "px8y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y0",
+        "px10y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y0",
+        "px9y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y0",
+        "px11y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y0",
+        "px10y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y0",
+        "px12y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y0",
+        "px11y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y1",
+        "px1y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y1",
+        "px0y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y1",
+        "px2y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y1",
+        "px1y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y1",
+        "px3y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y1",
+        "px2y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y1",
+        "px4y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y1",
+        "px3y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y1",
+        "px5y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y1",
+        "px4y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y1",
+        "px6y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y1",
+        "px5y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y1",
+        "px7y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y1",
+        "px6y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y1",
+        "px8y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y1",
+        "px7y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y1",
+        "px9y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y1",
+        "px8y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y1",
+        "px10y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y1",
+        "px9y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y1",
+        "px11y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y1",
+        "px10y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y1",
+        "px12y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y1",
+        "px11y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y2",
+        "px1y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y2",
+        "px0y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y2",
+        "px2y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y2",
+        "px1y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y2",
+        "px3y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y2",
+        "px2y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y2",
+        "px4y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y2",
+        "px3y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y2",
+        "px5y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y2",
+        "px4y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y2",
+        "px6y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y2",
+        "px5y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y2",
+        "px7y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y2",
+        "px6y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y2",
+        "px8y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y2",
+        "px7y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y2",
+        "px9y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y2",
+        "px8y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y2",
+        "px10y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y2",
+        "px9y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y2",
+        "px11y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y2",
+        "px10y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y2",
+        "px12y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y2",
+        "px11y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y3",
+        "px1y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y3",
+        "px0y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y3",
+        "px2y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y3",
+        "px1y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y3",
+        "px3y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y3",
+        "px2y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y3",
+        "px4y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y3",
+        "px3y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y3",
+        "px5y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y3",
+        "px4y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y3",
+        "px6y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y3",
+        "px5y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y3",
+        "px7y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y3",
+        "px6y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y3",
+        "px8y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y3",
+        "px7y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y3",
+        "px9y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y3",
+        "px8y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y3",
+        "px10y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y3",
+        "px9y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y3",
+        "px11y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y3",
+        "px10y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y3",
+        "px12y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y3",
+        "px11y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y4",
+        "px1y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y4",
+        "px0y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y4",
+        "px2y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y4",
+        "px1y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y4",
+        "px3y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y4",
+        "px2y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y4",
+        "px4y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y4",
+        "px3y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y4",
+        "px5y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y4",
+        "px4y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y4",
+        "px6y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y4",
+        "px5y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y4",
+        "px7y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y4",
+        "px6y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y4",
+        "px8y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y4",
+        "px7y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y4",
+        "px9y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y4",
+        "px8y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y4",
+        "px10y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y4",
+        "px9y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y4",
+        "px11y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y4",
+        "px10y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y4",
+        "px12y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y4",
+        "px11y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y5",
+        "px1y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y5",
+        "px0y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y5",
+        "px2y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y5",
+        "px1y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y5",
+        "px3y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y5",
+        "px2y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y5",
+        "px4y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y5",
+        "px3y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y5",
+        "px5y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y5",
+        "px4y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y5",
+        "px6y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y5",
+        "px5y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y5",
+        "px7y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y5",
+        "px6y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y5",
+        "px8y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y5",
+        "px7y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y5",
+        "px9y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y5",
+        "px8y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y5",
+        "px10y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y5",
+        "px9y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y5",
+        "px11y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y5",
+        "px10y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y5",
+        "px12y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y5",
+        "px11y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y6",
+        "px1y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y6",
+        "px0y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y6",
+        "px2y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y6",
+        "px1y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y6",
+        "px3y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y6",
+        "px2y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y6",
+        "px4y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y6",
+        "px3y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y6",
+        "px5y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y6",
+        "px4y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y6",
+        "px6y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y6",
+        "px5y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y6",
+        "px7y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y6",
+        "px6y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y6",
+        "px8y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y6",
+        "px7y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y6",
+        "px9y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y6",
+        "px8y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y6",
+        "px10y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y6",
+        "px9y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y6",
+        "px11y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y6",
+        "px10y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y6",
+        "px12y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y6",
+        "px11y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y7",
+        "px1y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y7",
+        "px0y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y7",
+        "px2y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y7",
+        "px1y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y7",
+        "px3y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y7",
+        "px2y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y7",
+        "px4y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y7",
+        "px3y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y7",
+        "px5y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y7",
+        "px4y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y7",
+        "px6y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y7",
+        "px5y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y7",
+        "px7y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y7",
+        "px6y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y7",
+        "px8y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y7",
+        "px7y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y7",
+        "px9y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y7",
+        "px8y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y7",
+        "px10y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y7",
+        "px9y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y7",
+        "px11y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y7",
+        "px10y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y7",
+        "px12y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y7",
+        "px11y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y8",
+        "px1y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y8",
+        "px0y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y8",
+        "px2y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y8",
+        "px1y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y8",
+        "px3y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y8",
+        "px2y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y8",
+        "px4y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y8",
+        "px3y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y8",
+        "px5y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y8",
+        "px4y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y8",
+        "px6y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y8",
+        "px5y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y8",
+        "px7y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y8",
+        "px6y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y8",
+        "px8y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y8",
+        "px7y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y8",
+        "px9y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y8",
+        "px8y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y8",
+        "px10y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y8",
+        "px9y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y8",
+        "px11y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y8",
+        "px10y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y8",
+        "px12y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y8",
+        "px11y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y0",
+        "px0y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y1",
+        "px0y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y0",
+        "px1y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y1",
+        "px1y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y0",
+        "px2y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y1",
+        "px2y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y0",
+        "px3y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y1",
+        "px3y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y0",
+        "px4y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y1",
+        "px4y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y0",
+        "px5y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y1",
+        "px5y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y0",
+        "px6y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y1",
+        "px6y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y0",
+        "px7y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y1",
+        "px7y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y0",
+        "px8y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y1",
+        "px8y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y0",
+        "px9y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y1",
+        "px9y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y0",
+        "px10y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y1",
+        "px10y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y0",
+        "px11y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y1",
+        "px11y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y0",
+        "px12y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y1",
+        "px12y0"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y1",
+        "px0y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y2",
+        "px0y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y1",
+        "px1y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y2",
+        "px1y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y1",
+        "px2y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y2",
+        "px2y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y1",
+        "px3y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y2",
+        "px3y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y1",
+        "px4y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y2",
+        "px4y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y1",
+        "px5y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y2",
+        "px5y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y1",
+        "px6y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y2",
+        "px6y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y1",
+        "px7y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y2",
+        "px7y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y1",
+        "px8y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y2",
+        "px8y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y1",
+        "px9y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y2",
+        "px9y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y1",
+        "px10y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y2",
+        "px10y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y1",
+        "px11y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y2",
+        "px11y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y1",
+        "px12y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y2",
+        "px12y1"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y2",
+        "px0y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y3",
+        "px0y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y2",
+        "px1y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y3",
+        "px1y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y2",
+        "px2y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y3",
+        "px2y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y2",
+        "px3y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y3",
+        "px3y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y2",
+        "px4y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y3",
+        "px4y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y2",
+        "px5y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y3",
+        "px5y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y2",
+        "px6y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y3",
+        "px6y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y2",
+        "px7y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y3",
+        "px7y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y2",
+        "px8y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y3",
+        "px8y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y2",
+        "px9y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y3",
+        "px9y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y2",
+        "px10y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y3",
+        "px10y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y2",
+        "px11y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y3",
+        "px11y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y2",
+        "px12y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y3",
+        "px12y2"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y3",
+        "px0y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y4",
+        "px0y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y3",
+        "px1y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y4",
+        "px1y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y3",
+        "px2y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y4",
+        "px2y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y3",
+        "px3y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y4",
+        "px3y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y3",
+        "px4y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y4",
+        "px4y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y3",
+        "px5y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y4",
+        "px5y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y3",
+        "px6y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y4",
+        "px6y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y3",
+        "px7y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y4",
+        "px7y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y3",
+        "px8y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y4",
+        "px8y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y3",
+        "px9y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y4",
+        "px9y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y3",
+        "px10y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y4",
+        "px10y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y3",
+        "px11y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y4",
+        "px11y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y3",
+        "px12y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y4",
+        "px12y3"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y4",
+        "px0y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y5",
+        "px0y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y4",
+        "px1y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y5",
+        "px1y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y4",
+        "px2y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y5",
+        "px2y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y4",
+        "px3y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y5",
+        "px3y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y4",
+        "px4y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y5",
+        "px4y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y4",
+        "px5y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y5",
+        "px5y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y4",
+        "px6y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y5",
+        "px6y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y4",
+        "px7y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y5",
+        "px7y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y4",
+        "px8y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y5",
+        "px8y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y4",
+        "px9y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y5",
+        "px9y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y4",
+        "px10y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y5",
+        "px10y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y4",
+        "px11y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y5",
+        "px11y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y4",
+        "px12y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y5",
+        "px12y4"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y5",
+        "px0y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y6",
+        "px0y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y5",
+        "px1y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y6",
+        "px1y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y5",
+        "px2y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y6",
+        "px2y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y5",
+        "px3y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y6",
+        "px3y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y5",
+        "px4y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y6",
+        "px4y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y5",
+        "px5y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y6",
+        "px5y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y5",
+        "px6y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y6",
+        "px6y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y5",
+        "px7y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y6",
+        "px7y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y5",
+        "px8y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y6",
+        "px8y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y5",
+        "px9y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y6",
+        "px9y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y5",
+        "px10y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y6",
+        "px10y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y5",
+        "px11y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y6",
+        "px11y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y5",
+        "px12y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y6",
+        "px12y5"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y6",
+        "px0y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y7",
+        "px0y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y6",
+        "px1y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y7",
+        "px1y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y6",
+        "px2y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y7",
+        "px2y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y6",
+        "px3y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y7",
+        "px3y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y6",
+        "px4y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y7",
+        "px4y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y6",
+        "px5y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y7",
+        "px5y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y6",
+        "px6y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y7",
+        "px6y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y6",
+        "px7y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y7",
+        "px7y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y6",
+        "px8y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y7",
+        "px8y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y6",
+        "px9y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y7",
+        "px9y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y6",
+        "px10y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y7",
+        "px10y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y6",
+        "px11y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y7",
+        "px11y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y6",
+        "px12y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y7",
+        "px12y6"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y7",
+        "px0y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px0y8",
+        "px0y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y7",
+        "px1y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px1y8",
+        "px1y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y7",
+        "px2y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px2y8",
+        "px2y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y7",
+        "px3y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px3y8",
+        "px3y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y7",
+        "px4y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px4y8",
+        "px4y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y7",
+        "px5y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px5y8",
+        "px5y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y7",
+        "px6y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px6y8",
+        "px6y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y7",
+        "px7y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px7y8",
+        "px7y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y7",
+        "px8y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px8y8",
+        "px8y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y7",
+        "px9y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px9y8",
+        "px9y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y7",
+        "px10y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px10y8",
+        "px10y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y7",
+        "px11y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px11y8",
+        "px11y7"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y7",
+        "px12y8"
+      ]
+    },
+    {
+      "predicate": "adjacent",
+      "args": [
+        "px12y8",
+        "px12y7"
+      ]
+    }
+  ],
+  "htn": {
+    "parameters": [],
+    "orderedSubtasks": [
+      {
+        "taskName": "hunt",
+        "args": []
+      }
+    ]
+  }
+}

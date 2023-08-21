@@ -19,4 +19,4 @@ def movemoreta( state, l1, l3 ):
 		yield [ ( 'driveta', l1, l2, ), ( 'move', l2, l3, ), ( 'paytoll', l3, ), ]
 
 methods = Methods()
-methods.declare_task_methods( 'move', [ movemoreta, movenone, moveone, movemore, moveoneta, ] )
+methods.declare_task_methods( 'move', [ moveone, moveoneta, movemore, movemoreta, movenone, ] )
