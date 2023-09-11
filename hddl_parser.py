@@ -726,7 +726,7 @@ def run_experiment( problem_json ):
 
 
 if __name__ == '__main__':
-    problem_json="pb-5slots-seed1.snake.json"
+    problem_json="pb-32slots-seed1.snake.json"
     output_py = problem_json.replace( "snake.json", "py" )
     output_txt = problem_json.replace( "snake.json", "txt" )
     # test domain
@@ -758,7 +758,7 @@ if __name__ == '__main__':
     pr = cProfile.Profile()
     pr.enable()
     ################################################################################
-    plan = planner.plan( init_state, task_list, verbose=1, initial_max_depth=25, depth_step_size=5 )
+    plan = planner.plan( init_state, task_list, verbose=0)
     ###################################################################################
     pr.disable()
     s = io.StringIO()
@@ -769,25 +769,34 @@ if __name__ == '__main__':
     #################################################################################
     # end_time = time.perf_counter_ns()
     # total_time = (end_time - start_time) / 1E9
-    # print(plan)
+    print(plan)
     # print(total_time)
 
     with open( "Snake/solutions/" + output_txt, "w") as f:
         f.write(str(plan))
-    # args = [ *filter( lambda x: "snake.json" in x, os.listdir( "Snake/problems" ) ) ]
-    # # args = ["pb-2slots-seed1.snake.json"]
+    # args = [ *filter( lambda x: "1.snake.json" in x, os.listdir( "Snake/problems" ) ) ]
+    # args_dict = dict()
+    # for arg in args:
+    #     try:
+    #         args_dict[arg] = int(arg[3:5])
+    #     except:
+    #         args_dict[ arg ] = int( arg[ 3 ] )
+    # args.sort(key=lambda x: args_dict[x])
+    # print(args)
     # time_arr = np.ndarray( len( args ), dtype=float )
     # plan_len_arr = np.empty_like( time_arr, dtype=int )
-    # with Pool( processes=cpu_count() ) as pool:
+    # with Pool( processes=cpu_count() // 2 ) as pool:
     #     output = pool.map_async( run_experiment, args, chunksize=1 )
     #     while True:
     #         if output.ready():
     #             break
     #         print( str( round( 100 - 100 * output._number_left / len( args ), 3 ) ) + " %" )
     #         time.sleep( 60 )
+    # i = 0
     # for exp in output.get():
-    #     time_arr[ args.index( exp[ 0 ] ) ] = exp[ 1 ]
-    #     plan_len_arr[ args.index( exp[ 0 ] ) ] = exp[ 2 ]
+    #     time_arr[ i ] = exp[ 1 ]
+    #     plan_len_arr[ i ] = exp[ 2 ]
+    #     i += 1
     # print(time_arr)
     # print(plan_len_arr)
     # plt.scatter(time_arr,plan_len_arr)
