@@ -21,6 +21,11 @@ def move_short( state, snake, nextpos, snakepos, rigid ):
 
 def move_long( state, snake, nextpos, headpos, bodypos, tailpos, rigid ):
 	if all( [ ( snake, headpos, ) in state.head, ( snake, bodypos, tailpos, ) in state.connected, ( snake, tailpos, ) in state.tail, ( nextpos, headpos, ) in rigid.adjacent, ( bodypos, tailpos, ) in rigid.adjacent, not( ( nextpos, ) in state.occupied ), not( ( bodypos == nextpos ) ), not( ( tailpos == nextpos ) ), not( ( headpos == tailpos ) ), ] ):
+		# print( state.occupied )
+		# print( state.head )
+		# print( state.tail )
+		# print( tailpos )
+		# print( (snake, tailpos,) in state.tail )
 		state.head.remove( ( snake, headpos, ) )
 		state.head.add( ( snake, nextpos, ) )
 		state.tail.remove( ( snake, tailpos, ) )
@@ -28,6 +33,7 @@ def move_long( state, snake, nextpos, headpos, bodypos, tailpos, rigid ):
 		state.connected.remove( ( snake, bodypos, tailpos, ) )
 		state.connected.add( ( snake, nextpos, headpos, ) )
 		state.occupied.add( ( nextpos, ) )
+
 		state.occupied.remove( ( tailpos, ) )
 		return state
 

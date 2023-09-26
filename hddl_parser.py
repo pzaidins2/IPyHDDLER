@@ -5,7 +5,9 @@ import json
 from copy import deepcopy
 import os
 from typing import List, Dict, Union, Set, Tuple
-from ipyhop import State, IPyHOP
+from ipyhop import IPyHOP
+from ipyhop.actor import Actor
+from ipyhop.mc_executor import MonteCarloExecutor
 from functools import partial
 import time
 import networkx as nx
@@ -15,6 +17,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cProfile, pstats, io
 from pstats import SortKey
+from Snake.domain.deviations import snake_deviation_handler
 
 # if used an actions will give all mutating states
 # we can avoid copying all other state properties
@@ -23,6 +26,7 @@ from pstats import SortKey
 # UNUSED
 re_state_collect = re.compile( "rigid\.([\w_]+)\.(?=add|remove)" )
 re_state_replace = re.compile( "rigid\.([\w_]+)(?=[\W\.])" )
+re_constant_replace =re.compile("(\w+),")
 
 
 # replace all statements of rigid.<predicate> with state.<predicate> if
@@ -30,6 +34,14 @@ re_state_replace = re.compile( "rigid\.([\w_]+)(?=[\W\.])" )
 def state_str_replacer( match_obj, mutable ):
     if match_obj.group( 1 ) in mutable:
         return "state." + match_obj.group( 1 )
+    else:
+        return match_obj.group( 0 )
+
+# turn all defined constants into string literals
+#  <predicate> can mutate
+def constant_str_replacer( match_obj, constant_set ):
+    if match_obj.group( 1) in constant_set:
+        return "'" + match_obj.group( 1 ) + "',"
     else:
         return match_obj.group( 0 )
 
@@ -50,6 +62,8 @@ class HDDL_Parser:
         self.domain_dict = None
         self.problem_dict = None
         self.mutable = set()
+        self.typed_sets = dict()
+        self.constant_set = set()
 
     def parse_domain( self, domain_json_path: str ) -> None:
         # read json as dictionary
@@ -64,6 +78,20 @@ class HDDL_Parser:
 
         # note all state components that are never modified in actions
         self.mutable = set( re_state_collect.findall( actions_str ) )
+
+        # track domain constants
+        print(domain_dict["constants"])
+        constants = domain_dict[ "constants" ]
+        typed_sets = self.typed_sets
+        constant_set = self.constant_set
+        for const in constants:
+            name = clean_string( const[ "name" ] )
+            type = clean_string( const[ "type" ] )
+            constant_set.add( name )
+            if type not in typed_sets.keys():
+                typed_sets[ type ] = set()
+            typed_sets[ type ].add( name )
+
         return
 
     def parse_problem( self, problem_json_path: str ) -> None:
@@ -121,6 +149,8 @@ class HDDL_Parser:
 
         # replace all instances of mutables
         actions_str = re_state_replace.sub( lambda x: state_str_replacer( x, self.mutable ), actions_str )
+        # make all constants literals
+        actions_str = re_constant_replace.sub( lambda x: constant_str_replacer( x, self.constant_set ), actions_str )
         with open( domain_path + "/actions.py", "w" ) as actions_file:
             actions_file.write( actions_str )
         # write methods.py
@@ -144,6 +174,9 @@ class HDDL_Parser:
             methods_str += "] )\n"
         # replace rigid with state for mutable
         methods_str = re_state_replace.sub( lambda x: state_str_replacer( x, self.mutable ), methods_str )
+        # make all cosntants literals
+        methods_str = re_constant_replace.sub( lambda x: constant_str_replacer( x, self.constant_set ), methods_str )
+
         with open( domain_path + "/methods.py", "w" ) as methods_file:
             methods_file.write( methods_str )
 
@@ -158,7 +191,7 @@ class HDDL_Parser:
         init_state_str += "rigid = State( 'rigid' )\n"
         # make typed sets
         objs = problem_dict[ "objects" ]
-        typed_sets = dict()
+        typed_sets = self.typed_sets
         for obj in objs:
             name = clean_string( obj[ "name" ] )
             type = clean_string( obj[ "type" ] )
@@ -193,6 +226,8 @@ class HDDL_Parser:
         task_list_str = ""
         tasks = problem_dict[ "htn" ][ "orderedSubtasks" ]
         task_list = [ (task[ "taskName" ], *task[ "args" ]) for task in tasks ]
+        print(task_list)
+        task_list =[*map(lambda x: tuple(map(clean_string,x)),task_list)]
         task_list_str += "\ntask_list = "
         task_list_str += str( task_list ) + "\n"
 
@@ -287,7 +322,7 @@ def make_method_function_str( method: Dict[ str, Union[ str, Dict ] ],
 
     # if precondition
     # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
-    precondition = method[ "precondition" ]
+    precondition = method[ "precondition" ] if "precondition" in method.keys() else None
     # print(precondition)
     # clause_list = make_clause_cnf_list(precondition)
     # print(clause_list)
@@ -409,7 +444,7 @@ def make_effects_str( effects: Dict[ str, Union[ str, Dict ] ], tab_level=0 ) ->
             raise (op + " is an unsupported op for effects!")
     # predicate effects
     else:
-        predicate = effects[ "predicate" ]
+        predicate = clean_string( effects[ "predicate" ] )
         args = effects[ "args" ]
         predicate_str = "rigid." + predicate + ".add( ( "
         for arg in args:
@@ -726,25 +761,30 @@ def run_experiment( problem_json ):
 
 
 if __name__ == '__main__':
-    problem_json="pb-32slots-seed1.snake.json"
-    output_py = problem_json.replace( "snake.json", "py" )
-    output_txt = problem_json.replace( "snake.json", "txt" )
-    # test domain
+    # problem input, internal, and output files
+    problem_json="p-003-003-003-003.json"
+    output_py = problem_json.replace( "json", "py" )
+    output_txt = problem_json.replace( "json", "txt" )
+    # write methods and actions
+    # WRITE IS COMMENTED OUT DUE TO LOCAL OPTIMIZATION
     parser = HDDL_Parser()
-    parser.parse_domain("Snake/domain/domain.json")
-    # parser.write_domain()
-    parser.parse_problem( "Snake/problems/" + problem_json )
-    parser.write_problem("Snake/problems_py/" + output_py)
-    from Snake.domain.actions import actions
-    from Snake.domain.methods import methods
+    parser.parse_domain("../../domains/ipc-2023-minecraft-player-domain/domain.json")
 
-    temp_mod = importlib.import_module( "Snake.problems_py." + output_py[ :-3 ] )
+    # parser.write_domain("minecraft")
+    # make pythonic representation of state and constants
+    parser.parse_problem( "../../domains/ipc-2023-minecraft-player-domain/" + problem_json )
+    parser.write_problem("minecraft/problems_py/" + output_py)
+    # helps with modularity, partly inherited quirk
+    # by treating as modules we don't need conversions between plain text and python code
+    from minecraft.domain.actions import actions
+    from minecraft.domain.methods import methods
+    temp_mod = importlib.import_module( "minecraft.problems_py." + output_py[ :-3 ] )
     init_state = temp_mod.state
     task_list = temp_mod.task_list
     rigid = temp_mod.rigid
+    # pass constants using rigid
     local_methods = deepcopy( methods )
     local_actions = deepcopy( actions )
-
     local_methods.goal_method_dict.update(
         { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
     local_methods.task_method_dict.update(
@@ -752,28 +792,36 @@ if __name__ == '__main__':
     local_methods.multigoal_method_dict.update(
         { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
     local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
+    # make planner
     planner = IPyHOP(local_methods, local_actions)
+    # deviation handler is essentially a function, but stores information between calls
+    # dev_hand = snake_deviation_handler( planner, rigid, active_mouse_ratio=0.5, move_activity_ratio=0.1 )
+    # # simulator
+    # mc_executor = MonteCarloExecutor( local_actions, dev_hand )
+    # # agent
+    # actor = Actor( planner, mc_executor )
     # start_time = time.perf_counter_ns()
     #############################################################################
     pr = cProfile.Profile()
-    pr.enable()
+    # pr.enable()
     ################################################################################
-    plan = planner.plan( init_state, task_list, verbose=0)
+    # complete task_list, repairing as needed
+    plan = planner.plan( init_state, task_list, verbose=3)
     ###################################################################################
-    pr.disable()
+    # pr.disable()
     s = io.StringIO()
     sortby = "tottime"
-    ps = pstats.Stats( pr, stream=s ).sort_stats( sortby )
-    ps.print_stats()
-    print( s.getvalue() )
+    # ps = pstats.Stats( pr, stream=s ).sort_stats( sortby )
+    # ps.print_stats()
+    # print( s.getvalue() )
     #################################################################################
     # end_time = time.perf_counter_ns()
     # total_time = (end_time - start_time) / 1E9
     print(plan)
     # print(total_time)
 
-    with open( "Snake/solutions/" + output_txt, "w") as f:
-        f.write(str(plan))
+    # with open( "Snake/solutions/" + output_txt, "w") as f:
+    #     f.write(str(plan))
     # args = [ *filter( lambda x: "1.snake.json" in x, os.listdir( "Snake/problems" ) ) ]
     # args_dict = dict()
     # for arg in args:
