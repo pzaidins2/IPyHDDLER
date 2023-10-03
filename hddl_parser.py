@@ -226,8 +226,9 @@ class HDDL_Parser:
         task_list_str = ""
         tasks = problem_dict[ "htn" ][ "orderedSubtasks" ]
         task_list = [ (task[ "taskName" ], *task[ "args" ]) for task in tasks ]
-        print(task_list)
+
         task_list =[*map(lambda x: tuple(map(clean_string,x)),task_list)]
+        print( task_list )
         task_list_str += "\ntask_list = "
         task_list_str += str( task_list ) + "\n"
 
@@ -762,7 +763,7 @@ def run_experiment( problem_json ):
 
 if __name__ == '__main__':
     # problem input, internal, and output files
-    problem_json="p-003-003-003-003.json"
+    problem_json="p-003-005-005-005.json"
     output_py = problem_json.replace( "json", "py" )
     output_txt = problem_json.replace( "json", "txt" )
     # write methods and actions
@@ -803,17 +804,17 @@ if __name__ == '__main__':
     # start_time = time.perf_counter_ns()
     #############################################################################
     pr = cProfile.Profile()
-    # pr.enable()
+    pr.enable()
     ################################################################################
     # complete task_list, repairing as needed
     plan = planner.plan( init_state, task_list, verbose=3)
     ###################################################################################
-    # pr.disable()
+    pr.disable()
     s = io.StringIO()
     sortby = "tottime"
-    # ps = pstats.Stats( pr, stream=s ).sort_stats( sortby )
-    # ps.print_stats()
-    # print( s.getvalue() )
+    ps = pstats.Stats( pr, stream=s ).sort_stats( sortby )
+    ps.print_stats()
+    print( s.getvalue() )
     #################################################################################
     # end_time = time.perf_counter_ns()
     # total_time = (end_time - start_time) / 1E9
