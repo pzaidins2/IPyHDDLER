@@ -80,7 +80,7 @@ class HDDL_Parser:
         self.mutable = set( re_state_collect.findall( actions_str ) )
 
         # track domain constants
-        print(domain_dict["constants"])
+        # print(domain_dict["constants"])
         constants = domain_dict[ "constants" ]
         typed_sets = self.typed_sets
         constant_set = self.constant_set
@@ -712,25 +712,34 @@ def iteration_optimizer( unboundVars: List[ str ], clauses: List[ Tuple[ List, L
     return ordering
 
 
-def run_experiment( problem_json ):
+def run_experiment( problem_dir, problem_json, output_dir ):
     print( problem_json )
 
+    # load parser
     parser = HDDL_Parser()
-    parser.parse_domain( "Snake/domain/domain.json" )
-    from Snake.domain.actions import actions
-    from Snake.domain.methods import methods
-    parser.parse_problem( "Snake/problems/" + problem_json )
-    output_py = problem_json.replace( "snake.json", "py" )
-    output_txt = problem_json.replace( "snake.json", "txt" )
-    parser.write_problem( "Snake/problems_py/" + output_py )
+    parser.parse_domain( problem_dir + "domain.json" )
+
+    # used for file names
+    output_py = problem_json.replace( "json", "py" )
+    output_txt = problem_json.replace( "json", "txt" )
+
+
+    # read in actions and methods as moduless
+    actions_mod = importlib.import_module( output_dir[ :-1 ] + ".domain.actions" )
+    actions = actions_mod.actions
+    methods_mod = importlib.import_module( output_dir[ :-1 ] + ".domain.methods" )
+    methods = methods_mod.methods
+
+    # parse and write problem
+    parser.parse_problem( problem_dir + problem_json )
+    parser.write_problem( output_dir + "problems_py/" + output_py )
+
     # read in initial state, task list, and rigid
-    temp_mod = importlib.import_module( "Snake.problems_py." + output_py[ :-3 ] )
-    init_state = temp_mod.state
-    task_list = temp_mod.task_list
-    rigid = temp_mod.rigid
-    # print(init_state)
-    # print(task_list)
-    # print(rigid)
+    state_mod = importlib.import_module( output_dir[ :-1 ] + ".problems_py." + output_py[ :-3 ] )
+    init_state = state_mod.state
+    task_list = state_mod.task_list
+    rigid = state_mod.rigid
+
     # update methods and actions to use rigid
     local_methods = deepcopy( methods )
     local_actions = deepcopy( actions )
@@ -755,7 +764,7 @@ def run_experiment( problem_json ):
     end_time = time.process_time_ns()
     total_time = (end_time - start_time) / 1E9
     # write problem and plan to file (name should be the same as the original json file with .py extension)
-    with open( "Snake/solutions/" + output_txt, "w" ) as f:
+    with open( output_dir + "solutions/" + output_txt, "w" ) as f:
         f.write( str( plan ) )
     print( (problem_json, total_time, plan) )
     return (problem_json, total_time, plan)
@@ -763,23 +772,25 @@ def run_experiment( problem_json ):
 
 if __name__ == '__main__':
     # problem input, internal, and output files
-    problem_json="p-003-005-005-005.json"
+    problem_json="p-035-035-035-035.json"
     output_py = problem_json.replace( "json", "py" )
     output_txt = problem_json.replace( "json", "txt" )
     # write methods and actions
     # WRITE IS COMMENTED OUT DUE TO LOCAL OPTIMIZATION
     parser = HDDL_Parser()
-    parser.parse_domain("../../domains/ipc-2023-minecraft-player-domain/domain.json")
+    input_domain_dir = "../../domains/ipc-2023-minecraft-regular-domain/"
+    output_dir = "minecraft_regular/"
+    parser.parse_domain( input_domain_dir + "domain.json" )
 
-    # parser.write_domain("minecraft")
+    # parser.write_domain(output_dir[:-1])
     # make pythonic representation of state and constants
-    parser.parse_problem( "../../domains/ipc-2023-minecraft-player-domain/" + problem_json )
-    parser.write_problem("minecraft/problems_py/" + output_py)
+    parser.parse_problem( input_domain_dir + problem_json )
+    parser.write_problem( output_dir + "problems_py/" + output_py)
     # helps with modularity, partly inherited quirk
     # by treating as modules we don't need conversions between plain text and python code
-    from minecraft.domain.actions import actions
-    from minecraft.domain.methods import methods
-    temp_mod = importlib.import_module( "minecraft.problems_py." + output_py[ :-3 ] )
+    from minecraft_regular.domain.actions import actions
+    from minecraft_regular.domain.methods import methods
+    temp_mod = importlib.import_module( "minecraft_regular.problems_py." + output_py[ :-3 ] )
     init_state = temp_mod.state
     task_list = temp_mod.task_list
     rigid = temp_mod.rigid
@@ -807,7 +818,7 @@ if __name__ == '__main__':
     pr.enable()
     ################################################################################
     # complete task_list, repairing as needed
-    plan = planner.plan( init_state, task_list, verbose=3)
+    plan = planner.plan( init_state, task_list, verbose=0)
     ###################################################################################
     pr.disable()
     s = io.StringIO()
@@ -821,21 +832,17 @@ if __name__ == '__main__':
     print(plan)
     # print(total_time)
 
-    # with open( "Snake/solutions/" + output_txt, "w") as f:
-    #     f.write(str(plan))
-    # args = [ *filter( lambda x: "1.snake.json" in x, os.listdir( "Snake/problems" ) ) ]
-    # args_dict = dict()
-    # for arg in args:
-    #     try:
-    #         args_dict[arg] = int(arg[3:5])
-    #     except:
-    #         args_dict[ arg ] = int( arg[ 3 ] )
-    # args.sort(key=lambda x: args_dict[x])
+    with open( output_dir + "solutions/" + output_txt, "w") as f:
+        f.write(str(plan))
+    # input_dir = "../../domains/ipc-2023-minecraft-regular-domain/"
+    # output_dir = "minecraft_regular/"
+    # args = filter( lambda x: "p-0" in x and "json" in x, os.listdir( input_dir ) )
+    # args = [*map( lambda x: ( input_dir, x, output_dir), args )]
     # print(args)
     # time_arr = np.ndarray( len( args ), dtype=float )
     # plan_len_arr = np.empty_like( time_arr, dtype=int )
     # with Pool( processes=cpu_count() // 2 ) as pool:
-    #     output = pool.map_async( run_experiment, args, chunksize=1 )
+    #     output = pool.starmap_async( run_experiment, args, chunksize=1 )
     #     while True:
     #         if output.ready():
     #             break
