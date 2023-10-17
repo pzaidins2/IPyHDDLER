@@ -1,1 +1,135 @@
-[('move_long', 'viper', 'px2y0', 'px1y0', 'px1y0', 'px0y0'), ('move_long', 'viper', 'px3y0', 'px2y0', 'px2y0', 'px1y0'), ('move_long', 'viper', 'px4y0', 'px3y0', 'px3y0', 'px2y0'), ('move_long', 'viper', 'px5y0', 'px4y0', 'px4y0', 'px3y0'), ('move_long', 'viper', 'px6y0', 'px5y0', 'px5y0', 'px4y0'), ('move_long', 'viper', 'px7y0', 'px6y0', 'px6y0', 'px5y0'), ('move_long', 'viper', 'px8y0', 'px7y0', 'px7y0', 'px6y0'), ('move_long', 'viper', 'px9y0', 'px8y0', 'px8y0', 'px7y0'), ('move_long', 'viper', 'px10y0', 'px9y0', 'px9y0', 'px8y0'), ('move_long', 'viper', 'px10y1', 'px10y0', 'px10y0', 'px9y0'), ('move_long', 'viper', 'px10y2', 'px10y1', 'px10y1', 'px10y0'), ('move_long', 'viper', 'px10y3', 'px10y2', 'px10y2', 'px10y1'), ('strike', 'viper', 'px10y3', 'px10y4'), ('strike', 'viper', 'px10y4', 'px11y4'), ('move_long', 'viper', 'px11y3', 'px11y4', 'px10y3', 'px10y2'), ('move_long', 'viper', 'px11y2', 'px11y3', 'px10y4', 'px10y3'), ('move_long', 'viper', 'px10y2', 'px11y2', 'px11y4', 'px10y4'), ('move_long', 'viper', 'px10y1', 'px10y2', 'px11y3', 'px11y4'), ('move_long', 'viper', 'px10y0', 'px10y1', 'px11y2', 'px11y3'), ('move_long', 'viper', 'px9y0', 'px10y0', 'px10y2', 'px11y2'), ('move_long', 'viper', 'px8y0', 'px9y0', 'px10y1', 'px10y2'), ('move_long', 'viper', 'px7y0', 'px8y0', 'px10y0', 'px10y1'), ('move_long', 'viper', 'px7y1', 'px7y0', 'px9y0', 'px10y0'), ('move_long', 'viper', 'px7y2', 'px7y1', 'px8y0', 'px9y0'), ('move_long', 'viper', 'px7y3', 'px7y2', 'px7y0', 'px8y0'), ('move_long', 'viper', 'px7y4', 'px7y3', 'px7y1', 'px7y0'), ('strike', 'viper', 'px7y4', 'px7y5'), ('strike', 'viper', 'px7y5', 'px8y5'), ('move_long', 'viper', 'px8y4', 'px8y5', 'px7y2', 'px7y1'), ('move_long', 'viper', 'px8y3', 'px8y4', 'px7y3', 'px7y2'), ('move_long', 'viper', 'px8y2', 'px8y3', 'px7y4', 'px7y3'), ('move_long', 'viper', 'px7y2', 'px8y2', 'px7y5', 'px7y4'), ('move_long', 'viper', 'px7y1', 'px7y2', 'px8y5', 'px7y5'), ('move_long', 'viper', 'px7y0', 'px7y1', 'px8y4', 'px8y5'), ('move_long', 'viper', 'px6y0', 'px7y0', 'px8y3', 'px8y4'), ('move_long', 'viper', 'px5y0', 'px6y0', 'px8y2', 'px8y3'), ('move_long', 'viper', 'px4y0', 'px5y0', 'px7y2', 'px8y2'), ('move_long', 'viper', 'px3y0', 'px4y0', 'px7y1', 'px7y2'), ('move_long', 'viper', 'px2y0', 'px3y0', 'px7y0', 'px7y1'), ('move_long', 'viper', 'px1y0', 'px2y0', 'px6y0', 'px7y0'), ('move_long', 'viper', 'px1y1', 'px1y0', 'px5y0', 'px6y0'), ('move_long', 'viper', 'px1y2', 'px1y1', 'px4y0', 'px5y0'), ('move_long', 'viper', 'px1y3', 'px1y2', 'px3y0', 'px4y0'), ('move_long', 'viper', 'px1y4', 'px1y3', 'px2y0', 'px3y0'), ('move_long', 'viper', 'px1y5', 'px1y4', 'px1y0', 'px2y0'), ('strike', 'viper', 'px1y5', 'px1y6'), ('strike', 'viper', 'px1y6', 'px2y6'), ('move_long', 'viper', 'px2y5', 'px2y6', 'px1y1', 'px1y0'), ('move_long', 'viper', 'px2y4', 'px2y5', 'px1y2', 'px1y1'), ('move_long', 'viper', 'px2y3', 'px2y4', 'px1y3', 'px1y2'), ('move_long', 'viper', 'px2y2', 'px2y3', 'px1y4', 'px1y3'), ('move_long', 'viper', 'px1y2', 'px2y2', 'px1y5', 'px1y4'), ('move_long', 'viper', 'px1y1', 'px1y2', 'px1y6', 'px1y5'), ('move_long', 'viper', 'px1y0', 'px1y1', 'px2y6', 'px1y6'), ('move_long', 'viper', 'px2y0', 'px1y0', 'px2y5', 'px2y6'), ('move_long', 'viper', 'px3y0', 'px2y0', 'px2y4', 'px2y5'), ('move_long', 'viper', 'px4y0', 'px3y0', 'px2y3', 'px2y4'), ('move_long', 'viper', 'px4y1', 'px4y0', 'px2y2', 'px2y3'), ('move_long', 'viper', 'px4y2', 'px4y1', 'px1y2', 'px2y2'), ('strike', 'viper', 'px4y2', 'px4y3'), ('strike', 'viper', 'px4y3', 'px5y3')]
+==>
+5 move-long viper px2y0 px1y0 px1y0 px0y0 
+7 move-long viper px3y0 px2y0 px2y0 px1y0 
+9 move-long viper px4y0 px3y0 px3y0 px2y0 
+11 move-long viper px5y0 px4y0 px4y0 px3y0 
+13 move-long viper px6y0 px5y0 px5y0 px4y0 
+15 move-long viper px7y0 px6y0 px6y0 px5y0 
+17 move-long viper px8y0 px7y0 px7y0 px6y0 
+19 move-long viper px9y0 px8y0 px8y0 px7y0 
+21 move-long viper px10y0 px9y0 px9y0 px8y0 
+23 move-long viper px10y1 px10y0 px10y0 px9y0 
+25 move-long viper px10y2 px10y1 px10y1 px10y0 
+27 move-long viper px10y3 px10y2 px10y2 px10y1 
+3 strike viper px10y3 px10y4 
+30 strike viper px10y4 px11y4 
+35 move-long viper px11y3 px11y4 px10y3 px10y2 
+37 move-long viper px11y2 px11y3 px10y4 px10y3 
+39 move-long viper px10y2 px11y2 px11y4 px10y4 
+41 move-long viper px10y1 px10y2 px11y3 px11y4 
+43 move-long viper px10y0 px10y1 px11y2 px11y3 
+45 move-long viper px9y0 px10y0 px10y2 px11y2 
+47 move-long viper px8y0 px9y0 px10y1 px10y2 
+49 move-long viper px7y0 px8y0 px10y0 px10y1 
+51 move-long viper px7y1 px7y0 px9y0 px10y0 
+53 move-long viper px7y2 px7y1 px8y0 px9y0 
+55 move-long viper px7y3 px7y2 px7y0 px8y0 
+57 move-long viper px7y4 px7y3 px7y1 px7y0 
+33 strike viper px7y4 px7y5 
+60 strike viper px7y5 px8y5 
+65 move-long viper px8y4 px8y5 px7y2 px7y1 
+67 move-long viper px8y3 px8y4 px7y3 px7y2 
+69 move-long viper px8y2 px8y3 px7y4 px7y3 
+71 move-long viper px7y2 px8y2 px7y5 px7y4 
+73 move-long viper px7y1 px7y2 px8y5 px7y5 
+75 move-long viper px7y0 px7y1 px8y4 px8y5 
+77 move-long viper px6y0 px7y0 px8y3 px8y4 
+79 move-long viper px5y0 px6y0 px8y2 px8y3 
+81 move-long viper px4y0 px5y0 px7y2 px8y2 
+83 move-long viper px3y0 px4y0 px7y1 px7y2 
+85 move-long viper px2y0 px3y0 px7y0 px7y1 
+87 move-long viper px1y0 px2y0 px6y0 px7y0 
+89 move-long viper px1y1 px1y0 px5y0 px6y0 
+91 move-long viper px1y2 px1y1 px4y0 px5y0 
+93 move-long viper px1y3 px1y2 px3y0 px4y0 
+95 move-long viper px1y4 px1y3 px2y0 px3y0 
+97 move-long viper px1y5 px1y4 px1y0 px2y0 
+63 strike viper px1y5 px1y6 
+100 strike viper px1y6 px2y6 
+105 move-long viper px2y5 px2y6 px1y1 px1y0 
+107 move-long viper px2y4 px2y5 px1y2 px1y1 
+109 move-long viper px2y3 px2y4 px1y3 px1y2 
+111 move-long viper px2y2 px2y3 px1y4 px1y3 
+113 move-long viper px1y2 px2y2 px1y5 px1y4 
+115 move-long viper px1y1 px1y2 px1y6 px1y5 
+117 move-long viper px1y0 px1y1 px2y6 px1y6 
+119 move-long viper px2y0 px1y0 px2y5 px2y6 
+121 move-long viper px3y0 px2y0 px2y4 px2y5 
+123 move-long viper px4y0 px3y0 px2y3 px2y4 
+125 move-long viper px4y1 px4y0 px2y2 px2y3 
+127 move-long viper px4y2 px4y1 px1y2 px2y2 
+103 strike viper px4y2 px4y3 
+130 strike viper px4y3 px5y3 
+
+root 1 
+1 hunt -> hunt_all 2 3 4 
+2 move viper px1y0 px10y3 -> move-long-snake 5 6 
+6 move viper px2y0 px10y3 -> move-long-snake 7 8 
+8 move viper px3y0 px10y3 -> move-long-snake 9 10 
+10 move viper px4y0 px10y3 -> move-long-snake 11 12 
+12 move viper px5y0 px10y3 -> move-long-snake 13 14 
+14 move viper px6y0 px10y3 -> move-long-snake 15 16 
+16 move viper px7y0 px10y3 -> move-long-snake 17 18 
+18 move viper px8y0 px10y3 -> move-long-snake 19 20 
+20 move viper px9y0 px10y3 -> move-long-snake 21 22 
+22 move viper px10y0 px10y3 -> move-long-snake 23 24 
+24 move viper px10y1 px10y3 -> move-long-snake 25 26 
+26 move viper px10y2 px10y3 -> move-long-snake 27 28 
+28 move viper px10y3 px10y3 -> move-base 
+4 hunt -> hunt_all 29 30 31 
+29 move viper px10y4 px10y4 -> move-base 
+31 hunt -> hunt_all 32 33 34 
+32 move viper px11y4 px7y4 -> move-long-snake 35 36 
+36 move viper px11y3 px7y4 -> move-long-snake 37 38 
+38 move viper px11y2 px7y4 -> move-long-snake 39 40 
+40 move viper px10y2 px7y4 -> move-long-snake 41 42 
+42 move viper px10y1 px7y4 -> move-long-snake 43 44 
+44 move viper px10y0 px7y4 -> move-long-snake 45 46 
+46 move viper px9y0 px7y4 -> move-long-snake 47 48 
+48 move viper px8y0 px7y4 -> move-long-snake 49 50 
+50 move viper px7y0 px7y4 -> move-long-snake 51 52 
+52 move viper px7y1 px7y4 -> move-long-snake 53 54 
+54 move viper px7y2 px7y4 -> move-long-snake 55 56 
+56 move viper px7y3 px7y4 -> move-long-snake 57 58 
+58 move viper px7y4 px7y4 -> move-base 
+34 hunt -> hunt_all 59 60 61 
+59 move viper px7y5 px7y5 -> move-base 
+61 hunt -> hunt_all 62 63 64 
+62 move viper px8y5 px1y5 -> move-long-snake 65 66 
+66 move viper px8y4 px1y5 -> move-long-snake 67 68 
+68 move viper px8y3 px1y5 -> move-long-snake 69 70 
+70 move viper px8y2 px1y5 -> move-long-snake 71 72 
+72 move viper px7y2 px1y5 -> move-long-snake 73 74 
+74 move viper px7y1 px1y5 -> move-long-snake 75 76 
+76 move viper px7y0 px1y5 -> move-long-snake 77 78 
+78 move viper px6y0 px1y5 -> move-long-snake 79 80 
+80 move viper px5y0 px1y5 -> move-long-snake 81 82 
+82 move viper px4y0 px1y5 -> move-long-snake 83 84 
+84 move viper px3y0 px1y5 -> move-long-snake 85 86 
+86 move viper px2y0 px1y5 -> move-long-snake 87 88 
+88 move viper px1y0 px1y5 -> move-long-snake 89 90 
+90 move viper px1y1 px1y5 -> move-long-snake 91 92 
+92 move viper px1y2 px1y5 -> move-long-snake 93 94 
+94 move viper px1y3 px1y5 -> move-long-snake 95 96 
+96 move viper px1y4 px1y5 -> move-long-snake 97 98 
+98 move viper px1y5 px1y5 -> move-base 
+64 hunt -> hunt_all 99 100 101 
+99 move viper px1y6 px1y6 -> move-base 
+101 hunt -> hunt_all 102 103 104 
+102 move viper px2y6 px4y2 -> move-long-snake 105 106 
+106 move viper px2y5 px4y2 -> move-long-snake 107 108 
+108 move viper px2y4 px4y2 -> move-long-snake 109 110 
+110 move viper px2y3 px4y2 -> move-long-snake 111 112 
+112 move viper px2y2 px4y2 -> move-long-snake 113 114 
+114 move viper px1y2 px4y2 -> move-long-snake 115 116 
+116 move viper px1y1 px4y2 -> move-long-snake 117 118 
+118 move viper px1y0 px4y2 -> move-long-snake 119 120 
+120 move viper px2y0 px4y2 -> move-long-snake 121 122 
+122 move viper px3y0 px4y2 -> move-long-snake 123 124 
+124 move viper px4y0 px4y2 -> move-long-snake 125 126 
+126 move viper px4y1 px4y2 -> move-long-snake 127 128 
+128 move viper px4y2 px4y2 -> move-base 
+104 hunt -> hunt_all 129 130 131 
+129 move viper px4y3 px4y3 -> move-base 
+131 hunt -> hunt_done 
+<==

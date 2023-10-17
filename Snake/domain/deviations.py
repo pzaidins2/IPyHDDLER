@@ -36,7 +36,7 @@ class snake_deviation_handler():
             #     print((bodypos,) in state.occupied)
             # print( mouse_at <= state.occupied )
             # choose open adjacent location at random for each mouse trying to move
-            _, relaxed_graph = graph_shortest_dist( state, self.rigid )
+            slots_graph = self.rigid.slots
             occupied = state.occupied
             new_locs = set()
             # for each mouse choose a free adjacent space to move that has not been picked this call
@@ -45,7 +45,7 @@ class snake_deviation_handler():
             np.random.shuffle(chosen_mice)
             for mouse in chosen_mice:
                 potential_new_locs = np.asarray( [*filter( lambda x: (x,) not in occupied and x not in new_locs,
-                                                         nx.neighbors( relaxed_graph, mouse ) )] )
+                                                         nx.neighbors( slots_graph, mouse ) )] )
                 if potential_new_locs.size > 0:
                     new_loc = np.random.choice(potential_new_locs)
                     new_locs.add( new_loc )
