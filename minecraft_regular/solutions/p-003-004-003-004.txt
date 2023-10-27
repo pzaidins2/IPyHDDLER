@@ -1,1 +1,217 @@
-[('placeblock', 'l_1_0_0', 'stone'), ('placeblock', 'l_1_0_1', 'stone'), ('placeblock', 'l_1_0_2', 'stone'), ('placeblock', 'l_1_0_3', 'stone'), ('placeblock', 'l_2_0_0', 'stone'), ('placeblock', 'l_2_0_1', 'stone'), ('placeblock', 'l_2_0_2', 'stone'), ('placeblock', 'l_2_0_3', 'stone'), ('placeblock', 'l_3_0_0', 'stone'), ('placeblock', 'l_3_0_1', 'stone'), ('placeblock', 'l_3_0_2', 'stone'), ('placeblock', 'l_3_0_3', 'stone'), ('placeblock', 'l_4_0_0', 'stone'), ('placeblock', 'l_4_0_1', 'stone'), ('placeblock', 'l_4_0_2', 'stone'), ('placeblock', 'l_4_0_3', 'stone'), ('placeblock', 'l_1_1_3', 'stone'), ('placeblock', 'l_1_2_3', 'stone'), ('placeblock', 'l_2_1_3', 'stone'), ('placeblock', 'l_2_2_3', 'stone'), ('placeblock', 'l_3_1_3', 'stone'), ('placeblock', 'l_3_2_3', 'stone'), ('placeblock', 'l_4_1_3', 'stone'), ('placeblock', 'l_4_2_3', 'stone'), ('placeblock', 'l_1_2_2', 'stone'), ('placeblock', 'l_1_2_1', 'stone'), ('placeblock', 'l_1_2_0', 'stone'), ('placeblock', 'l_2_2_2', 'stone'), ('placeblock', 'l_2_2_1', 'stone'), ('placeblock', 'l_2_2_0', 'stone'), ('placeblock', 'l_3_2_2', 'stone'), ('placeblock', 'l_3_2_1', 'stone'), ('placeblock', 'l_3_2_0', 'stone'), ('placeblock', 'l_4_2_2', 'stone'), ('placeblock', 'l_4_2_1', 'stone'), ('placeblock', 'l_4_2_0', 'stone'), ('placeblock', 'l_1_1_0', 'stone'), ('placeblock', 'l_2_1_0', 'stone'), ('placeblock', 'l_3_1_0', 'stone'), ('placeblock', 'l_4_1_0', 'stone'), ('removeblock', 'l_1_1_0', 'stone'), ('removeblock', 'l_2_1_0', 'stone'), ('placeblock', 'l_5_0_0', 'stone'), ('placeblock', 'l_5_0_1', 'stone'), ('placeblock', 'l_5_0_2', 'stone'), ('placeblock', 'l_5_0_3', 'stone'), ('placeblock', 'l_5_1_0', 'stone'), ('placeblock', 'l_5_1_1', 'stone'), ('placeblock', 'l_5_1_2', 'stone'), ('placeblock', 'l_5_1_3', 'stone'), ('placeblock', 'l_5_2_0', 'stone'), ('placeblock', 'l_5_2_1', 'stone'), ('placeblock', 'l_5_2_2', 'stone'), ('placeblock', 'l_5_2_3', 'stone')]
+==>
+12 placeblock l-1-0-0 stone 
+15 placeblock l-1-0-1 stone 
+18 placeblock l-1-0-2 stone 
+20 placeblock l-1-0-3 stone 
+25 placeblock l-2-0-0 stone 
+28 placeblock l-2-0-1 stone 
+31 placeblock l-2-0-2 stone 
+33 placeblock l-2-0-3 stone 
+38 placeblock l-3-0-0 stone 
+41 placeblock l-3-0-1 stone 
+44 placeblock l-3-0-2 stone 
+46 placeblock l-3-0-3 stone 
+50 placeblock l-4-0-0 stone 
+53 placeblock l-4-0-1 stone 
+56 placeblock l-4-0-2 stone 
+58 placeblock l-4-0-3 stone 
+67 placeblock l-1-1-3 stone 
+69 placeblock l-1-2-3 stone 
+78 placeblock l-2-1-3 stone 
+80 placeblock l-2-2-3 stone 
+89 placeblock l-3-1-3 stone 
+91 placeblock l-3-2-3 stone 
+99 placeblock l-4-1-3 stone 
+101 placeblock l-4-2-3 stone 
+110 placeblock l-1-2-2 stone 
+113 placeblock l-1-2-1 stone 
+115 placeblock l-1-2-0 stone 
+124 placeblock l-2-2-2 stone 
+127 placeblock l-2-2-1 stone 
+129 placeblock l-2-2-0 stone 
+138 placeblock l-3-2-2 stone 
+141 placeblock l-3-2-1 stone 
+143 placeblock l-3-2-0 stone 
+151 placeblock l-4-2-2 stone 
+154 placeblock l-4-2-1 stone 
+156 placeblock l-4-2-0 stone 
+165 placeblock l-1-1-0 stone 
+177 placeblock l-2-1-0 stone 
+189 placeblock l-3-1-0 stone 
+200 placeblock l-4-1-0 stone 
+206 removeblock l-1-1-0 stone 
+207 removeblock l-2-1-0 stone 
+212 placeblock l-5-0-0 stone 
+215 placeblock l-5-0-1 stone 
+218 placeblock l-5-0-2 stone 
+220 placeblock l-5-0-3 stone 
+225 placeblock l-5-1-0 stone 
+228 placeblock l-5-1-1 stone 
+231 placeblock l-5-1-2 stone 
+233 placeblock l-5-1-3 stone 
+237 placeblock l-5-2-0 stone 
+240 placeblock l-5-2-1 stone 
+243 placeblock l-5-2-2 stone 
+245 placeblock l-5-2-3 stone 
+
+root 1 
+1 buildhouse l-1-0-0 l-1-0-3 l-1-2-3 l-1-2-0 l-1-1-0 l-5-0-0 n4 n3 n4 stone -> build-house-1 2 3 4 5 6 7 
+2 buildwall l-1-0-0 n4 n4 e stone -> build-wall-2 8 9 
+8 buildrow l-1-0-0 n4 e stone -> build-row-2 10 11 
+10 placeblockabstract l-1-0-0 stone -> place-block-abstract-1 12 
+11 buildrow l-1-0-1 n3 e stone -> build-row-2 13 14 
+13 placeblockabstract l-1-0-1 stone -> place-block-abstract-1 15 
+14 buildrow l-1-0-2 n2 e stone -> build-row-2 16 17 
+16 placeblockabstract l-1-0-2 stone -> place-block-abstract-1 18 
+17 buildrow l-1-0-3 n1 e stone -> build-row-1 19 
+19 placeblockabstract l-1-0-3 stone -> place-block-abstract-1 20 
+9 buildwall l-2-0-0 n4 n3 e stone -> build-wall-2 21 22 
+21 buildrow l-2-0-0 n4 e stone -> build-row-2 23 24 
+23 placeblockabstract l-2-0-0 stone -> place-block-abstract-1 25 
+24 buildrow l-2-0-1 n3 e stone -> build-row-2 26 27 
+26 placeblockabstract l-2-0-1 stone -> place-block-abstract-1 28 
+27 buildrow l-2-0-2 n2 e stone -> build-row-2 29 30 
+29 placeblockabstract l-2-0-2 stone -> place-block-abstract-1 31 
+30 buildrow l-2-0-3 n1 e stone -> build-row-1 32 
+32 placeblockabstract l-2-0-3 stone -> place-block-abstract-1 33 
+22 buildwall l-3-0-0 n4 n2 e stone -> build-wall-2 34 35 
+34 buildrow l-3-0-0 n4 e stone -> build-row-2 36 37 
+36 placeblockabstract l-3-0-0 stone -> place-block-abstract-1 38 
+37 buildrow l-3-0-1 n3 e stone -> build-row-2 39 40 
+39 placeblockabstract l-3-0-1 stone -> place-block-abstract-1 41 
+40 buildrow l-3-0-2 n2 e stone -> build-row-2 42 43 
+42 placeblockabstract l-3-0-2 stone -> place-block-abstract-1 44 
+43 buildrow l-3-0-3 n1 e stone -> build-row-1 45 
+45 placeblockabstract l-3-0-3 stone -> place-block-abstract-1 46 
+35 buildwall l-4-0-0 n4 n1 e stone -> build-wall-1 47 
+47 buildrow l-4-0-0 n4 e stone -> build-row-2 48 49 
+48 placeblockabstract l-4-0-0 stone -> place-block-abstract-1 50 
+49 buildrow l-4-0-1 n3 e stone -> build-row-2 51 52 
+51 placeblockabstract l-4-0-1 stone -> place-block-abstract-1 53 
+52 buildrow l-4-0-2 n2 e stone -> build-row-2 54 55 
+54 placeblockabstract l-4-0-2 stone -> place-block-abstract-1 56 
+55 buildrow l-4-0-3 n1 e stone -> build-row-1 57 
+57 placeblockabstract l-4-0-3 stone -> place-block-abstract-1 58 
+3 buildwall l-1-0-3 n3 n4 n stone -> build-wall-2 59 60 
+59 buildrow l-1-0-3 n3 n stone -> build-row-2 61 62 
+61 placeblockabstract l-1-0-3 stone -> place-block-abstract-2 
+62 buildrow l-1-1-3 n2 n stone -> build-row-2 65 66 
+65 placeblockabstract l-1-1-3 stone -> place-block-abstract-1 67 
+66 buildrow l-1-2-3 n1 n stone -> build-row-1 68 
+68 placeblockabstract l-1-2-3 stone -> place-block-abstract-1 69 
+60 buildwall l-2-0-3 n3 n3 n stone -> build-wall-2 70 71 
+70 buildrow l-2-0-3 n3 n stone -> build-row-2 72 73 
+72 placeblockabstract l-2-0-3 stone -> place-block-abstract-2 
+73 buildrow l-2-1-3 n2 n stone -> build-row-2 76 77 
+76 placeblockabstract l-2-1-3 stone -> place-block-abstract-1 78 
+77 buildrow l-2-2-3 n1 n stone -> build-row-1 79 
+79 placeblockabstract l-2-2-3 stone -> place-block-abstract-1 80 
+71 buildwall l-3-0-3 n3 n2 n stone -> build-wall-2 81 82 
+81 buildrow l-3-0-3 n3 n stone -> build-row-2 83 84 
+83 placeblockabstract l-3-0-3 stone -> place-block-abstract-2 
+84 buildrow l-3-1-3 n2 n stone -> build-row-2 87 88 
+87 placeblockabstract l-3-1-3 stone -> place-block-abstract-1 89 
+88 buildrow l-3-2-3 n1 n stone -> build-row-1 90 
+90 placeblockabstract l-3-2-3 stone -> place-block-abstract-1 91 
+82 buildwall l-4-0-3 n3 n1 n stone -> build-wall-1 92 
+92 buildrow l-4-0-3 n3 n stone -> build-row-2 93 94 
+93 placeblockabstract l-4-0-3 stone -> place-block-abstract-2 
+94 buildrow l-4-1-3 n2 n stone -> build-row-2 97 98 
+97 placeblockabstract l-4-1-3 stone -> place-block-abstract-1 99 
+98 buildrow l-4-2-3 n1 n stone -> build-row-1 100 
+100 placeblockabstract l-4-2-3 stone -> place-block-abstract-1 101 
+4 buildwall l-1-2-3 n4 n4 w stone -> build-wall-2 102 103 
+102 buildrow l-1-2-3 n4 w stone -> build-row-2 104 105 
+104 placeblockabstract l-1-2-3 stone -> place-block-abstract-2 
+105 buildrow l-1-2-2 n3 w stone -> build-row-2 108 109 
+108 placeblockabstract l-1-2-2 stone -> place-block-abstract-1 110 
+109 buildrow l-1-2-1 n2 w stone -> build-row-2 111 112 
+111 placeblockabstract l-1-2-1 stone -> place-block-abstract-1 113 
+112 buildrow l-1-2-0 n1 w stone -> build-row-1 114 
+114 placeblockabstract l-1-2-0 stone -> place-block-abstract-1 115 
+103 buildwall l-2-2-3 n4 n3 w stone -> build-wall-2 116 117 
+116 buildrow l-2-2-3 n4 w stone -> build-row-2 118 119 
+118 placeblockabstract l-2-2-3 stone -> place-block-abstract-2 
+119 buildrow l-2-2-2 n3 w stone -> build-row-2 122 123 
+122 placeblockabstract l-2-2-2 stone -> place-block-abstract-1 124 
+123 buildrow l-2-2-1 n2 w stone -> build-row-2 125 126 
+125 placeblockabstract l-2-2-1 stone -> place-block-abstract-1 127 
+126 buildrow l-2-2-0 n1 w stone -> build-row-1 128 
+128 placeblockabstract l-2-2-0 stone -> place-block-abstract-1 129 
+117 buildwall l-3-2-3 n4 n2 w stone -> build-wall-2 130 131 
+130 buildrow l-3-2-3 n4 w stone -> build-row-2 132 133 
+132 placeblockabstract l-3-2-3 stone -> place-block-abstract-2 
+133 buildrow l-3-2-2 n3 w stone -> build-row-2 136 137 
+136 placeblockabstract l-3-2-2 stone -> place-block-abstract-1 138 
+137 buildrow l-3-2-1 n2 w stone -> build-row-2 139 140 
+139 placeblockabstract l-3-2-1 stone -> place-block-abstract-1 141 
+140 buildrow l-3-2-0 n1 w stone -> build-row-1 142 
+142 placeblockabstract l-3-2-0 stone -> place-block-abstract-1 143 
+131 buildwall l-4-2-3 n4 n1 w stone -> build-wall-1 144 
+144 buildrow l-4-2-3 n4 w stone -> build-row-2 145 146 
+145 placeblockabstract l-4-2-3 stone -> place-block-abstract-2 
+146 buildrow l-4-2-2 n3 w stone -> build-row-2 149 150 
+149 placeblockabstract l-4-2-2 stone -> place-block-abstract-1 151 
+150 buildrow l-4-2-1 n2 w stone -> build-row-2 152 153 
+152 placeblockabstract l-4-2-1 stone -> place-block-abstract-1 154 
+153 buildrow l-4-2-0 n1 w stone -> build-row-1 155 
+155 placeblockabstract l-4-2-0 stone -> place-block-abstract-1 156 
+5 buildwall l-1-2-0 n3 n4 s stone -> build-wall-2 157 158 
+157 buildrow l-1-2-0 n3 s stone -> build-row-2 159 160 
+159 placeblockabstract l-1-2-0 stone -> place-block-abstract-2 
+160 buildrow l-1-1-0 n2 s stone -> build-row-2 163 164 
+163 placeblockabstract l-1-1-0 stone -> place-block-abstract-1 165 
+164 buildrow l-1-0-0 n1 s stone -> build-row-1 166 
+166 placeblockabstract l-1-0-0 stone -> place-block-abstract-2 
+158 buildwall l-2-2-0 n3 n3 s stone -> build-wall-2 169 170 
+169 buildrow l-2-2-0 n3 s stone -> build-row-2 171 172 
+171 placeblockabstract l-2-2-0 stone -> place-block-abstract-2 
+172 buildrow l-2-1-0 n2 s stone -> build-row-2 175 176 
+175 placeblockabstract l-2-1-0 stone -> place-block-abstract-1 177 
+176 buildrow l-2-0-0 n1 s stone -> build-row-1 178 
+178 placeblockabstract l-2-0-0 stone -> place-block-abstract-2 
+170 buildwall l-3-2-0 n3 n2 s stone -> build-wall-2 181 182 
+181 buildrow l-3-2-0 n3 s stone -> build-row-2 183 184 
+183 placeblockabstract l-3-2-0 stone -> place-block-abstract-2 
+184 buildrow l-3-1-0 n2 s stone -> build-row-2 187 188 
+187 placeblockabstract l-3-1-0 stone -> place-block-abstract-1 189 
+188 buildrow l-3-0-0 n1 s stone -> build-row-1 190 
+190 placeblockabstract l-3-0-0 stone -> place-block-abstract-2 
+182 buildwall l-4-2-0 n3 n1 s stone -> build-wall-1 193 
+193 buildrow l-4-2-0 n3 s stone -> build-row-2 194 195 
+194 placeblockabstract l-4-2-0 stone -> place-block-abstract-2 
+195 buildrow l-4-1-0 n2 s stone -> build-row-2 198 199 
+198 placeblockabstract l-4-1-0 stone -> place-block-abstract-1 200 
+199 buildrow l-4-0-0 n1 s stone -> build-row-1 201 
+201 placeblockabstract l-4-0-0 stone -> place-block-abstract-2 
+6 builddoor l-1-1-0 -> build-door-1 204 205 
+204 removeblockabstract l-1-1-0 -> remove-block-abstract-2 206 
+205 removeblockabstract l-2-1-0 -> remove-block-abstract-2 207 
+7 buildroof l-5-0-0 n4 n3 e n stone -> build-roof-2 208 209 
+208 buildrow l-5-0-0 n4 e stone -> build-row-2 210 211 
+210 placeblockabstract l-5-0-0 stone -> place-block-abstract-1 212 
+211 buildrow l-5-0-1 n3 e stone -> build-row-2 213 214 
+213 placeblockabstract l-5-0-1 stone -> place-block-abstract-1 215 
+214 buildrow l-5-0-2 n2 e stone -> build-row-2 216 217 
+216 placeblockabstract l-5-0-2 stone -> place-block-abstract-1 218 
+217 buildrow l-5-0-3 n1 e stone -> build-row-1 219 
+219 placeblockabstract l-5-0-3 stone -> place-block-abstract-1 220 
+209 buildroof l-5-1-0 n4 n2 e n stone -> build-roof-2 221 222 
+221 buildrow l-5-1-0 n4 e stone -> build-row-2 223 224 
+223 placeblockabstract l-5-1-0 stone -> place-block-abstract-1 225 
+224 buildrow l-5-1-1 n3 e stone -> build-row-2 226 227 
+226 placeblockabstract l-5-1-1 stone -> place-block-abstract-1 228 
+227 buildrow l-5-1-2 n2 e stone -> build-row-2 229 230 
+229 placeblockabstract l-5-1-2 stone -> place-block-abstract-1 231 
+230 buildrow l-5-1-3 n1 e stone -> build-row-1 232 
+232 placeblockabstract l-5-1-3 stone -> place-block-abstract-1 233 
+222 buildroof l-5-2-0 n4 n1 e n stone -> build-roof-1 234 
+234 buildrow l-5-2-0 n4 e stone -> build-row-2 235 236 
+235 placeblockabstract l-5-2-0 stone -> place-block-abstract-1 237 
+236 buildrow l-5-2-1 n3 e stone -> build-row-2 238 239 
+238 placeblockabstract l-5-2-1 stone -> place-block-abstract-1 240 
+239 buildrow l-5-2-2 n2 e stone -> build-row-2 241 242 
+241 placeblockabstract l-5-2-2 stone -> place-block-abstract-1 243 
+242 buildrow l-5-2-3 n1 e stone -> build-row-1 244 
+244 placeblockabstract l-5-2-3 stone -> place-block-abstract-1 245 
+<==

@@ -104,11 +104,15 @@ class HDDL_Parser:
         # actions
         action_tuples= map( lambda x: ("action", x[ "name" ]), domain_dict[ "actions" ] )
         # predicates
-        predicate_tuples= map( lambda x: ("predicate", x[ "name" ]), domain_dict[ "predicates" ] )
+        predicate_tuples= [*map( lambda x: ("predicate", x[ "name" ]), domain_dict[ "predicates" ] )]
 
         for type_str, name_str in [ *constant_tuples, *task_tuples, *method_tuples, *action_tuples, *predicate_tuples ]:
             hddl_map[ clean_string(name_str) ] = name_str
+        predicate_set = set()
+        for type_str, name_str in predicate_tuples:
+            predicate_set.add(clean_string(name_str))
         self.hddl_map = hddl_map
+        self.predicate_set = predicate_set
         return
 
     def parse_problem( self, problem_json_path: str ) -> None:
@@ -186,14 +190,14 @@ class HDDL_Parser:
             methods_str += make_method_function_str( method, domain_dict )
             # build task_method_dict
             if clean_string( method[ "task" ][ "taskName" ] ) not in task_method_dict.keys():
-                task_method_dict[ clean_string( method[ "task" ][ "taskName" ] ) ] = set()
-            task_method_dict[ clean_string( method[ "task" ][ "taskName" ] ) ].add( clean_string( method[ "name" ] ) )
+                task_method_dict[ clean_string( method[ "task" ][ "taskName" ] ) ] = []
+            task_method_dict[ clean_string( method[ "task" ][ "taskName" ] ) ].append( clean_string( method[ "name" ] ) )
         # Create a IPyHOP Methods object
         methods_str += "\nmethods = Methods()\n"
         # associate methods to tasks
-        for task, method_set in task_method_dict.items():
+        for task, method_list in task_method_dict.items():
             methods_str += "methods.declare_task_methods( '" + task + "', [ "
-            for method in method_set:
+            for method in method_list:
                 methods_str += method + ", "
             methods_str += "] )\n"
         # replace rigid with state for mutable
@@ -233,12 +237,14 @@ class HDDL_Parser:
             if name not in atom_arg_dict.keys():
                 atom_arg_dict[ name ] = set()
             atom_arg_dict[ name ].add( args )
+        for pred in self.predicate_set - set( atom_arg_dict.keys() ):
+            atom_arg_dict[ pred ] = set()
         # write atoms by predicate
         for name in atom_arg_dict.keys():
-            init_state_str += "rigid." + name + " = { "
+            init_state_str += "rigid." + name + " = set( ["
             for args in atom_arg_dict[ name ]:
                 init_state_str += str( args ) + ", "
-            init_state_str += "}\n"
+            init_state_str += "] )\n"
 
         # replace rigid with state for mutable
         init_state_str = re_state_replace.sub( lambda x: state_str_replacer( x, self.mutable ), init_state_str )
@@ -283,7 +289,7 @@ def make_action_function_str( action: Dict[ str, Union[ str, Dict ] ] ) -> str:
     # if precondition
     # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
     precondition = action[ "precondition" ]
-    actions_str += "\tif " + make_precondition_str( precondition ) + ":"
+    actions_str += "\tif " + make_precondition_str( precondition ) + ":\n\t\t"
     # print( make_precondition_str( precondition ) )
     # effect
     # add and delete from state in order
@@ -419,8 +425,30 @@ def make_precondition_str( precondition: Dict[ str, Union[ str, Dict ] ] ) -> st
                 forall_str += "rigid." + clean_string( boundVar_type ) + ", "
             forall_str += ") )"
             return forall_str
+        elif op == "imply":
+            operand1 = precondition[ "operand1" ]
+            operand2 = precondition[ "operand2" ]
+            equivalent_precondition = {
+                "op": "or",
+                "operands": [
+                    {
+                        "op":"not",
+                        "operand":operand1
+                    },
+                    operand2
+                ]
+            }
+            return make_precondition_str(equivalent_precondition)
+        # at least 1 operand must be true
+        elif op == "or":
+            operands = precondition[ "operands" ]
+            precondition_str = "any( [ "
+            for operand in operands:
+                precondition_str += make_precondition_str( operand ) + ", "
+            precondition_str += "] )"
+            return precondition_str
         else:
-            raise (op + " is an unsupported op for precondition!")
+            raise ValueError(op + " is an unsupported op for precondition!")
     # predicate precondition
     else:
         predicate = precondition[ "predicate" ]
@@ -428,8 +456,13 @@ def make_precondition_str( precondition: Dict[ str, Union[ str, Dict ] ] ) -> st
         # equality predicate
         if predicate == "=":
             if (len( args ) != 2):
-                raise ("only supports binary equality predicate")
+                raise ValueError("only supports binary equality predicate")
             predicate_str = "( " + clean_string( args[ 0 ] ) + " == " + clean_string( args[ 1 ] ) + " )"
+        # inequality predicate
+        elif predicate == "different":
+            if (len( args ) != 2):
+                raise ValueError("only supports binary inequality predicate")
+            predicate_str = "( " + clean_string( args[ 0 ] ) + " != " + clean_string( args[ 1 ] ) + " )"
         # standard predicate
         else:
             predicate_str = "( "
@@ -450,7 +483,8 @@ def make_effects_str( effects: Dict[ str, Union[ str, Dict ] ], tab_level=0 ) ->
         if op == "and":
             operands = effects[ "effects" ]
             effects_str = ""
-            for operand in operands:
+            effects_str += make_effects_str( operands[0] )
+            for operand in operands[1:]:
                 effects_str += "\n\t\t" + make_effects_str( operand )
             return effects_str
         # operand will remove predicate
@@ -465,8 +499,13 @@ def make_effects_str( effects: Dict[ str, Union[ str, Dict ] ], tab_level=0 ) ->
                 predicate_str += clean_string( arg ) + ", "
             predicate_str += ") )"
             return predicate_str
+        # effect only when condition
+        elif op == "when":
+            condition = effects["condition"]
+            effect = effects["effect"]
+            return make_effects_str(effect) + " if " + make_precondition_str(condition) + " else None"
         else:
-            raise (op + " is an unsupported op for effects!")
+            raise ValueError(op + " is an unsupported op for effects!")
     # predicate effects
     else:
         predicate = clean_string( effects[ "predicate" ] )
@@ -744,10 +783,10 @@ def run_experiment( problem_dir, problem_json, output_dir ):
     parser.parse_domain( problem_dir + "domain.json" )
 
     # used for file names
-    output_py = problem_json.replace( ".snake.json", ".py" )
-    output_txt = problem_json.replace( ".snake.json", ".txt" )
-    # output_py = problem_json.replace( ".json", ".py" )
-    # output_txt = problem_json.replace( ".json", ".txt" )
+    # output_py = problem_json.replace( ".snake.json", ".py" )
+    # output_txt = problem_json.replace( ".snake.json", ".txt" )
+    output_py = problem_json.replace( ".json", ".py" )
+    output_txt = problem_json.replace( ".json", ".txt" )
 
 
     # read in actions and methods as moduless
@@ -765,6 +804,7 @@ def run_experiment( problem_dir, problem_json, output_dir ):
     init_state = state_mod.state
     task_list = state_mod.task_list
     rigid = state_mod.rigid
+
 
     # update methods and actions to use rigid
     local_methods = deepcopy( methods )
@@ -798,97 +838,102 @@ def run_experiment( problem_dir, problem_json, output_dir ):
 
 
 if __name__ == '__main__':
-    # # problem input, internal, and output files
-    # problem_json="pb-20slots-seed1.snake.json"
-    # # output_py = problem_json.replace( "json", "py" )
-    # # output_txt = problem_json.replace( "json", "txt" )
+    # problem input, internal, and output files
+    problem_json="p01.json"
+    # problem_json = "p-045-045-045-045.json"
+    output_py = problem_json.replace( "json", "py" )
+    output_txt = problem_json.replace( "json", "txt" )
     # output_py = problem_json.replace( "snake.json", "py" )
     # output_txt = problem_json.replace( "snake.json", "txt" )
-    # # write methods and actions
-    # # WRITE IS COMMENTED OUT DUE TO LOCAL OPTIMIZATION
-    # parser = HDDL_Parser()
+    # write methods and actions
+    # WRITE IS COMMENTED OUT DUE TO LOCAL OPTIMIZATION
+    parser = HDDL_Parser()
     # input_domain_dir = "../../domains/ipc-2023-snake-domain/"
     # output_dir = "Snake/"
-    # parser.parse_domain( input_domain_dir + "domain.json" )
-    #
-    # # parser.write_domain(output_dir[:-1])
-    # # make pythonic representation of state and constants
-    # parser.parse_problem( input_domain_dir + problem_json )
-    # parser.write_problem( output_dir + "problems_py/" + output_py)
-    # # helps with modularity, partly inherited quirk
-    # # by treating as modules we don't need conversions between plain text and python code
-    # from Snake.domain.actions import actions
-    # from Snake.domain.methods import methods
+    input_domain_dir = "../../domains/rovers/"
+    output_dir = "rovers/"
+    parser.parse_domain( input_domain_dir + "domain.json" )
+
+    parser.write_domain(output_dir[:-1])
+    # make pythonic representation of state and constants
+    parser.parse_problem( input_domain_dir + problem_json )
+    parser.write_problem( output_dir + "problems_py/" + output_py)
+    # helps with modularity, partly inherited quirk
+    # by treating as modules we don't need conversions between plain text and python code
+    from rovers.domain.actions import actions
+    from rovers.domain.methods import methods
     # temp_mod = importlib.import_module( "Snake.problems_py." + output_py[ :-3 ] )
-    # init_state = temp_mod.state
-    # task_list = temp_mod.task_list
-    # rigid = temp_mod.rigid
-    # # pass constants using rigid
-    # local_methods = deepcopy( methods )
-    # local_actions = deepcopy( actions )
-    # local_methods.goal_method_dict.update(
-    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
-    # local_methods.task_method_dict.update(
-    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.task_method_dict.items() } )
-    # local_methods.multigoal_method_dict.update(
-    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
-    # local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
-    # # make planner
-    # planner = IPyHOP(local_methods, local_actions)
+    temp_mod = importlib.import_module( "rovers.problems_py." + output_py[ :-3 ] )
+    init_state = temp_mod.state
+    task_list = temp_mod.task_list
+    rigid = temp_mod.rigid
+    # pass constants using rigid
+    local_methods = deepcopy( methods )
+    local_actions = deepcopy( actions )
+    local_methods.goal_method_dict.update(
+        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
+    local_methods.task_method_dict.update(
+        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.task_method_dict.items() } )
+    local_methods.multigoal_method_dict.update(
+        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
+    local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
+    # make planner
+    planner = IPyHOP(local_methods, local_actions)
+    print(parser.hddl_map)
     # # deviation handler is essentially a function, but stores information between calls
-    # dev_hand = snake_deviation_handler( planner, rigid, active_mouse_ratio=0.0, move_activity_ratio=0.05 )
+    # dev_hand = snake_deviation_handler( planner, rigid, active_mouse_ratio=0.0, move_activity_ratio=0.00 )
     # # simulator
     # mc_executor = MonteCarloExecutor( local_actions, dev_hand )
     # # agent
     # actor = Actor( planner, mc_executor )
-    # # start_time = time.perf_counter_ns()
-    # #############################################################################
+    start_time = time.perf_counter_ns()
+    #############################################################################
     # pr = cProfile.Profile()
     # pr.enable()
-    # ################################################################################
-    # # complete task_list, repairing as needed
+    ################################################################################
+    # complete task_list, repairing as needed
     # history = actor.complete_to_do( init_state, task_list, verbose=0)
-    #
-    # ###################################################################################
+    plan = planner.plan(init_state, task_list, verbose=3)
+    ###################################################################################
     # pr.disable()
     # s = io.StringIO()
     # sortby = "tottime"
     # ps = pstats.Stats( pr, stream=s ).sort_stats( sortby )
     # ps.print_stats()
     # print( s.getvalue() )
-    # #################################################################################
-    # # end_time = time.perf_counter_ns()
-    # # total_time = (end_time - start_time) / 1E9
-    # print(history)
-    # hddl_plan_str = planner.hddl_plan_str( parser.hddl_map )
-    # print(hddl_plan_str)
-    # print(total_time)
-    # with open( output_dir + "solutions/" + output_txt, "w") as f:
-    #     f.write(str(history))
+    #################################################################################
+    end_time = time.perf_counter_ns()
+    total_time = (end_time - start_time) / 1E9
+    print(plan)
+    hddl_plan_str = planner.hddl_plan_str( parser.hddl_map )
+    print(hddl_plan_str)
+    print(total_time)
+    with open( output_dir + "solutions/" + output_txt, "w") as f:
+        f.write(hddl_plan_str)
 
-    # input_dir = "../../domains/ipc-2023-snake-domain/"
-    # output_dir = "Snake/"
-    input_dir = "../../domains/ipc-2023-snake-domain/"
-    output_dir = "Snake/"
-    args = filter( lambda x: ".snake.json" in x, os.listdir( input_dir ) )
+    # # input_dir = "../../domains/ipc-2023-snake-domain/"
+    # # output_dir = "Snake/"
+    # input_dir = "../../domains/ipc-2023-minecraft-regular-domain/"
+    # output_dir = "minecraft_regular/"
+    # # args = filter( lambda x: ".snake.json" in x, os.listdir( input_dir ) )
     # args = filter( lambda x: "p-0" in x and ".json" in x, os.listdir( input_dir ) )
-    args = [*map( lambda x: ( input_dir, x, output_dir), args )]
-    # print(args)
-    time_arr = np.ndarray( len( args ), dtype=float )
-    plan_len_arr = np.empty_like( time_arr, dtype=int )
-    with Pool( processes=cpu_count() // 2 ) as pool:
-        output = pool.starmap_async( run_experiment, args, chunksize=1 )
-        while True:
-            if output.ready():
-                break
-            print( str( round( 100 - 100 * output._number_left / len( args ), 3 ) ) + " %" )
-            time.sleep( 60 )
-    i = 0
-    for exp in output.get():
-        time_arr[ i ] = exp[ 1 ]
-        plan_len_arr[ i ] = len( exp[ 2 ] )
-        i += 1
-    print(time_arr)
-    print(plan_len_arr)
-    plt.scatter(time_arr,plan_len_arr)
-    plt.show()
+    # args = [*map( lambda x: ( input_dir, x, output_dir), args )]
+    # # print(args)
+    # time_arr = np.ndarray( len( args ), dtype=float )
+    # plan_len_arr = np.empty_like( time_arr, dtype=int )
+    # with Pool( processes=cpu_count() // 2 ) as pool:
+    #     output = pool.starmap_async( run_experiment, args, chunksize=1 )
+    #     while True:
+    #         if output.ready():
+    #             break
+    #         print( str( round( 100 - 100 * output._number_left / len( args ), 3 ) ) + " %" )
+    #         time.sleep( 60 )
+    # i = 0
+    # for exp in output.get():
+    #     time_arr[ i ] = exp[ 1 ]
+    #     plan_len_arr[ i ] = len( exp[ 2 ] )
+    #     i += 1
+    # print(time_arr)
+    # print(plan_len_arr)
+    # plt.scatter(time_arr,plan_len_arr)
+    # plt.show()
