@@ -22,7 +22,7 @@ def prepare_then_take( state, d, m, rigid ):
 	for i in rigid.instrument:
 		for s in rigid.satellite:
 			if ( i, s, ) in rigid.on_board:
-				yield [ ( 'prepare_instrument', s, i, ), ( 'take_image', s, i, d, m, ), ]
+				yield [ ( 'prepare_instrument', s, i, ), ( 'take_image_t', s, i, d, m, ), ]
 
 def prepare( state, s, i, rigid ):
 	yield [ ( 'turn_on_instrument', s, i, ), ( 'calibrate_instrument', s, i, ), ]
@@ -56,11 +56,9 @@ def repoint_then_calibrate( state, s, i, rigid ):
 				yield [ ( 'turn_to', s, d, d2, ), ( 'calibrate', s, i, d, ), ]
 
 def turn_then_take( state, s, i, d, m, rigid ):
-	print(state.pointing)
 	for d_prev in rigid.direction:
-		print( [ (s, d_prev,) in state.pointing, (d_prev != d), ] )
 		if all( [ ( s, d_prev, ) in state.pointing, ( d_prev != d ), ] ):
-			yield [ ( 'turn_to', s, d, d_prev, ), ( 'take_image', s, d, i, m, ), ]
+			yield [ ( 'turn_to', s, d, d_prev, ), ( 'take_image_a', s, d, i, m, ), ]
 
 methods = Methods()
 methods.declare_task_methods( 'main', [ take_one, turn_first, all_done, ] )
@@ -68,4 +66,4 @@ methods.declare_task_methods( 'have_image', [ prepare_then_take, ] )
 methods.declare_task_methods( 'prepare_instrument', [ prepare, ] )
 methods.declare_task_methods( 'turn_on_instrument', [ already_on, turn_on, swap_instruments, ] )
 methods.declare_task_methods( 'calibrate_instrument', [ no_calibration_needed, do_calibrate, repoint_then_calibrate, ] )
-methods.declare_task_methods( 'take_image', [ turn_then_take, ] )
+methods.declare_task_methods( 'take_image_t', [ turn_then_take, ] )

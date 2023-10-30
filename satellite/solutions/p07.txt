@@ -1,0 +1,71 @@
+==>
+8 switch_on instrument0 satellite0 
+9 turn_to satellite0 star1 star6 
+10 calibrate satellite0 instrument0 star1 
+11 turn_to satellite0 star6 star1 
+12 take_image_a satellite0 star6 instrument0 image1 
+25 switch_on instrument3 satellite1 
+26 turn_to satellite1 groundstation4 groundstation0 
+27 calibrate satellite1 instrument3 groundstation4 
+28 turn_to satellite1 star7 groundstation4 
+29 take_image_a satellite1 star7 instrument3 image0 
+36 turn_to satellite0 planet9 star6 
+37 take_image_a satellite0 planet9 instrument0 image3 
+50 turn_to satellite1 planet10 star7 
+51 take_image_a satellite1 planet10 instrument3 image0 
+64 turn_to satellite1 planet11 planet10 
+65 take_image_a satellite1 planet11 instrument3 image2 
+78 turn_to satellite1 planet8 planet11 
+79 take_image_a satellite1 planet8 instrument3 image0 
+92 turn_to satellite1 phenomenon5 planet8 
+93 take_image_a satellite1 phenomenon5 instrument3 image0 
+94 turn_to satellite1 star1 phenomenon5 
+96 turn_to satellite2 phenomenon5 star6 
+
+root 1 
+1 main -> take-one 2 3 
+2 have_image star6 image1 -> prepare-then-take 4 5 
+4 prepare-instrument satellite0 instrument0 -> prepare 6 7 
+6 turn-on-instrument satellite0 instrument0 -> turn-on 8 
+7 calibrate-instrument satellite0 instrument0 -> repoint-then-calibrate 9 10 
+5 take-image_t satellite0 instrument0 star6 image1 -> turn-then-take 11 12 
+3 main -> take-one 13 14 
+13 have_image star7 image0 -> prepare-then-take 21 22 
+21 prepare-instrument satellite1 instrument3 -> prepare 23 24 
+23 turn-on-instrument satellite1 instrument3 -> turn-on 25 
+24 calibrate-instrument satellite1 instrument3 -> repoint-then-calibrate 26 27 
+22 take-image_t satellite1 instrument3 star7 image0 -> turn-then-take 28 29 
+14 main -> take-one 30 31 
+30 have_image planet9 image3 -> prepare-then-take 32 33 
+32 prepare-instrument satellite0 instrument0 -> prepare 34 35 
+34 turn-on-instrument satellite0 instrument0 -> already-on 
+35 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
+33 take-image_t satellite0 instrument0 planet9 image3 -> turn-then-take 36 37 
+31 main -> take-one 38 39 
+38 have_image planet10 image0 -> prepare-then-take 46 47 
+46 prepare-instrument satellite1 instrument3 -> prepare 48 49 
+48 turn-on-instrument satellite1 instrument3 -> already-on 
+49 calibrate-instrument satellite1 instrument3 -> no-calibration-needed 
+47 take-image_t satellite1 instrument3 planet10 image0 -> turn-then-take 50 51 
+39 main -> take-one 52 53 
+52 have_image planet11 image2 -> prepare-then-take 60 61 
+60 prepare-instrument satellite1 instrument3 -> prepare 62 63 
+62 turn-on-instrument satellite1 instrument3 -> already-on 
+63 calibrate-instrument satellite1 instrument3 -> no-calibration-needed 
+61 take-image_t satellite1 instrument3 planet11 image2 -> turn-then-take 64 65 
+53 main -> take-one 66 67 
+66 have_image planet8 image0 -> prepare-then-take 74 75 
+74 prepare-instrument satellite1 instrument3 -> prepare 76 77 
+76 turn-on-instrument satellite1 instrument3 -> already-on 
+77 calibrate-instrument satellite1 instrument3 -> no-calibration-needed 
+75 take-image_t satellite1 instrument3 planet8 image0 -> turn-then-take 78 79 
+67 main -> take-one 80 81 
+80 have_image phenomenon5 image0 -> prepare-then-take 88 89 
+88 prepare-instrument satellite1 instrument3 -> prepare 90 91 
+90 turn-on-instrument satellite1 instrument3 -> already-on 
+91 calibrate-instrument satellite1 instrument3 -> no-calibration-needed 
+89 take-image_t satellite1 instrument3 phenomenon5 image0 -> turn-then-take 92 93 
+81 main -> turn-first 94 95 
+95 main -> turn-first 96 97 
+97 main -> all-done 
+<==

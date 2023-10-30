@@ -1,0 +1,40 @@
+==>
+44 navigate rover1 waypoint2 waypoint3 
+34 sample_soil rover1 rover1store waypoint3 
+46 communicate_soil_data_a rover1 general waypoint3 waypoint3 waypoint2 
+64 navigate rover1 waypoint3 waypoint2 
+66 navigate rover1 waypoint2 waypoint1 
+68 drop rover1 rover1store 
+62 sample_rock rover1 rover1store waypoint1 
+69 communicate_rock_data_a rover1 general waypoint1 waypoint1 waypoint2 
+78 navigate rover1 waypoint1 waypoint2 
+77 calibrate rover1 camera0 objective0 waypoint2 
+74 take_image rover1 waypoint2 objective0 camera0 high_res 
+82 navigate rover1 waypoint2 waypoint1 
+81 communicate_image_data_a rover1 general objective0 high_res waypoint1 waypoint2 
+
+root 1 
+1 achieve-goals -> communicate-one-soil-data 2 3 
+2 communicate-soil-data_t waypoint3 rover1 -> achieve-communicated-soil-data 32 33 34 35 
+32 move-to rover1 waypoint3 -> go-there 44 45 
+45 move-to rover1 waypoint3 -> already-there 
+33 empty-store rover1store rover1 -> already-empty 
+35 transmit-soil waypoint3 waypoint3 rover1 -> have-line-of-sight-for-soil 46 
+3 achieve-goals -> communicate-one-rock-data 47 48 
+47 communicate-rock-data_t waypoint1 rover1 -> achieve-communicated-rock-data 60 61 62 63 
+60 move-to rover1 waypoint1 -> go-there 64 65 
+65 move-to rover1 waypoint1 -> go-there 66 67 
+67 move-to rover1 waypoint1 -> already-there 
+61 empty-store rover1store rover1 -> drop-to-empty 68 
+63 transmit-rock waypoint1 waypoint1 rover1 -> have-line-of-sight-for-rock 69 
+48 achieve-goals -> communicate-one-image-data 70 71 
+70 communicate-image-data_t objective0 high_res rover1 -> achieve-communicated-image-data 72 73 74 75 
+72 calibrate-camera rover1 camera0 -> calibrate-the-camera 76 77 
+76 move-to rover1 waypoint2 -> go-there 78 79 
+79 move-to rover1 waypoint2 -> already-there 
+73 get-line-of-sight rover1 objective0 waypoint2 -> have-line-of-sight-for-photo 
+75 communicate-image waypoint2 waypoint2 rover1 objective0 high_res -> relocate-then-communicate-image 80 81 
+80 move-to rover1 waypoint1 -> go-there 82 83 
+83 move-to rover1 waypoint1 -> already-there 
+71 achieve-goals -> check-for-all-goals-done 
+<==

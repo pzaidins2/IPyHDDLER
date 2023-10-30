@@ -2,7 +2,6 @@ from ipyhop import Actions
 import itertools
 
 def turn_to( state, s, d_new, d_prev, rigid ):
-	print(( d_new, d_prev ))
 	if all( [ ( s, d_prev, ) in state.pointing, not( ( d_new == d_prev ) ), ] ):
 		state.pointing.add( ( s, d_new, ) )
 		state.pointing.remove( ( s, d_prev, ) )
@@ -26,11 +25,10 @@ def calibrate( state, s, i, d, rigid ):
 		state.calibrated.add( ( i, ) )
 		return state
 
-def take_image( state, s, d, i, m, rigid ):
-	print([ ( i, ) in state.calibrated, ( i, s, ) in rigid.on_board, ( i, m, ) in rigid.supports, ( i, ) in state.power_on, ( s, d, ) in state.pointing, ( i, ) in state.power_on, ])
+def take_image_a( state, s, d, i, m, rigid ):
 	if all( [ ( i, ) in state.calibrated, ( i, s, ) in rigid.on_board, ( i, m, ) in rigid.supports, ( i, ) in state.power_on, ( s, d, ) in state.pointing, ( i, ) in state.power_on, ] ):
 		state.have_image.add( ( d, m, ) ) if not( ( d, m, ) in state.have_image ) else None
 		return state
 
 actions = Actions()
-actions.declare_actions( [ turn_to, switch_on, switch_off, calibrate, take_image, ] )
+actions.declare_actions( [ turn_to, switch_on, switch_off, calibrate, take_image_a, ] )

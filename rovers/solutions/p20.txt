@@ -1,0 +1,369 @@
+==>
+124 navigate rover0 waypoint22 waypoint11 
+122 sample_soil rover0 rover0store waypoint11 
+192 navigate rover0 waypoint11 waypoint6 
+194 navigate rover0 waypoint6 waypoint14 
+127 communicate_soil_data_a rover0 general waypoint11 waypoint14 waypoint1 
+487 navigate rover0 waypoint14 waypoint6 
+491 navigate rover0 waypoint6 waypoint11 
+493 navigate rover0 waypoint11 waypoint22 
+497 navigate rover0 waypoint22 waypoint12 
+501 navigate rover0 waypoint12 waypoint13 
+503 drop rover0 rover0store 
+485 sample_soil rover0 rover0store waypoint13 
+510 navigate rover0 waypoint13 waypoint12 
+512 navigate rover0 waypoint12 waypoint22 
+514 navigate rover0 waypoint22 waypoint11 
+526 navigate rover0 waypoint11 waypoint6 
+528 navigate rover0 waypoint6 waypoint14 
+505 communicate_soil_data_a rover0 general waypoint13 waypoint14 waypoint1 
+1526 navigate rover0 waypoint14 waypoint6 
+1530 navigate rover0 waypoint6 waypoint11 
+1532 navigate rover0 waypoint11 waypoint22 
+1536 navigate rover0 waypoint22 waypoint12 
+1560 navigate rover0 waypoint12 waypoint24 
+1564 navigate rover0 waypoint24 waypoint23 
+1566 drop rover0 rover0store 
+1524 sample_soil rover0 rover0store waypoint23 
+1567 communicate_soil_data_a rover0 general waypoint23 waypoint23 waypoint1 
+2663 navigate rover0 waypoint23 waypoint24 
+2665 navigate rover0 waypoint24 waypoint12 
+2667 navigate rover0 waypoint12 waypoint22 
+2669 navigate rover0 waypoint22 waypoint11 
+2701 navigate rover0 waypoint11 waypoint17 
+2705 navigate rover0 waypoint17 waypoint20 
+2707 drop rover0 rover0store 
+2661 sample_soil rover0 rover0store waypoint20 
+2710 navigate rover0 waypoint20 waypoint17 
+2712 navigate rover0 waypoint17 waypoint11 
+2778 navigate rover0 waypoint11 waypoint6 
+2780 navigate rover0 waypoint6 waypoint14 
+2709 communicate_soil_data_a rover0 general waypoint20 waypoint14 waypoint1 
+4118 navigate rover0 waypoint14 waypoint6 
+4122 navigate rover0 waypoint6 waypoint11 
+4180 navigate rover0 waypoint11 waypoint8 
+4182 drop rover0 rover0store 
+4116 sample_soil rover0 rover0store waypoint8 
+4185 navigate rover0 waypoint8 waypoint11 
+4245 navigate rover0 waypoint11 waypoint6 
+4247 navigate rover0 waypoint6 waypoint14 
+4184 communicate_soil_data_a rover0 general waypoint8 waypoint14 waypoint1 
+6433 navigate rover0 waypoint14 waypoint6 
+6437 navigate rover0 waypoint6 waypoint11 
+6495 navigate rover0 waypoint11 waypoint8 
+6499 navigate rover0 waypoint8 waypoint7 
+6501 drop rover0 rover0store 
+6431 sample_soil rover0 rover0store waypoint7 
+6504 navigate rover0 waypoint7 waypoint8 
+6506 navigate rover0 waypoint8 waypoint11 
+6566 navigate rover0 waypoint11 waypoint6 
+6568 navigate rover0 waypoint6 waypoint14 
+6503 communicate_soil_data_a rover0 general waypoint7 waypoint14 waypoint1 
+10007 navigate rover7 waypoint16 waypoint2 
+10009 navigate rover7 waypoint2 waypoint14 
+9977 sample_rock rover7 rover7store waypoint14 
+10011 communicate_rock_data_a rover7 general waypoint14 waypoint14 waypoint1 
+21319 navigate rover3 waypoint3 waypoint12 
+21321 navigate rover3 waypoint12 waypoint22 
+21309 sample_rock rover3 rover3store waypoint22 
+21325 navigate rover3 waypoint22 waypoint12 
+21329 navigate rover3 waypoint12 waypoint3 
+21369 navigate rover3 waypoint3 waypoint1 
+21371 navigate rover3 waypoint1 waypoint14 
+21324 communicate_rock_data_a rover3 general waypoint22 waypoint14 waypoint1 
+27439 navigate rover7 waypoint14 waypoint2 
+27447 navigate rover7 waypoint2 waypoint6 
+27449 navigate rover7 waypoint6 waypoint12 
+27451 drop rover7 rover7store 
+27433 sample_rock rover7 rover7store waypoint12 
+27454 navigate rover7 waypoint12 waypoint6 
+27458 navigate rover7 waypoint6 waypoint2 
+27460 navigate rover7 waypoint2 waypoint14 
+27453 communicate_rock_data_a rover7 general waypoint12 waypoint14 waypoint1 
+34568 navigate rover7 waypoint14 waypoint2 
+34596 navigate rover7 waypoint2 waypoint16 
+34610 navigate rover7 waypoint16 waypoint8 
+34612 navigate rover7 waypoint8 waypoint18 
+34614 drop rover7 rover7store 
+34562 sample_rock rover7 rover7store waypoint18 
+34615 communicate_rock_data_a rover7 general waypoint18 waypoint18 waypoint1 
+42954 navigate rover7 waypoint18 waypoint8 
+42966 navigate rover7 waypoint8 waypoint16 
+43022 navigate rover7 waypoint16 waypoint10 
+43024 drop rover7 rover7store 
+42952 sample_rock rover7 rover7store waypoint10 
+43035 navigate rover7 waypoint10 waypoint16 
+43065 navigate rover7 waypoint16 waypoint2 
+43067 navigate rover7 waypoint2 waypoint14 
+43026 communicate_rock_data_a rover7 general waypoint10 waypoint14 waypoint1 
+51674 navigate rover7 waypoint14 waypoint2 
+51702 navigate rover7 waypoint2 waypoint16 
+51716 navigate rover7 waypoint16 waypoint8 
+51722 navigate rover7 waypoint8 waypoint7 
+51724 drop rover7 rover7store 
+51668 sample_rock rover7 rover7store waypoint7 
+51727 navigate rover7 waypoint7 waypoint8 
+51739 navigate rover7 waypoint8 waypoint16 
+51755 navigate rover7 waypoint16 waypoint2 
+51757 navigate rover7 waypoint2 waypoint14 
+51726 communicate_rock_data_a rover7 general waypoint7 waypoint14 waypoint1 
+60744 navigate rover7 waypoint14 waypoint2 
+60768 navigate rover7 waypoint2 waypoint9 
+60770 drop rover7 rover7store 
+60738 sample_rock rover7 rover7store waypoint9 
+60773 navigate rover7 waypoint9 waypoint2 
+60775 navigate rover7 waypoint2 waypoint14 
+60772 communicate_rock_data_a rover7 general waypoint9 waypoint14 waypoint1 
+69519 navigate rover7 waypoint14 waypoint2 
+69535 navigate rover7 waypoint2 waypoint5 
+69539 navigate rover7 waypoint5 waypoint21 
+69541 drop rover7 rover7store 
+69513 sample_rock rover7 rover7store waypoint21 
+69544 navigate rover7 waypoint21 waypoint5 
+69546 navigate rover7 waypoint5 waypoint2 
+69548 navigate rover7 waypoint2 waypoint14 
+69543 communicate_rock_data_a rover7 general waypoint21 waypoint14 waypoint1 
+77266 navigate rover7 waypoint14 waypoint2 
+77294 navigate rover7 waypoint2 waypoint16 
+77296 drop rover7 rover7store 
+77260 sample_rock rover7 rover7store waypoint16 
+77327 navigate rover7 waypoint16 waypoint2 
+77329 navigate rover7 waypoint2 waypoint14 
+77298 communicate_rock_data_a rover7 general waypoint16 waypoint14 waypoint1 
+81179 navigate rover0 waypoint14 waypoint6 
+81183 navigate rover0 waypoint6 waypoint11 
+81185 navigate rover0 waypoint11 waypoint22 
+81189 navigate rover0 waypoint22 waypoint12 
+81193 navigate rover0 waypoint12 waypoint13 
+81195 navigate rover0 waypoint13 waypoint3 
+81178 calibrate rover0 camera0 objective6 waypoint3 
+81175 take_image rover0 waypoint3 objective5 camera0 high_res 
+81197 communicate_image_data_a rover0 general objective5 high_res waypoint3 waypoint1 
+84989 calibrate rover0 camera0 objective6 waypoint3 
+84986 take_image rover0 waypoint3 objective2 camera0 high_res 
+84990 communicate_image_data_a rover0 general objective2 high_res waypoint3 waypoint1 
+88782 calibrate rover0 camera0 objective6 waypoint3 
+88779 take_image rover0 waypoint3 objective0 camera0 high_res 
+88783 communicate_image_data_a rover0 general objective0 high_res waypoint3 waypoint1 
+92575 calibrate rover0 camera0 objective6 waypoint3 
+92572 take_image rover0 waypoint3 objective7 camera0 colour 
+92576 communicate_image_data_a rover0 general objective7 colour waypoint3 waypoint1 
+96368 calibrate rover0 camera0 objective6 waypoint3 
+96365 take_image rover0 waypoint3 objective3 camera0 colour 
+96369 communicate_image_data_a rover0 general objective3 colour waypoint3 waypoint1 
+
+root 1 
+1 achieve-goals -> communicate-one-soil-data 2 3 
+2 communicate-soil-data_t waypoint11 rover0 -> achieve-communicated-soil-data 120 121 122 123 
+120 move-to rover0 waypoint11 -> go-there 124 125 
+125 move-to rover0 waypoint11 -> already-there 
+121 empty-store rover0store rover0 -> already-empty 
+123 transmit-soil waypoint11 waypoint11 rover0 -> go-to-line-of-sight-for-soil 126 127 
+126 move-to rover0 waypoint14 -> go-there 192 193 
+193 move-to rover0 waypoint14 -> go-there 194 195 
+195 move-to rover0 waypoint14 -> already-there 
+3 achieve-goals -> communicate-one-soil-data 196 197 
+196 communicate-soil-data_t waypoint13 rover0 -> achieve-communicated-soil-data 483 484 485 486 
+483 move-to rover0 waypoint13 -> go-there 487 488 
+488 move-to rover0 waypoint13 -> go-there 491 492 
+492 move-to rover0 waypoint13 -> go-there 493 494 
+494 move-to rover0 waypoint13 -> go-there 497 498 
+498 move-to rover0 waypoint13 -> go-there 501 502 
+502 move-to rover0 waypoint13 -> already-there 
+484 empty-store rover0store rover0 -> drop-to-empty 503 
+486 transmit-soil waypoint13 waypoint13 rover0 -> go-to-line-of-sight-for-soil 504 505 
+504 move-to rover0 waypoint14 -> go-there 510 511 
+511 move-to rover0 waypoint14 -> go-there 512 513 
+513 move-to rover0 waypoint14 -> go-there 514 515 
+515 move-to rover0 waypoint14 -> go-there 526 527 
+527 move-to rover0 waypoint14 -> go-there 528 529 
+529 move-to rover0 waypoint14 -> already-there 
+197 achieve-goals -> communicate-one-soil-data 530 531 
+530 communicate-soil-data_t waypoint23 rover0 -> achieve-communicated-soil-data 1522 1523 1524 1525 
+1522 move-to rover0 waypoint23 -> go-there 1526 1527 
+1527 move-to rover0 waypoint23 -> go-there 1530 1531 
+1531 move-to rover0 waypoint23 -> go-there 1532 1533 
+1533 move-to rover0 waypoint23 -> go-there 1536 1537 
+1537 move-to rover0 waypoint23 -> go-there 1560 1561 
+1561 move-to rover0 waypoint23 -> go-there 1564 1565 
+1565 move-to rover0 waypoint23 -> already-there 
+1523 empty-store rover0store rover0 -> drop-to-empty 1566 
+1525 transmit-soil waypoint23 waypoint23 rover0 -> have-line-of-sight-for-soil 1567 
+531 achieve-goals -> communicate-one-soil-data 1568 1569 
+1568 communicate-soil-data_t waypoint20 rover0 -> achieve-communicated-soil-data 2659 2660 2661 2662 
+2659 move-to rover0 waypoint20 -> go-there 2663 2664 
+2664 move-to rover0 waypoint20 -> go-there 2665 2666 
+2666 move-to rover0 waypoint20 -> go-there 2667 2668 
+2668 move-to rover0 waypoint20 -> go-there 2669 2670 
+2670 move-to rover0 waypoint20 -> go-there 2701 2702 
+2702 move-to rover0 waypoint20 -> go-there 2705 2706 
+2706 move-to rover0 waypoint20 -> already-there 
+2660 empty-store rover0store rover0 -> drop-to-empty 2707 
+2662 transmit-soil waypoint20 waypoint20 rover0 -> go-to-line-of-sight-for-soil 2708 2709 
+2708 move-to rover0 waypoint14 -> go-there 2710 2711 
+2711 move-to rover0 waypoint14 -> go-there 2712 2713 
+2713 move-to rover0 waypoint14 -> go-there 2778 2779 
+2779 move-to rover0 waypoint14 -> go-there 2780 2781 
+2781 move-to rover0 waypoint14 -> already-there 
+1569 achieve-goals -> communicate-one-soil-data 2782 2783 
+2782 communicate-soil-data_t waypoint8 rover0 -> achieve-communicated-soil-data 4114 4115 4116 4117 
+4114 move-to rover0 waypoint8 -> go-there 4118 4119 
+4119 move-to rover0 waypoint8 -> go-there 4122 4123 
+4123 move-to rover0 waypoint8 -> go-there 4180 4181 
+4181 move-to rover0 waypoint8 -> already-there 
+4115 empty-store rover0store rover0 -> drop-to-empty 4182 
+4117 transmit-soil waypoint8 waypoint8 rover0 -> go-to-line-of-sight-for-soil 4183 4184 
+4183 move-to rover0 waypoint14 -> go-there 4185 4186 
+4186 move-to rover0 waypoint14 -> go-there 4245 4246 
+4246 move-to rover0 waypoint14 -> go-there 4247 4248 
+4248 move-to rover0 waypoint14 -> already-there 
+2783 achieve-goals -> communicate-one-soil-data 4249 4250 
+4249 communicate-soil-data_t waypoint7 rover0 -> achieve-communicated-soil-data 6429 6430 6431 6432 
+6429 move-to rover0 waypoint7 -> go-there 6433 6434 
+6434 move-to rover0 waypoint7 -> go-there 6437 6438 
+6438 move-to rover0 waypoint7 -> go-there 6495 6496 
+6496 move-to rover0 waypoint7 -> go-there 6499 6500 
+6500 move-to rover0 waypoint7 -> already-there 
+6430 empty-store rover0store rover0 -> drop-to-empty 6501 
+6432 transmit-soil waypoint7 waypoint7 rover0 -> go-to-line-of-sight-for-soil 6502 6503 
+6502 move-to rover0 waypoint14 -> go-there 6504 6505 
+6505 move-to rover0 waypoint14 -> go-there 6506 6507 
+6507 move-to rover0 waypoint14 -> go-there 6566 6567 
+6567 move-to rover0 waypoint14 -> go-there 6568 6569 
+6569 move-to rover0 waypoint14 -> already-there 
+4250 achieve-goals -> communicate-one-rock-data 9973 9974 
+9973 communicate-rock-data_t waypoint14 rover7 -> achieve-communicated-rock-data 9975 9976 9977 9978 
+9975 move-to rover7 waypoint14 -> go-there 10007 10008 
+10008 move-to rover7 waypoint14 -> go-there 10009 10010 
+10010 move-to rover7 waypoint14 -> already-there 
+9976 empty-store rover7store rover7 -> already-empty 
+9978 transmit-rock waypoint14 waypoint14 rover7 -> have-line-of-sight-for-rock 10011 
+9974 achieve-goals -> communicate-one-rock-data 21207 21208 
+21207 communicate-rock-data_t waypoint22 rover3 -> achieve-communicated-rock-data 21307 21308 21309 21310 
+21307 move-to rover3 waypoint22 -> go-there 21319 21320 
+21320 move-to rover3 waypoint22 -> go-there 21321 21322 
+21322 move-to rover3 waypoint22 -> already-there 
+21308 empty-store rover3store rover3 -> already-empty 
+21310 transmit-rock waypoint22 waypoint22 rover3 -> go-to-line-of-sight-for-rock 21323 21324 
+21323 move-to rover3 waypoint14 -> go-there 21325 21326 
+21326 move-to rover3 waypoint14 -> go-there 21329 21330 
+21330 move-to rover3 waypoint14 -> go-there 21369 21370 
+21370 move-to rover3 waypoint14 -> go-there 21371 21372 
+21372 move-to rover3 waypoint14 -> already-there 
+21208 achieve-goals -> communicate-one-rock-data 26954 26955 
+26954 communicate-rock-data_t waypoint12 rover7 -> achieve-communicated-rock-data 27431 27432 27433 27434 
+27431 move-to rover7 waypoint12 -> go-there 27439 27440 
+27440 move-to rover7 waypoint12 -> go-there 27447 27448 
+27448 move-to rover7 waypoint12 -> go-there 27449 27450 
+27450 move-to rover7 waypoint12 -> already-there 
+27432 empty-store rover7store rover7 -> drop-to-empty 27451 
+27434 transmit-rock waypoint12 waypoint12 rover7 -> go-to-line-of-sight-for-rock 27452 27453 
+27452 move-to rover7 waypoint14 -> go-there 27454 27455 
+27455 move-to rover7 waypoint14 -> go-there 27458 27459 
+27459 move-to rover7 waypoint14 -> go-there 27460 27461 
+27461 move-to rover7 waypoint14 -> already-there 
+26955 achieve-goals -> communicate-one-rock-data 33703 33704 
+33703 communicate-rock-data_t waypoint18 rover7 -> achieve-communicated-rock-data 34560 34561 34562 34563 
+34560 move-to rover7 waypoint18 -> go-there 34568 34569 
+34569 move-to rover7 waypoint18 -> go-there 34596 34597 
+34597 move-to rover7 waypoint18 -> go-there 34610 34611 
+34611 move-to rover7 waypoint18 -> go-there 34612 34613 
+34613 move-to rover7 waypoint18 -> already-there 
+34561 empty-store rover7store rover7 -> drop-to-empty 34614 
+34563 transmit-rock waypoint18 waypoint18 rover7 -> have-line-of-sight-for-rock 34615 
+33704 achieve-goals -> communicate-one-rock-data 41121 41122 
+41121 communicate-rock-data_t waypoint10 rover7 -> achieve-communicated-rock-data 42950 42951 42952 42953 
+42950 move-to rover7 waypoint10 -> go-there 42954 42955 
+42955 move-to rover7 waypoint10 -> go-there 42966 42967 
+42967 move-to rover7 waypoint10 -> go-there 43022 43023 
+43023 move-to rover7 waypoint10 -> already-there 
+42951 empty-store rover7store rover7 -> drop-to-empty 43024 
+42953 transmit-rock waypoint10 waypoint10 rover7 -> go-to-line-of-sight-for-rock 43025 43026 
+43025 move-to rover7 waypoint14 -> go-there 43035 43036 
+43036 move-to rover7 waypoint14 -> go-there 43065 43066 
+43066 move-to rover7 waypoint14 -> go-there 43067 43068 
+43068 move-to rover7 waypoint14 -> already-there 
+41122 achieve-goals -> communicate-one-rock-data 49574 49575 
+49574 communicate-rock-data_t waypoint7 rover7 -> achieve-communicated-rock-data 51666 51667 51668 51669 
+51666 move-to rover7 waypoint7 -> go-there 51674 51675 
+51675 move-to rover7 waypoint7 -> go-there 51702 51703 
+51703 move-to rover7 waypoint7 -> go-there 51716 51717 
+51717 move-to rover7 waypoint7 -> go-there 51722 51723 
+51723 move-to rover7 waypoint7 -> already-there 
+51667 empty-store rover7store rover7 -> drop-to-empty 51724 
+51669 transmit-rock waypoint7 waypoint7 rover7 -> go-to-line-of-sight-for-rock 51725 51726 
+51725 move-to rover7 waypoint14 -> go-there 51727 51728 
+51728 move-to rover7 waypoint14 -> go-there 51739 51740 
+51740 move-to rover7 waypoint14 -> go-there 51755 51756 
+51756 move-to rover7 waypoint14 -> go-there 51757 51758 
+51758 move-to rover7 waypoint14 -> already-there 
+49575 achieve-goals -> communicate-one-rock-data 58264 58265 
+58264 communicate-rock-data_t waypoint9 rover7 -> achieve-communicated-rock-data 60736 60737 60738 60739 
+60736 move-to rover7 waypoint9 -> go-there 60744 60745 
+60745 move-to rover7 waypoint9 -> go-there 60768 60769 
+60769 move-to rover7 waypoint9 -> already-there 
+60737 empty-store rover7store rover7 -> drop-to-empty 60770 
+60739 transmit-rock waypoint9 waypoint9 rover7 -> go-to-line-of-sight-for-rock 60771 60772 
+60771 move-to rover7 waypoint14 -> go-there 60773 60774 
+60774 move-to rover7 waypoint14 -> go-there 60775 60776 
+60776 move-to rover7 waypoint14 -> already-there 
+58265 achieve-goals -> communicate-one-rock-data 66754 66755 
+66754 communicate-rock-data_t waypoint21 rover7 -> achieve-communicated-rock-data 69511 69512 69513 69514 
+69511 move-to rover7 waypoint21 -> go-there 69519 69520 
+69520 move-to rover7 waypoint21 -> go-there 69535 69536 
+69536 move-to rover7 waypoint21 -> go-there 69539 69540 
+69540 move-to rover7 waypoint21 -> already-there 
+69512 empty-store rover7store rover7 -> drop-to-empty 69541 
+69514 transmit-rock waypoint21 waypoint21 rover7 -> go-to-line-of-sight-for-rock 69542 69543 
+69542 move-to rover7 waypoint14 -> go-there 69544 69545 
+69545 move-to rover7 waypoint14 -> go-there 69546 69547 
+69547 move-to rover7 waypoint14 -> go-there 69548 69549 
+69549 move-to rover7 waypoint14 -> already-there 
+66755 achieve-goals -> communicate-one-rock-data 75923 75924 
+75923 communicate-rock-data_t waypoint16 rover7 -> achieve-communicated-rock-data 77258 77259 77260 77261 
+77258 move-to rover7 waypoint16 -> go-there 77266 77267 
+77267 move-to rover7 waypoint16 -> go-there 77294 77295 
+77295 move-to rover7 waypoint16 -> already-there 
+77259 empty-store rover7store rover7 -> drop-to-empty 77296 
+77261 transmit-rock waypoint16 waypoint16 rover7 -> go-to-line-of-sight-for-rock 77297 77298 
+77297 move-to rover7 waypoint14 -> go-there 77327 77328 
+77328 move-to rover7 waypoint14 -> go-there 77329 77330 
+77330 move-to rover7 waypoint14 -> already-there 
+75924 achieve-goals -> communicate-one-image-data 77331 77332 
+77331 communicate-image-data_t objective5 high_res rover0 -> achieve-communicated-image-data 81173 81174 81175 81176 
+81173 calibrate-camera rover0 camera0 -> calibrate-the-camera 81177 81178 
+81177 move-to rover0 waypoint3 -> go-there 81179 81180 
+81180 move-to rover0 waypoint3 -> go-there 81183 81184 
+81184 move-to rover0 waypoint3 -> go-there 81185 81186 
+81186 move-to rover0 waypoint3 -> go-there 81189 81190 
+81190 move-to rover0 waypoint3 -> go-there 81193 81194 
+81194 move-to rover0 waypoint3 -> go-there 81195 81196 
+81196 move-to rover0 waypoint3 -> already-there 
+81174 get-line-of-sight rover0 objective5 waypoint3 -> have-line-of-sight-for-photo 
+81176 communicate-image waypoint3 waypoint1 rover0 objective5 high_res -> communicate-image-meth 81197 
+77332 achieve-goals -> communicate-one-image-data 81198 81199 
+81198 communicate-image-data_t objective2 high_res rover0 -> achieve-communicated-image-data 84984 84985 84986 84987 
+84984 calibrate-camera rover0 camera0 -> calibrate-the-camera 84988 84989 
+84988 move-to rover0 waypoint3 -> already-there 
+84985 get-line-of-sight rover0 objective2 waypoint3 -> have-line-of-sight-for-photo 
+84987 communicate-image waypoint3 waypoint1 rover0 objective2 high_res -> communicate-image-meth 84990 
+81199 achieve-goals -> communicate-one-image-data 84991 84992 
+84991 communicate-image-data_t objective0 high_res rover0 -> achieve-communicated-image-data 88777 88778 88779 88780 
+88777 calibrate-camera rover0 camera0 -> calibrate-the-camera 88781 88782 
+88781 move-to rover0 waypoint3 -> already-there 
+88778 get-line-of-sight rover0 objective0 waypoint3 -> have-line-of-sight-for-photo 
+88780 communicate-image waypoint3 waypoint1 rover0 objective0 high_res -> communicate-image-meth 88783 
+84992 achieve-goals -> communicate-one-image-data 88784 88785 
+88784 communicate-image-data_t objective7 colour rover0 -> achieve-communicated-image-data 92570 92571 92572 92573 
+92570 calibrate-camera rover0 camera0 -> calibrate-the-camera 92574 92575 
+92574 move-to rover0 waypoint3 -> already-there 
+92571 get-line-of-sight rover0 objective7 waypoint3 -> have-line-of-sight-for-photo 
+92573 communicate-image waypoint3 waypoint1 rover0 objective7 colour -> communicate-image-meth 92576 
+88785 achieve-goals -> communicate-one-image-data 92577 92578 
+92577 communicate-image-data_t objective3 colour rover0 -> achieve-communicated-image-data 96363 96364 96365 96366 
+96363 calibrate-camera rover0 camera0 -> calibrate-the-camera 96367 96368 
+96367 move-to rover0 waypoint3 -> already-there 
+96364 get-line-of-sight rover0 objective3 waypoint3 -> have-line-of-sight-for-photo 
+96366 communicate-image waypoint3 waypoint1 rover0 objective3 colour -> communicate-image-meth 96369 
+92578 achieve-goals -> check-for-all-goals-done 
+<==

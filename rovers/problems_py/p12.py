@@ -1,0 +1,43 @@
+from ipyhop import State
+
+state = State( 'init_state' )
+rigid = State( 'rigid' )
+rigid.object = {'camera1', 'waypoint5', 'waypoint7', 'waypoint0', 'objective1', 'objective3', 'waypoint4', 'rover0store', 'objective2', 'objective0', 'camera2', 'colour', 'waypoint1', 'rover1', 'waypoint2', 'rover0', 'general', 'rover1store', 'waypoint3', 'rover3store', 'waypoint6', 'rover2store', 'camera3', 'high_res', 'rover3', 'rover2', 'low_res', 'camera0'}
+rigid.location = {'waypoint5', 'waypoint7', 'waypoint0', 'waypoint6', 'objective1', 'objective3', 'waypoint4', 'objective2', 'objective0', 'waypoint1', 'waypoint2', 'waypoint3'}
+rigid.objective = {'objective2', 'objective3', 'objective1', 'objective0'}
+rigid.store = {'rover0store', 'rover3store', 'rover2store', 'rover1store'}
+rigid.waypoint = {'waypoint5', 'waypoint7', 'waypoint0', 'waypoint6', 'waypoint4', 'waypoint1', 'waypoint2', 'waypoint3'}
+rigid.camera = {'camera1', 'camera3', 'camera2', 'camera0'}
+rigid.mode = {'low_res', 'high_res', 'colour'}
+rigid.rover = {'rover3', 'rover0', 'rover2', 'rover1'}
+rigid.lander = {'general'}
+rigid.visible = set( [('waypoint5', 'waypoint3'), ('waypoint3', 'waypoint5'), ('waypoint7', 'waypoint2'), ('waypoint4', 'waypoint5'), ('waypoint0', 'waypoint7'), ('waypoint7', 'waypoint3'), ('waypoint6', 'waypoint5'), ('waypoint5', 'waypoint0'), ('waypoint0', 'waypoint6'), ('waypoint1', 'waypoint5'), ('waypoint7', 'waypoint0'), ('waypoint5', 'waypoint4'), ('waypoint5', 'waypoint1'), ('waypoint7', 'waypoint4'), ('waypoint0', 'waypoint2'), ('waypoint7', 'waypoint1'), ('waypoint0', 'waypoint3'), ('waypoint7', 'waypoint5'), ('waypoint0', 'waypoint1'), ('waypoint2', 'waypoint7'), ('waypoint3', 'waypoint7'), ('waypoint4', 'waypoint7'), ('waypoint0', 'waypoint5'), ('waypoint2', 'waypoint3'), ('waypoint6', 'waypoint7'), ('waypoint1', 'waypoint7'), ('waypoint3', 'waypoint2'), ('waypoint4', 'waypoint6'), ('waypoint2', 'waypoint0'), ('waypoint4', 'waypoint2'), ('waypoint2', 'waypoint4'), ('waypoint3', 'waypoint0'), ('waypoint5', 'waypoint7'), ('waypoint6', 'waypoint0'), ('waypoint1', 'waypoint0'), ('waypoint5', 'waypoint6'), ('waypoint6', 'waypoint4'), ('waypoint2', 'waypoint5'), ('waypoint7', 'waypoint6'), ('waypoint5', 'waypoint2'), ] )
+state.at_soil_sample = set( [('waypoint0',), ] )
+state.at_rock_sample = set( [('waypoint2',), ('waypoint3',), ('waypoint0',), ('waypoint7',), ('waypoint5',), ('waypoint6',), ] )
+rigid.at_lander = set( [('general', 'waypoint2'), ] )
+rigid.channel_free = set( [('general',), ] )
+state.at = set( [('rover2', 'waypoint7'), ('rover0', 'waypoint4'), ('rover3', 'waypoint7'), ('rover1', 'waypoint4'), ] )
+rigid.available = set( [('rover1',), ('rover0',), ('rover2',), ('rover3',), ] )
+rigid.store_of = set( [('rover3store', 'rover3'), ('rover2store', 'rover2'), ('rover1store', 'rover1'), ('rover0store', 'rover0'), ] )
+state.empty = set( [('rover0store',), ('rover3store',), ('rover2store',), ('rover1store',), ] )
+rigid.equipped_for_imaging = set( [('rover3',), ('rover0',), ('rover2',), ] )
+rigid.can_traverse = set( [('rover2', 'waypoint1', 'waypoint7'), ('rover3', 'waypoint3', 'waypoint7'), ('rover0', 'waypoint5', 'waypoint1'), ('rover1', 'waypoint2', 'waypoint3'), ('rover2', 'waypoint3', 'waypoint7'), ('rover3', 'waypoint6', 'waypoint0'), ('rover1', 'waypoint2', 'waypoint7'), ('rover0', 'waypoint2', 'waypoint7'), ('rover1', 'waypoint2', 'waypoint0'), ('rover2', 'waypoint7', 'waypoint6'), ('rover3', 'waypoint0', 'waypoint7'), ('rover1', 'waypoint2', 'waypoint4'), ('rover3', 'waypoint0', 'waypoint6'), ('rover3', 'waypoint5', 'waypoint7'), ('rover2', 'waypoint7', 'waypoint2'), ('rover3', 'waypoint7', 'waypoint2'), ('rover0', 'waypoint0', 'waypoint5'), ('rover2', 'waypoint0', 'waypoint7'), ('rover2', 'waypoint7', 'waypoint3'), ('rover3', 'waypoint7', 'waypoint3'), ('rover0', 'waypoint2', 'waypoint3'), ('rover1', 'waypoint6', 'waypoint4'), ('rover1', 'waypoint4', 'waypoint6'), ('rover1', 'waypoint3', 'waypoint2'), ('rover2', 'waypoint5', 'waypoint7'), ('rover2', 'waypoint7', 'waypoint0'), ('rover3', 'waypoint7', 'waypoint0'), ('rover3', 'waypoint7', 'waypoint4'), ('rover1', 'waypoint4', 'waypoint2'), ('rover0', 'waypoint2', 'waypoint4'), ('rover1', 'waypoint7', 'waypoint2'), ('rover0', 'waypoint3', 'waypoint2'), ('rover2', 'waypoint7', 'waypoint1'), ('rover3', 'waypoint7', 'waypoint1'), ('rover0', 'waypoint4', 'waypoint2'), ('rover1', 'waypoint5', 'waypoint1'), ('rover2', 'waypoint7', 'waypoint5'), ('rover3', 'waypoint7', 'waypoint5'), ('rover1', 'waypoint0', 'waypoint2'), ('rover1', 'waypoint1', 'waypoint5'), ('rover3', 'waypoint2', 'waypoint7'), ('rover0', 'waypoint5', 'waypoint6'), ('rover3', 'waypoint1', 'waypoint7'), ('rover0', 'waypoint7', 'waypoint2'), ('rover1', 'waypoint4', 'waypoint5'), ('rover0', 'waypoint6', 'waypoint5'), ('rover2', 'waypoint2', 'waypoint7'), ('rover0', 'waypoint1', 'waypoint5'), ('rover3', 'waypoint4', 'waypoint7'), ('rover1', 'waypoint5', 'waypoint4'), ('rover0', 'waypoint5', 'waypoint0'), ('rover0', 'waypoint4', 'waypoint5'), ('rover0', 'waypoint5', 'waypoint4'), ('rover2', 'waypoint6', 'waypoint7'), ] )
+rigid.equipped_for_soil_analysis = set( [('rover1',), ('rover2',), ('rover3',), ] )
+rigid.equipped_for_rock_analysis = set( [('rover1',), ('rover3',), ] )
+rigid.on_board = set( [('camera2', 'rover0'), ('camera1', 'rover2'), ('camera0', 'rover3'), ('camera3', 'rover3'), ] )
+rigid.calibration_target = set( [('camera1', 'objective1'), ('camera0', 'objective2'), ('camera2', 'objective0'), ('camera3', 'objective3'), ] )
+rigid.supports = set( [('camera1', 'high_res'), ('camera3', 'high_res'), ('camera3', 'colour'), ('camera2', 'low_res'), ('camera3', 'low_res'), ('camera0', 'high_res'), ] )
+rigid.visible_from = set( [('objective1', 'waypoint0'), ('objective3', 'waypoint4'), ('objective2', 'waypoint0'), ('objective3', 'waypoint1'), ('objective0', 'waypoint1'), ('objective3', 'waypoint2'), ('objective2', 'waypoint4'), ('objective0', 'waypoint2'), ('objective3', 'waypoint0'), ('objective3', 'waypoint3'), ('objective1', 'waypoint1'), ('objective1', 'waypoint2'), ('objective2', 'waypoint1'), ('objective0', 'waypoint0'), ('objective3', 'waypoint5'), ('objective2', 'waypoint3'), ('objective2', 'waypoint2'), ('objective1', 'waypoint3'), ] )
+rigid.goal_communicated_soil_data = set( [('waypoint0',), ] )
+rigid.goal_communicated_rock_data = set( [('waypoint3',), ('waypoint6',), ] )
+rigid.goal_communicated_image_data = set( [('objective1', 'high_res'), ('objective3', 'low_res'), ('objective2', 'low_res'), ] )
+state.have_image = set( [] )
+state.full = set( [] )
+state.have_soil_analysis = set( [] )
+state.calibrated = set( [] )
+state.communicated_rock_data = set( [] )
+state.communicated_soil_data = set( [] )
+state.have_rock_analysis = set( [] )
+state.communicated_image_data = set( [] )
+
+task_list = [('achieve_goals',)]

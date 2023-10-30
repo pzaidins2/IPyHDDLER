@@ -17,7 +17,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cProfile, pstats, io
 from pstats import SortKey
-from Snake.domain.deviations import snake_deviation_handler
+import keyword
 
 # if used an actions will give all mutating states
 # we can avoid copying all other state properties
@@ -54,6 +54,9 @@ def clean_string( input_str: str ) -> str:
     new_str = new_str.replace( "-", "_" )
     # PDDL is case insensitive so we are going to make everything lower case
     new_str = new_str.lower()
+    # we cannot allow keywords
+    if keyword.iskeyword(new_str):
+        new_str += "___"
     return new_str
 
 
@@ -95,6 +98,8 @@ class HDDL_Parser:
         # hddl map of cleaned names to original names
         # assumes uniqueness across types
         hddl_map = dict()
+        # type hierarchy
+        supertype_tuples = [*map( lambda x: ( x["supertype"], x["type"] ), domain_dict[ "types" ] )]
         # constants
         constant_tuples= map( lambda x: ( x["type"], x["name"] ), domain_dict[ "constants" ] )
         # tasks
@@ -106,13 +111,18 @@ class HDDL_Parser:
         # predicates
         predicate_tuples= [*map( lambda x: ("predicate", x[ "name" ]), domain_dict[ "predicates" ] )]
 
-        for type_str, name_str in [ *constant_tuples, *task_tuples, *method_tuples, *action_tuples, *predicate_tuples ]:
+        for type_str, name_str in [ *supertype_tuples, *constant_tuples, *task_tuples, *method_tuples, *action_tuples, *predicate_tuples ]:
             hddl_map[ clean_string(name_str) ] = name_str
         predicate_set = set()
         for type_str, name_str in predicate_tuples:
             predicate_set.add(clean_string(name_str))
+        clean_supertype_set = set(map( lambda x: (clean_string( x[ 0 ] ), clean_string( x[ 1 ] )), supertype_tuples ))
+        supertype_tree = nx.DiGraph()
+        supertype_tree.add_edges_from(clean_supertype_set)
         self.hddl_map = hddl_map
         self.predicate_set = predicate_set
+        self.supertype_tree = supertype_tree
+        self.supertype_set = set(map(lambda x: x[0], clean_supertype_set))
         return
 
     def parse_problem( self, problem_json_path: str ) -> None:
@@ -219,16 +229,26 @@ class HDDL_Parser:
         init_state_str += "rigid = State( 'rigid' )\n"
         # make typed sets
         objs = problem_dict[ "objects" ]
+        print( objs )
         typed_sets = self.typed_sets
+        # object primitives
         for obj in objs:
             name = clean_string( obj[ "name" ] )
             type = clean_string( obj[ "type" ] )
             if type not in typed_sets.keys():
                 typed_sets[ type ] = set()
             typed_sets[ type ].add( name )
-        for type in typed_sets.keys():
-            init_state_str += "rigid." + type + " = "
-            init_state_str += str( typed_sets[ type ] ) + "\n"
+        supertype_tree = self.supertype_tree
+        # lists all object of type and of subtypes
+        for supertype in supertype_tree.nodes:
+            init_state_str += "rigid." + supertype + " = "
+            desendant_types = {*nx.descendants(supertype_tree,supertype), supertype }
+            supertype_set = set()
+            for type in desendant_types:
+                if type in typed_sets.keys():
+                    supertype_set |= typed_sets[type]
+            init_state_str += str( supertype_set ) + "\n"
+
         # group atoms
         atom_arg_dict = dict()
         for atom in problem_dict[ "init" ]:
@@ -850,8 +870,8 @@ if __name__ == '__main__':
     parser = HDDL_Parser()
     # input_domain_dir = "../../domains/ipc-2023-snake-domain/"
     # output_dir = "Snake/"
-    input_domain_dir = "../../domains/rovers/"
-    output_dir = "rovers/"
+    input_domain_dir = "../../domains/openstacks-adl/"
+    output_dir = "openstacks/"
     parser.parse_domain( input_domain_dir + "domain.json" )
 
     parser.write_domain(output_dir[:-1])
@@ -860,10 +880,10 @@ if __name__ == '__main__':
     parser.write_problem( output_dir + "problems_py/" + output_py)
     # helps with modularity, partly inherited quirk
     # by treating as modules we don't need conversions between plain text and python code
-    from rovers.domain.actions import actions
-    from rovers.domain.methods import methods
+    from openstacks.domain.actions import actions
+    from openstacks.domain.methods import methods
     # temp_mod = importlib.import_module( "Snake.problems_py." + output_py[ :-3 ] )
-    temp_mod = importlib.import_module( "rovers.problems_py." + output_py[ :-3 ] )
+    temp_mod = importlib.import_module( "openstacks.problems_py." + output_py[ :-3 ] )
     init_state = temp_mod.state
     task_list = temp_mod.task_list
     rigid = temp_mod.rigid
@@ -893,7 +913,7 @@ if __name__ == '__main__':
     ################################################################################
     # complete task_list, repairing as needed
     # history = actor.complete_to_do( init_state, task_list, verbose=0)
-    plan = planner.plan(init_state, task_list, verbose=3)
+    plan = planner.plan(init_state, task_list, verbose=0)
     ###################################################################################
     # pr.disable()
     # s = io.StringIO()
@@ -913,10 +933,11 @@ if __name__ == '__main__':
 
     # # input_dir = "../../domains/ipc-2023-snake-domain/"
     # # output_dir = "Snake/"
-    # input_dir = "../../domains/ipc-2023-minecraft-regular-domain/"
-    # output_dir = "minecraft_regular/"
+    # input_dir = "../../domains/rovers/"
+    # output_dir = "rovers/"
     # # args = filter( lambda x: ".snake.json" in x, os.listdir( input_dir ) )
-    # args = filter( lambda x: "p-0" in x and ".json" in x, os.listdir( input_dir ) )
+    # # args = filter( lambda x: "p-0" in x and ".json" in x, os.listdir( input_dir ) )
+    # args = filter( lambda x: "p" in x and str.isnumeric( x[1:3] ) and ".json" in x, os.listdir( input_dir ) )
     # args = [*map( lambda x: ( input_dir, x, output_dir), args )]
     # # print(args)
     # time_arr = np.ndarray( len( args ), dtype=float )
