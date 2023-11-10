@@ -40,20 +40,20 @@ def take_image( state, r, p, o, i, m, rigid ):
 		state.calibrated.remove( ( i, r, ) )
 		return state
 
-def communicate_soil_data_a( state, r, l, p, x, y, rigid ):
+def communicate_soil_data( state, r, l, p, x, y, rigid ):
 	if all( [ ( r, x, ) in state.at, ( l, y, ) in rigid.at_lander, ( r, p, ) in state.have_soil_analysis, ( x, y, ) in rigid.visible, ( r, ) in rigid.available, ( l, ) in rigid.channel_free, ] ):
 		state.communicated_soil_data.add( ( p, ) )
 		return state
 
-def communicate_rock_data_a( state, r, l, p, x, y, rigid ):
+def communicate_rock_data( state, r, l, p, x, y, rigid ):
 	if all( [ ( r, x, ) in state.at, ( l, y, ) in rigid.at_lander, ( r, p, ) in state.have_rock_analysis, ( x, y, ) in rigid.visible, ( r, ) in rigid.available, ( l, ) in rigid.channel_free, ] ):
 		state.communicated_rock_data.add( ( p, ) )
 		return state
 
-def communicate_image_data_a( state, r, l, o, m, x, y, rigid ):
+def communicate_image_data( state, r, l, o, m, x, y, rigid ):
 	if all( [ ( r, x, ) in state.at, ( l, y, ) in rigid.at_lander, ( r, o, m, ) in state.have_image, ( x, y, ) in rigid.visible, ( r, ) in rigid.available, ( l, ) in rigid.channel_free, ] ):
 		state.communicated_image_data.add( ( o, m, ) )
 		return state
 
 actions = Actions()
-actions.declare_actions( [ navigate, sample_soil, sample_rock, drop, calibrate, take_image, communicate_soil_data_a, communicate_rock_data_a, communicate_image_data_a, ] )
+actions.declare_actions( [ navigate, sample_soil, sample_rock, drop, calibrate, take_image, communicate_soil_data, communicate_rock_data, communicate_image_data, ] )

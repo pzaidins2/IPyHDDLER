@@ -25,10 +25,10 @@ def calibrate( state, s, i, d, rigid ):
 		state.calibrated.add( ( i, ) )
 		return state
 
-def take_image_a( state, s, d, i, m, rigid ):
+def take_image( state, s, d, i, m, rigid ):
 	if all( [ ( i, ) in state.calibrated, ( i, s, ) in rigid.on_board, ( i, m, ) in rigid.supports, ( i, ) in state.power_on, ( s, d, ) in state.pointing, ( i, ) in state.power_on, ] ):
 		state.have_image.add( ( d, m, ) ) if not( ( d, m, ) in state.have_image ) else None
 		return state
 
 actions = Actions()
-actions.declare_actions( [ turn_to, switch_on, switch_off, calibrate, take_image_a, ] )
+actions.declare_actions( [ turn_to, switch_on, switch_off, calibrate, take_image, ] )

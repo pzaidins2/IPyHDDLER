@@ -2,51 +2,55 @@
 8 switch_on instrument0 satellite0 
 9 turn_to satellite0 star0 planet4 
 10 calibrate satellite0 instrument0 star0 
-11 turn_to satellite0 star7 star0 
-12 take_image_a satellite0 star7 instrument0 infrared0 
-19 turn_to satellite0 planet4 star7 
-20 take_image_a satellite0 planet4 instrument0 infrared0 
-27 turn_to satellite0 phenomenon6 planet4 
-28 take_image_a satellite0 phenomenon6 instrument0 infrared0 
-35 turn_to satellite0 planet3 phenomenon6 
-36 take_image_a satellite0 planet3 instrument0 infrared0 
-49 switch_off instrument0 satellite0 
-50 switch_on instrument1 satellite0 
-51 turn_to satellite0 groundstation2 planet3 
-52 calibrate satellite0 instrument1 groundstation2 
-53 turn_to satellite0 phenomenon5 groundstation2 
-54 take_image_a satellite0 phenomenon5 instrument1 image2 
+11 turn_to satellite0 planet4 star0 
+12 take_image satellite0 planet4 instrument0 infrared0 
+25 switch_off instrument0 satellite0 
+26 switch_on instrument1 satellite0 
+27 turn_to satellite0 groundstation2 planet4 
+28 calibrate satellite0 instrument1 groundstation2 
+29 turn_to satellite0 phenomenon5 groundstation2 
+30 take_image satellite0 phenomenon5 instrument1 image2 
+37 switch_off instrument1 satellite0 
+38 switch_on instrument0 satellite0 
+39 turn_to satellite0 star0 phenomenon5 
+40 calibrate satellite0 instrument0 star0 
+41 turn_to satellite0 star7 star0 
+42 take_image satellite0 star7 instrument0 infrared0 
+49 turn_to satellite0 planet3 star7 
+50 take_image satellite0 planet3 instrument0 infrared0 
+57 turn_to satellite0 phenomenon6 planet3 
+58 take_image satellite0 phenomenon6 instrument0 infrared0 
 
 root 1 
 1 main -> take-one 2 3 
-2 have_image star7 infrared0 -> prepare-then-take 4 5 
+2 have-image planet4 infrared0 -> prepare-then-take 4 5 
 4 prepare-instrument satellite0 instrument0 -> prepare 6 7 
 6 turn-on-instrument satellite0 instrument0 -> turn-on 8 
 7 calibrate-instrument satellite0 instrument0 -> repoint-then-calibrate 9 10 
-5 take-image_t satellite0 instrument0 star7 infrared0 -> turn-then-take 11 12 
+5 take-image satellite0 instrument0 planet4 infrared0 -> turn-then-take 11 12 
 3 main -> take-one 13 14 
-13 have_image planet4 infrared0 -> prepare-then-take 15 16 
-15 prepare-instrument satellite0 instrument0 -> prepare 17 18 
-17 turn-on-instrument satellite0 instrument0 -> already-on 
-18 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
-16 take-image_t satellite0 instrument0 planet4 infrared0 -> turn-then-take 19 20 
-14 main -> take-one 21 22 
-21 have_image phenomenon6 infrared0 -> prepare-then-take 23 24 
-23 prepare-instrument satellite0 instrument0 -> prepare 25 26 
-25 turn-on-instrument satellite0 instrument0 -> already-on 
-26 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
-24 take-image_t satellite0 instrument0 phenomenon6 infrared0 -> turn-then-take 27 28 
-22 main -> take-one 29 30 
-29 have_image planet3 infrared0 -> prepare-then-take 31 32 
-31 prepare-instrument satellite0 instrument0 -> prepare 33 34 
-33 turn-on-instrument satellite0 instrument0 -> already-on 
-34 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
-32 take-image_t satellite0 instrument0 planet3 infrared0 -> turn-then-take 35 36 
-30 main -> take-one 37 38 
-37 have_image phenomenon5 image2 -> prepare-then-take 45 46 
-45 prepare-instrument satellite0 instrument1 -> prepare 47 48 
-47 turn-on-instrument satellite0 instrument1 -> swap-instruments 49 50 
-48 calibrate-instrument satellite0 instrument1 -> repoint-then-calibrate 51 52 
-46 take-image_t satellite0 instrument1 phenomenon5 image2 -> turn-then-take 53 54 
-38 main -> all-done 
+13 have-image phenomenon5 image2 -> prepare-then-take 21 22 
+21 prepare-instrument satellite0 instrument1 -> prepare 23 24 
+23 turn-on-instrument satellite0 instrument1 -> swap-instruments 25 26 
+24 calibrate-instrument satellite0 instrument1 -> repoint-then-calibrate 27 28 
+22 take-image satellite0 instrument1 phenomenon5 image2 -> turn-then-take 29 30 
+14 main -> take-one 31 32 
+31 have-image star7 infrared0 -> prepare-then-take 33 34 
+33 prepare-instrument satellite0 instrument0 -> prepare 35 36 
+35 turn-on-instrument satellite0 instrument0 -> swap-instruments 37 38 
+36 calibrate-instrument satellite0 instrument0 -> repoint-then-calibrate 39 40 
+34 take-image satellite0 instrument0 star7 infrared0 -> turn-then-take 41 42 
+32 main -> take-one 43 44 
+43 have-image planet3 infrared0 -> prepare-then-take 45 46 
+45 prepare-instrument satellite0 instrument0 -> prepare 47 48 
+47 turn-on-instrument satellite0 instrument0 -> already-on 
+48 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
+46 take-image satellite0 instrument0 planet3 infrared0 -> turn-then-take 49 50 
+44 main -> take-one 51 52 
+51 have-image phenomenon6 infrared0 -> prepare-then-take 53 54 
+53 prepare-instrument satellite0 instrument0 -> prepare 55 56 
+55 turn-on-instrument satellite0 instrument0 -> already-on 
+56 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
+54 take-image satellite0 instrument0 phenomenon6 infrared0 -> turn-then-take 57 58 
+52 main -> all-done 
 <==

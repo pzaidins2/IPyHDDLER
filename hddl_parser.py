@@ -51,7 +51,7 @@ def clean_string( input_str: str ) -> str:
     # ? must be removed
     new_str = input_str.replace( "?", "" )
     # - must be replaced with _
-    new_str = new_str.replace( "-", "_" )
+    new_str = new_str.replace( "-", "__" )
     # PDDL is case insensitive so we are going to make everything lower case
     new_str = new_str.lower()
     # we cannot allow keywords
@@ -335,6 +335,8 @@ def make_method_function_str( method: Dict[ str, Union[ str, Dict ] ],
     # parameters from task are fixed, but all other parameters are only limited by preconditions
     # and typing
     task_parameter_names = [ *map( lambda x: clean_string( x ), method[ "task" ][ "args" ] ) ]
+    print(task_parameter_names)
+    print(parameter_names)
     parameter_set_diff = { *parameter_names } - { *task_parameter_names }
     parameter_set_diff = list( parameter_set_diff )
     parameter_set_diff.sort()
@@ -445,6 +447,20 @@ def make_precondition_str( precondition: Dict[ str, Union[ str, Dict ] ] ) -> st
                 forall_str += "rigid." + clean_string( boundVar_type ) + ", "
             forall_str += ") )"
             return forall_str
+        # existence
+        elif op == "exists":
+            boundVars = precondition[ "boundVars" ]
+            boundVar_tuples = [ (boundVar[ "name" ], boundVar[ "type" ]) for boundVar in boundVars ]
+            boundVar_names, boundVar_types = list( zip( *boundVar_tuples ) )
+            operand = precondition[ "operand" ]
+            exists_str = "any( " + make_precondition_str( operand ) + " for ( "
+            for boundVar_name in boundVar_names:
+                exists_str += clean_string( boundVar_name ) + ", "
+            exists_str += ") in itertools.product( "
+            for boundVar_type in boundVar_types:
+                exists_str += "rigid." + clean_string( boundVar_type ) + ", "
+            exists_str += ") )"
+            return exists_str
         elif op == "imply":
             operand1 = precondition[ "operand1" ]
             operand2 = precondition[ "operand2" ]
@@ -858,103 +874,103 @@ def run_experiment( problem_dir, problem_json, output_dir ):
 
 
 if __name__ == '__main__':
-    # problem input, internal, and output files
-    problem_json="p01.json"
-    # problem_json = "p-045-045-045-045.json"
-    output_py = problem_json.replace( "json", "py" )
-    output_txt = problem_json.replace( "json", "txt" )
-    # output_py = problem_json.replace( "snake.json", "py" )
-    # output_txt = problem_json.replace( "snake.json", "txt" )
-    # write methods and actions
-    # WRITE IS COMMENTED OUT DUE TO LOCAL OPTIMIZATION
-    parser = HDDL_Parser()
-    # input_domain_dir = "../../domains/ipc-2023-snake-domain/"
-    # output_dir = "Snake/"
-    input_domain_dir = "../../domains/openstacks-adl/"
-    output_dir = "openstacks/"
-    parser.parse_domain( input_domain_dir + "domain.json" )
-
-    parser.write_domain(output_dir[:-1])
-    # make pythonic representation of state and constants
-    parser.parse_problem( input_domain_dir + problem_json )
-    parser.write_problem( output_dir + "problems_py/" + output_py)
-    # helps with modularity, partly inherited quirk
-    # by treating as modules we don't need conversions between plain text and python code
-    from openstacks.domain.actions import actions
-    from openstacks.domain.methods import methods
-    # temp_mod = importlib.import_module( "Snake.problems_py." + output_py[ :-3 ] )
-    temp_mod = importlib.import_module( "openstacks.problems_py." + output_py[ :-3 ] )
-    init_state = temp_mod.state
-    task_list = temp_mod.task_list
-    rigid = temp_mod.rigid
-    # pass constants using rigid
-    local_methods = deepcopy( methods )
-    local_actions = deepcopy( actions )
-    local_methods.goal_method_dict.update(
-        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
-    local_methods.task_method_dict.update(
-        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.task_method_dict.items() } )
-    local_methods.multigoal_method_dict.update(
-        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
-    local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
-    # make planner
-    planner = IPyHOP(local_methods, local_actions)
-    print(parser.hddl_map)
-    # # deviation handler is essentially a function, but stores information between calls
-    # dev_hand = snake_deviation_handler( planner, rigid, active_mouse_ratio=0.0, move_activity_ratio=0.00 )
-    # # simulator
-    # mc_executor = MonteCarloExecutor( local_actions, dev_hand )
-    # # agent
-    # actor = Actor( planner, mc_executor )
-    start_time = time.perf_counter_ns()
-    #############################################################################
-    # pr = cProfile.Profile()
-    # pr.enable()
-    ################################################################################
-    # complete task_list, repairing as needed
-    # history = actor.complete_to_do( init_state, task_list, verbose=0)
-    plan = planner.plan(init_state, task_list, verbose=0)
-    ###################################################################################
-    # pr.disable()
-    # s = io.StringIO()
-    # sortby = "tottime"
-    # ps = pstats.Stats( pr, stream=s ).sort_stats( sortby )
-    # ps.print_stats()
-    # print( s.getvalue() )
-    #################################################################################
-    end_time = time.perf_counter_ns()
-    total_time = (end_time - start_time) / 1E9
-    print(plan)
-    hddl_plan_str = planner.hddl_plan_str( parser.hddl_map )
-    print(hddl_plan_str)
-    print(total_time)
-    with open( output_dir + "solutions/" + output_txt, "w") as f:
-        f.write(hddl_plan_str)
-
-    # # input_dir = "../../domains/ipc-2023-snake-domain/"
+    # # problem input, internal, and output files
+    # problem_json="p30.json"
+    # # problem_json = "p-045-045-045-045.json"
+    # output_py = problem_json.replace( "json", "py" )
+    # output_txt = problem_json.replace( "json", "txt" )
+    # # output_py = problem_json.replace( "snake.json", "py" )
+    # # output_txt = problem_json.replace( "snake.json", "txt" )
+    # # write methods and actions
+    # # WRITE IS COMMENTED OUT DUE TO LOCAL OPTIMIZATION
+    # parser = HDDL_Parser()
+    # # input_domain_dir = "../../domains/ipc-2023-snake-domain/"
     # # output_dir = "Snake/"
-    # input_dir = "../../domains/rovers/"
-    # output_dir = "rovers/"
-    # # args = filter( lambda x: ".snake.json" in x, os.listdir( input_dir ) )
-    # # args = filter( lambda x: "p-0" in x and ".json" in x, os.listdir( input_dir ) )
-    # args = filter( lambda x: "p" in x and str.isnumeric( x[1:3] ) and ".json" in x, os.listdir( input_dir ) )
-    # args = [*map( lambda x: ( input_dir, x, output_dir), args )]
-    # # print(args)
-    # time_arr = np.ndarray( len( args ), dtype=float )
-    # plan_len_arr = np.empty_like( time_arr, dtype=int )
-    # with Pool( processes=cpu_count() // 2 ) as pool:
-    #     output = pool.starmap_async( run_experiment, args, chunksize=1 )
-    #     while True:
-    #         if output.ready():
-    #             break
-    #         print( str( round( 100 - 100 * output._number_left / len( args ), 3 ) ) + " %" )
-    #         time.sleep( 60 )
-    # i = 0
-    # for exp in output.get():
-    #     time_arr[ i ] = exp[ 1 ]
-    #     plan_len_arr[ i ] = len( exp[ 2 ] )
-    #     i += 1
-    # print(time_arr)
-    # print(plan_len_arr)
-    # plt.scatter(time_arr,plan_len_arr)
-    # plt.show()
+    # input_domain_dir = "../../domains/openstacks-adl/"
+    # output_dir = "openstacks/"
+    # parser.parse_domain( input_domain_dir + "domain.json" )
+    #
+    # # parser.write_domain(output_dir[:-1])
+    # # make pythonic representation of state and constants
+    # parser.parse_problem( input_domain_dir + problem_json )
+    # parser.write_problem( output_dir + "problems_py/" + output_py)
+    # # helps with modularity, partly inherited quirk
+    # # by treating as modules we don't need conversions between plain text and python code
+    # from openstacks.domain.actions import actions
+    # from openstacks.domain.methods import methods
+    # # temp_mod = importlib.import_module( "Snake.problems_py." + output_py[ :-3 ] )
+    # temp_mod = importlib.import_module( "openstacks.problems_py." + output_py[ :-3 ] )
+    # init_state = temp_mod.state
+    # task_list = temp_mod.task_list
+    # rigid = temp_mod.rigid
+    # # pass constants using rigid
+    # local_methods = deepcopy( methods )
+    # local_actions = deepcopy( actions )
+    # local_methods.goal_method_dict.update(
+    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
+    # local_methods.task_method_dict.update(
+    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.task_method_dict.items() } )
+    # local_methods.multigoal_method_dict.update(
+    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
+    # local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
+    # # make planner
+    # planner = IPyHOP(local_methods, local_actions)
+    # print(parser.hddl_map)
+    # # # deviation handler is essentially a function, but stores information between calls
+    # # dev_hand = snake_deviation_handler( planner, rigid, active_mouse_ratio=0.0, move_activity_ratio=0.00 )
+    # # # simulator
+    # # mc_executor = MonteCarloExecutor( local_actions, dev_hand )
+    # # # agent
+    # # actor = Actor( planner, mc_executor )
+    # start_time = time.perf_counter_ns()
+    # #############################################################################
+    # # pr = cProfile.Profile()
+    # # pr.enable()
+    # ################################################################################
+    # # complete task_list, repairing as needed
+    # # history = actor.complete_to_do( init_state, task_list, verbose=0)
+    # plan = planner.plan(init_state, task_list, verbose=3)
+    # ###################################################################################
+    # # pr.disable()
+    # # s = io.StringIO()
+    # # sortby = "tottime"
+    # # ps = pstats.Stats( pr, stream=s ).sort_stats( sortby )
+    # # ps.print_stats()
+    # # print( s.getvalue() )
+    # #################################################################################
+    # end_time = time.perf_counter_ns()
+    # total_time = (end_time - start_time) / 1E9
+    # print(plan)
+    # hddl_plan_str = planner.hddl_plan_str( parser.hddl_map )
+    # print(hddl_plan_str)
+    # print(total_time)
+    # with open( output_dir + "solutions/" + output_txt, "w") as f:
+    #     f.write(hddl_plan_str)
+
+    # input_dir = "../../domains/ipc-2023-snake-domain/"
+    # output_dir = "Snake/"
+    input_dir = "../../domains/openstacks-adl/"
+    output_dir = "openstacks/"
+    # args = filter( lambda x: ".snake.json" in x, os.listdir( input_dir ) )
+    # args = filter( lambda x: "p-0" in x and ".json" in x, os.listdir( input_dir ) )
+    args = filter( lambda x: "p" in x and str.isnumeric( x[1:3] ) and ".json" in x, os.listdir( input_dir ) )
+    args = [*map( lambda x: ( input_dir, x, output_dir), args )]
+    # print(args)
+    time_arr = np.ndarray( len( args ), dtype=float )
+    plan_len_arr = np.empty_like( time_arr, dtype=int )
+    with Pool( processes=cpu_count() // 2 ) as pool:
+        output = pool.starmap_async( run_experiment, args, chunksize=1 )
+        while True:
+            if output.ready():
+                break
+            print( str( round( 100 - 100 * output._number_left / len( args ), 3 ) ) + " %" )
+            time.sleep( 60 )
+    i = 0
+    for exp in output.get():
+        time_arr[ i ] = exp[ 1 ]
+        plan_len_arr[ i ] = len( exp[ 2 ] )
+        i += 1
+    print(time_arr)
+    print(plan_len_arr)
+    plt.scatter(time_arr,plan_len_arr)
+    plt.show()

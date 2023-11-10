@@ -1,41 +1,37 @@
 ==>
-12 navigate rover0 waypoint3 waypoint1 
-14 navigate rover0 waypoint1 waypoint2 
-6 sample_soil rover0 rover0store waypoint2 
-16 communicate_soil_data_a rover0 general waypoint2 waypoint2 waypoint0 
-78 navigate rover0 waypoint2 waypoint1 
-82 navigate rover0 waypoint1 waypoint3 
-84 drop rover0 rover0store 
-76 sample_rock rover0 rover0store waypoint3 
-85 communicate_rock_data_a rover0 general waypoint3 waypoint3 waypoint0 
-98 navigate rover0 waypoint3 waypoint1 
-100 navigate rover0 waypoint1 waypoint2 
-93 calibrate rover0 camera0 objective1 waypoint2 
-90 take_image rover0 waypoint2 objective1 camera0 high_res 
-102 communicate_image_data_a rover0 general objective1 high_res waypoint2 waypoint0 
+82 navigate rover0 waypoint3 waypoint1 
+86 navigate rover0 waypoint1 waypoint2 
+76 sample_soil rover0 rover0store waypoint2 
+88 communicate_soil_data rover0 general waypoint2 waypoint2 waypoint0 
+95 navigate rover0 waypoint2 waypoint1 
+97 navigate rover0 waypoint1 waypoint3 
+99 drop rover0 rover0store 
+93 sample_rock rover0 rover0store waypoint3 
+100 communicate_rock_data rover0 general waypoint3 waypoint3 waypoint0 
+108 calibrate rover0 camera0 objective1 waypoint3 
+105 take_image rover0 waypoint3 objective1 camera0 high_res 
+109 communicate_image_data rover0 general objective1 high_res waypoint3 waypoint0 
 
 root 1 
 1 achieve-goals -> communicate-one-soil-data 2 3 
-2 communicate-soil-data_t waypoint2 rover0 -> achieve-communicated-soil-data 4 5 6 7 
-4 move-to rover0 waypoint2 -> go-there 12 13 
-13 move-to rover0 waypoint2 -> go-there 14 15 
-15 move-to rover0 waypoint2 -> already-there 
-5 empty-store rover0store rover0 -> already-empty 
-7 transmit-soil waypoint2 waypoint2 rover0 -> have-line-of-sight-for-soil 16 
-3 achieve-goals -> communicate-one-rock-data 17 18 
-17 communicate-rock-data_t waypoint3 rover0 -> achieve-communicated-rock-data 74 75 76 77 
-74 move-to rover0 waypoint3 -> go-there 78 79 
-79 move-to rover0 waypoint3 -> go-there 82 83 
-83 move-to rover0 waypoint3 -> already-there 
-75 empty-store rover0store rover0 -> drop-to-empty 84 
-77 transmit-rock waypoint3 waypoint3 rover0 -> have-line-of-sight-for-rock 85 
-18 achieve-goals -> communicate-one-image-data 86 87 
-86 communicate-image-data_t objective1 high_res rover0 -> achieve-communicated-image-data 88 89 90 91 
-88 calibrate-camera rover0 camera0 -> calibrate-the-camera 92 93 
-92 move-to rover0 waypoint2 -> go-there 98 99 
-99 move-to rover0 waypoint2 -> go-there 100 101 
-101 move-to rover0 waypoint2 -> already-there 
-89 get-line-of-sight rover0 objective1 waypoint2 -> have-line-of-sight-for-photo 
-91 communicate-image waypoint2 waypoint0 rover0 objective1 high_res -> communicate-image-meth 102 
-87 achieve-goals -> check-for-all-goals-done 
+2 communicate-soil-data waypoint2 rover0 -> achieve-communicated-soil-data 74 75 76 77 
+74 move-to rover0 waypoint2 -> go-there 82 83 
+83 move-to rover0 waypoint2 -> go-there 86 87 
+87 move-to rover0 waypoint2 -> already-there 
+75 empty-store rover0store rover0 -> already-empty 
+77 transmit-soil waypoint2 waypoint2 rover0 -> have-line-of-sight-for-soil 88 
+3 achieve-goals -> communicate-one-rock-data 89 90 
+89 communicate-rock-data waypoint3 rover0 -> achieve-communicated-rock-data 91 92 93 94 
+91 move-to rover0 waypoint3 -> go-there 95 96 
+96 move-to rover0 waypoint3 -> go-there 97 98 
+98 move-to rover0 waypoint3 -> already-there 
+92 empty-store rover0store rover0 -> drop-to-empty 99 
+94 transmit-rock waypoint3 waypoint3 rover0 -> have-line-of-sight-for-rock 100 
+90 achieve-goals -> communicate-one-image-data 101 102 
+101 communicate-image-data objective1 high_res rover0 -> achieve-communicated-image-data 103 104 105 106 
+103 calibrate-camera rover0 camera0 -> calibrate-the-camera 107 108 
+107 move-to rover0 waypoint3 -> already-there 
+104 get-line-of-sight rover0 objective1 waypoint3 -> have-line-of-sight-for-photo 
+106 communicate-image waypoint3 waypoint0 rover0 objective1 high_res -> communicate-image-meth 109 
+102 achieve-goals -> check-for-all-goals-done 
 <==

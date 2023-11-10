@@ -1,0 +1,327 @@
+==>
+6 open-new-stack n0 n1 
+9 open-new-stack n1 n2 
+12 open-new-stack n2 n3 
+15 open-new-stack n3 n4 
+18 open-new-stack n4 n5 
+21 open-new-stack n5 n6 
+24 open-new-stack n6 n7 
+27 open-new-stack n7 n8 
+30 open-new-stack n8 n9 
+33 open-new-stack n9 n10 
+36 open-new-stack n10 n11 
+39 open-new-stack n11 n12 
+42 open-new-stack n12 n13 
+45 open-new-stack n13 n14 
+48 open-new-stack n14 n15 
+51 open-new-stack n15 n16 
+54 open-new-stack n16 n17 
+57 open-new-stack n17 n18 
+60 open-new-stack n18 n19 
+63 open-new-stack n19 n20 
+72 start-order o1 n20 n19 
+69 make-product p2 
+76 ship-order o1 n19 n20 
+87 start-order o8 n20 n19 
+100 start-order o9 n19 n18 
+117 start-order o10 n18 n17 
+158 start-order o2 n17 n16 
+82 make-product p4 
+162 ship-order o9 n16 n17 
+168 make-product p13 
+174 make-product p17 
+189 start-order o7 n17 n16 
+212 start-order o15 n16 n15 
+249 start-order o11 n15 n14 
+180 make-product p12 
+253 ship-order o8 n14 n15 
+257 ship-order o7 n15 n16 
+261 ship-order o11 n16 n17 
+274 start-order o5 n17 n16 
+267 make-product p10 
+278 ship-order o5 n16 n17 
+282 ship-order o10 n17 n18 
+299 start-order o12 n18 n17 
+288 make-product p3 
+303 ship-order o12 n17 n18 
+324 start-order o13 n18 n17 
+349 start-order o3 n17 n16 
+309 make-product p6 
+353 ship-order o13 n16 n17 
+378 start-order o6 n17 n16 
+411 start-order o4 n16 n15 
+359 make-product p16 
+415 ship-order o6 n15 n16 
+419 ship-order o4 n16 n17 
+446 start-order o20 n17 n16 
+425 make-product p19 
+481 start-order o19 n16 n15 
+452 make-product p15 
+485 ship-order o20 n15 n16 
+489 ship-order o19 n16 n17 
+495 make-product p14 
+532 start-order o14 n17 n16 
+501 make-product p18 
+536 ship-order o15 n16 n17 
+540 ship-order o14 n17 n18 
+546 make-product p5 
+552 make-product p8 
+556 ship-order o3 n18 n19 
+589 start-order o18 n19 n18 
+562 make-product p9 
+593 ship-order o18 n18 n19 
+634 start-order o17 n19 n18 
+599 make-product p1 
+638 ship-order o17 n18 n19 
+683 start-order o16 n19 n18 
+644 make-product p20 
+689 make-product p11 
+693 ship-order o16 n18 n19 
+699 make-product p7 
+703 ship-order o2 n19 n20 
+
+root 1 
+1 plan -> plan-method-1 2 3 
+2 open-all-stacks -> open-a-stack-and-recurse 4 5 
+4 open-new-stack-complex n0 n1 -> open-new-stack-method-1 6 
+5 open-all-stacks -> open-a-stack-and-recurse 7 8 
+7 open-new-stack-complex n1 n2 -> open-new-stack-method-1 9 
+8 open-all-stacks -> open-a-stack-and-recurse 10 11 
+10 open-new-stack-complex n2 n3 -> open-new-stack-method-1 12 
+11 open-all-stacks -> open-a-stack-and-recurse 13 14 
+13 open-new-stack-complex n3 n4 -> open-new-stack-method-1 15 
+14 open-all-stacks -> open-a-stack-and-recurse 16 17 
+16 open-new-stack-complex n4 n5 -> open-new-stack-method-1 18 
+17 open-all-stacks -> open-a-stack-and-recurse 19 20 
+19 open-new-stack-complex n5 n6 -> open-new-stack-method-1 21 
+20 open-all-stacks -> open-a-stack-and-recurse 22 23 
+22 open-new-stack-complex n6 n7 -> open-new-stack-method-1 24 
+23 open-all-stacks -> open-a-stack-and-recurse 25 26 
+25 open-new-stack-complex n7 n8 -> open-new-stack-method-1 27 
+26 open-all-stacks -> open-a-stack-and-recurse 28 29 
+28 open-new-stack-complex n8 n9 -> open-new-stack-method-1 30 
+29 open-all-stacks -> open-a-stack-and-recurse 31 32 
+31 open-new-stack-complex n9 n10 -> open-new-stack-method-1 33 
+32 open-all-stacks -> open-a-stack-and-recurse 34 35 
+34 open-new-stack-complex n10 n11 -> open-new-stack-method-1 36 
+35 open-all-stacks -> open-a-stack-and-recurse 37 38 
+37 open-new-stack-complex n11 n12 -> open-new-stack-method-1 39 
+38 open-all-stacks -> open-a-stack-and-recurse 40 41 
+40 open-new-stack-complex n12 n13 -> open-new-stack-method-1 42 
+41 open-all-stacks -> open-a-stack-and-recurse 43 44 
+43 open-new-stack-complex n13 n14 -> open-new-stack-method-1 45 
+44 open-all-stacks -> open-a-stack-and-recurse 46 47 
+46 open-new-stack-complex n14 n15 -> open-new-stack-method-1 48 
+47 open-all-stacks -> open-a-stack-and-recurse 49 50 
+49 open-new-stack-complex n15 n16 -> open-new-stack-method-1 51 
+50 open-all-stacks -> open-a-stack-and-recurse 52 53 
+52 open-new-stack-complex n16 n17 -> open-new-stack-method-1 54 
+53 open-all-stacks -> open-a-stack-and-recurse 55 56 
+55 open-new-stack-complex n17 n18 -> open-new-stack-method-1 57 
+56 open-all-stacks -> open-a-stack-and-recurse 58 59 
+58 open-new-stack-complex n18 n19 -> open-new-stack-method-1 60 
+59 open-all-stacks -> open-a-stack-and-recurse 61 62 
+61 open-new-stack-complex n19 n20 -> open-new-stack-method-1 63 
+62 open-all-stacks -> done-opening-stacks 
+3 plan-for-goals -> ship-one-order 64 65 
+64 one-step -> one-step-make-product 66 
+66 make-a-product -> make-a-product-1 67 
+67 make-product-complex p2 -> make-product-complex-1 68 69 
+68 start-orders p2 -> start-an-order-and-recurse 70 71 
+70 start-an-order-for p2 o1 -> start-an-order-for-1 72 
+71 start-orders p2 -> done-starting-orders 
+65 plan-for-goals -> ship-one-order 73 74 
+73 one-step -> one-step-ship-order 75 
+75 ship-an-order o1 -> ship-an-order-1 76 
+74 plan-for-goals -> ship-one-order 77 78 
+77 one-step -> one-step-make-product 79 
+79 make-a-product -> make-a-product-1 80 
+80 make-product-complex p4 -> make-product-complex-1 81 82 
+81 start-orders p4 -> start-an-order-and-recurse 85 86 
+85 start-an-order-for p4 o8 -> start-an-order-for-1 87 
+86 start-orders p4 -> start-an-order-and-recurse 98 99 
+98 start-an-order-for p4 o9 -> start-an-order-for-1 100 
+99 start-orders p4 -> start-an-order-and-recurse 115 116 
+115 start-an-order-for p4 o10 -> start-an-order-for-1 117 
+116 start-orders p4 -> start-an-order-and-recurse 156 157 
+156 start-an-order-for p4 o2 -> start-an-order-for-1 158 
+157 start-orders p4 -> done-starting-orders 
+78 plan-for-goals -> ship-one-order 159 160 
+159 one-step -> one-step-ship-order 161 
+161 ship-an-order o9 -> ship-an-order-1 162 
+160 plan-for-goals -> ship-one-order 163 164 
+163 one-step -> one-step-make-product 165 
+165 make-a-product -> make-a-product-1 166 
+166 make-product-complex p13 -> make-product-complex-1 167 168 
+167 start-orders p13 -> done-starting-orders 
+164 plan-for-goals -> ship-one-order 169 170 
+169 one-step -> one-step-make-product 171 
+171 make-a-product -> make-a-product-1 172 
+172 make-product-complex p17 -> make-product-complex-1 173 174 
+173 start-orders p17 -> done-starting-orders 
+170 plan-for-goals -> ship-one-order 175 176 
+175 one-step -> one-step-make-product 177 
+177 make-a-product -> make-a-product-1 178 
+178 make-product-complex p12 -> make-product-complex-1 179 180 
+179 start-orders p12 -> start-an-order-and-recurse 187 188 
+187 start-an-order-for p12 o7 -> start-an-order-for-1 189 
+188 start-orders p12 -> start-an-order-and-recurse 210 211 
+210 start-an-order-for p12 o15 -> start-an-order-for-1 212 
+211 start-orders p12 -> start-an-order-and-recurse 247 248 
+247 start-an-order-for p12 o11 -> start-an-order-for-1 249 
+248 start-orders p12 -> done-starting-orders 
+176 plan-for-goals -> ship-one-order 250 251 
+250 one-step -> one-step-ship-order 252 
+252 ship-an-order o8 -> ship-an-order-1 253 
+251 plan-for-goals -> ship-one-order 254 255 
+254 one-step -> one-step-ship-order 256 
+256 ship-an-order o7 -> ship-an-order-1 257 
+255 plan-for-goals -> ship-one-order 258 259 
+258 one-step -> one-step-ship-order 260 
+260 ship-an-order o11 -> ship-an-order-1 261 
+259 plan-for-goals -> ship-one-order 262 263 
+262 one-step -> one-step-make-product 264 
+264 make-a-product -> make-a-product-1 265 
+265 make-product-complex p10 -> make-product-complex-1 266 267 
+266 start-orders p10 -> start-an-order-and-recurse 272 273 
+272 start-an-order-for p10 o5 -> start-an-order-for-1 274 
+273 start-orders p10 -> done-starting-orders 
+263 plan-for-goals -> ship-one-order 275 276 
+275 one-step -> one-step-ship-order 277 
+277 ship-an-order o5 -> ship-an-order-1 278 
+276 plan-for-goals -> ship-one-order 279 280 
+279 one-step -> one-step-ship-order 281 
+281 ship-an-order o10 -> ship-an-order-1 282 
+280 plan-for-goals -> ship-one-order 283 284 
+283 one-step -> one-step-make-product 285 
+285 make-a-product -> make-a-product-1 286 
+286 make-product-complex p3 -> make-product-complex-1 287 288 
+287 start-orders p3 -> start-an-order-and-recurse 297 298 
+297 start-an-order-for p3 o12 -> start-an-order-for-1 299 
+298 start-orders p3 -> done-starting-orders 
+284 plan-for-goals -> ship-one-order 300 301 
+300 one-step -> one-step-ship-order 302 
+302 ship-an-order o12 -> ship-an-order-1 303 
+301 plan-for-goals -> ship-one-order 304 305 
+304 one-step -> one-step-make-product 306 
+306 make-a-product -> make-a-product-1 307 
+307 make-product-complex p6 -> make-product-complex-1 308 309 
+308 start-orders p6 -> start-an-order-and-recurse 322 323 
+322 start-an-order-for p6 o13 -> start-an-order-for-1 324 
+323 start-orders p6 -> start-an-order-and-recurse 347 348 
+347 start-an-order-for p6 o3 -> start-an-order-for-1 349 
+348 start-orders p6 -> done-starting-orders 
+305 plan-for-goals -> ship-one-order 350 351 
+350 one-step -> one-step-ship-order 352 
+352 ship-an-order o13 -> ship-an-order-1 353 
+351 plan-for-goals -> ship-one-order 354 355 
+354 one-step -> one-step-make-product 356 
+356 make-a-product -> make-a-product-1 357 
+357 make-product-complex p16 -> make-product-complex-1 358 359 
+358 start-orders p16 -> start-an-order-and-recurse 376 377 
+376 start-an-order-for p16 o6 -> start-an-order-for-1 378 
+377 start-orders p16 -> start-an-order-and-recurse 409 410 
+409 start-an-order-for p16 o4 -> start-an-order-for-1 411 
+410 start-orders p16 -> done-starting-orders 
+355 plan-for-goals -> ship-one-order 412 413 
+412 one-step -> one-step-ship-order 414 
+414 ship-an-order o6 -> ship-an-order-1 415 
+413 plan-for-goals -> ship-one-order 416 417 
+416 one-step -> one-step-ship-order 418 
+418 ship-an-order o4 -> ship-an-order-1 419 
+417 plan-for-goals -> ship-one-order 420 421 
+420 one-step -> one-step-make-product 422 
+422 make-a-product -> make-a-product-1 423 
+423 make-product-complex p19 -> make-product-complex-1 424 425 
+424 start-orders p19 -> start-an-order-and-recurse 444 445 
+444 start-an-order-for p19 o20 -> start-an-order-for-1 446 
+445 start-orders p19 -> done-starting-orders 
+421 plan-for-goals -> ship-one-order 447 448 
+447 one-step -> one-step-make-product 449 
+449 make-a-product -> make-a-product-1 450 
+450 make-product-complex p15 -> make-product-complex-1 451 452 
+451 start-orders p15 -> start-an-order-and-recurse 479 480 
+479 start-an-order-for p15 o19 -> start-an-order-for-1 481 
+480 start-orders p15 -> done-starting-orders 
+448 plan-for-goals -> ship-one-order 482 483 
+482 one-step -> one-step-ship-order 484 
+484 ship-an-order o20 -> ship-an-order-1 485 
+483 plan-for-goals -> ship-one-order 486 487 
+486 one-step -> one-step-ship-order 488 
+488 ship-an-order o19 -> ship-an-order-1 489 
+487 plan-for-goals -> ship-one-order 490 491 
+490 one-step -> one-step-make-product 492 
+492 make-a-product -> make-a-product-1 493 
+493 make-product-complex p14 -> make-product-complex-1 494 495 
+494 start-orders p14 -> done-starting-orders 
+491 plan-for-goals -> ship-one-order 496 497 
+496 one-step -> one-step-make-product 498 
+498 make-a-product -> make-a-product-1 499 
+499 make-product-complex p18 -> make-product-complex-1 500 501 
+500 start-orders p18 -> start-an-order-and-recurse 530 531 
+530 start-an-order-for p18 o14 -> start-an-order-for-1 532 
+531 start-orders p18 -> done-starting-orders 
+497 plan-for-goals -> ship-one-order 533 534 
+533 one-step -> one-step-ship-order 535 
+535 ship-an-order o15 -> ship-an-order-1 536 
+534 plan-for-goals -> ship-one-order 537 538 
+537 one-step -> one-step-ship-order 539 
+539 ship-an-order o14 -> ship-an-order-1 540 
+538 plan-for-goals -> ship-one-order 541 542 
+541 one-step -> one-step-make-product 543 
+543 make-a-product -> make-a-product-1 544 
+544 make-product-complex p5 -> make-product-complex-1 545 546 
+545 start-orders p5 -> done-starting-orders 
+542 plan-for-goals -> ship-one-order 547 548 
+547 one-step -> one-step-make-product 549 
+549 make-a-product -> make-a-product-1 550 
+550 make-product-complex p8 -> make-product-complex-1 551 552 
+551 start-orders p8 -> done-starting-orders 
+548 plan-for-goals -> ship-one-order 553 554 
+553 one-step -> one-step-ship-order 555 
+555 ship-an-order o3 -> ship-an-order-1 556 
+554 plan-for-goals -> ship-one-order 557 558 
+557 one-step -> one-step-make-product 559 
+559 make-a-product -> make-a-product-1 560 
+560 make-product-complex p9 -> make-product-complex-1 561 562 
+561 start-orders p9 -> start-an-order-and-recurse 587 588 
+587 start-an-order-for p9 o18 -> start-an-order-for-1 589 
+588 start-orders p9 -> done-starting-orders 
+558 plan-for-goals -> ship-one-order 590 591 
+590 one-step -> one-step-ship-order 592 
+592 ship-an-order o18 -> ship-an-order-1 593 
+591 plan-for-goals -> ship-one-order 594 595 
+594 one-step -> one-step-make-product 596 
+596 make-a-product -> make-a-product-1 597 
+597 make-product-complex p1 -> make-product-complex-1 598 599 
+598 start-orders p1 -> start-an-order-and-recurse 632 633 
+632 start-an-order-for p1 o17 -> start-an-order-for-1 634 
+633 start-orders p1 -> done-starting-orders 
+595 plan-for-goals -> ship-one-order 635 636 
+635 one-step -> one-step-ship-order 637 
+637 ship-an-order o17 -> ship-an-order-1 638 
+636 plan-for-goals -> ship-one-order 639 640 
+639 one-step -> one-step-make-product 641 
+641 make-a-product -> make-a-product-1 642 
+642 make-product-complex p20 -> make-product-complex-1 643 644 
+643 start-orders p20 -> start-an-order-and-recurse 681 682 
+681 start-an-order-for p20 o16 -> start-an-order-for-1 683 
+682 start-orders p20 -> done-starting-orders 
+640 plan-for-goals -> ship-one-order 684 685 
+684 one-step -> one-step-make-product 686 
+686 make-a-product -> make-a-product-1 687 
+687 make-product-complex p11 -> make-product-complex-1 688 689 
+688 start-orders p11 -> done-starting-orders 
+685 plan-for-goals -> ship-one-order 690 691 
+690 one-step -> one-step-ship-order 692 
+692 ship-an-order o16 -> ship-an-order-1 693 
+691 plan-for-goals -> ship-one-order 694 695 
+694 one-step -> one-step-make-product 696 
+696 make-a-product -> make-a-product-1 697 
+697 make-product-complex p7 -> make-product-complex-1 698 699 
+698 start-orders p7 -> done-starting-orders 
+695 plan-for-goals -> ship-one-order 700 701 
+700 one-step -> one-step-ship-order 702 
+702 ship-an-order o2 -> ship-an-order-1 703 
+701 plan-for-goals -> done-shipping-orders 
+<==

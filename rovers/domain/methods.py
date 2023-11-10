@@ -1,149 +1,149 @@
 from ipyhop import Methods
 import itertools
 
-def achieve_communicated_image_data( state, obj, mode, rover, rigid ):
+def achieve__communicated__image__data( state, obj, mode, rover, rigid ):
 	for camera in rigid.camera:
 		for l in rigid.lander:
-			for lander_loc in rigid.location:
-				for photo_loc in rigid.location:
-					if all( [ ( camera, rover, ) in rigid.on_board, ( camera, mode, ) in rigid.supports, ( l, lander_loc, ) in rigid.at_lander, ] ):
-						yield [ ( 'calibrate_camera', rover, camera, ), ( 'get_line_of_sight', rover, obj, photo_loc, ), ( 'take_image', rover, photo_loc, obj, camera, mode, ), ( 'communicate_image', photo_loc, lander_loc, rover, obj, mode, ), ]
+			for lander__loc in rigid.location:
+				for photo__loc in rigid.location:
+					if all( [ ( camera, rover, ) in rigid.on_board, ( camera, mode, ) in rigid.supports, ( l, lander__loc, ) in rigid.at_lander, ] ):
+						yield [ ( 'calibrate__camera', rover, camera, ), ( 'get__line__of__sight', rover, obj, photo__loc, ), ( 'take_image', rover, photo__loc, obj, camera, mode, ), ( 'communicate__image', photo__loc, lander__loc, rover, obj, mode, ), ]
 
-def camera_already_calibrated( state, rover, camera, rigid ):
+def camera__already__calibrated( state, rover, camera, rigid ):
 	if all( [ ( camera, rover, ) in state.calibrated, ] ):
 		yield [ ]
 
-def calibrate_the_camera( state, rover, camera, rigid ):
-	for calibration_loc in rigid.location:
-		for calibration_obj in rigid.objective:
-			if all( [ not( ( camera, rover, ) in state.calibrated ), ( camera, calibration_obj, ) in rigid.calibration_target, ( calibration_obj, calibration_loc, ) in rigid.visible_from, ] ):
-				yield [ ( 'move_to', rover, calibration_loc, ), ( 'calibrate', rover, camera, calibration_obj, calibration_loc, ), ]
+def calibrate__the__camera( state, rover, camera, rigid ):
+	for calibration__loc in rigid.location:
+		for calibration__obj in rigid.objective:
+			if all( [ not( ( camera, rover, ) in state.calibrated ), ( camera, calibration__obj, ) in rigid.calibration_target, ( calibration__obj, calibration__loc, ) in rigid.visible_from, ] ):
+				yield [ ( 'move__to', rover, calibration__loc, ), ( 'calibrate', rover, camera, calibration__obj, calibration__loc, ), ]
 
-def communicate_image_meth( state, rover_loc, lander_loc, rover, obj, mode, rigid ):
+def communicate__image__meth( state, rover__loc, lander__loc, rover, obj, mode, rigid ):
 	for l in rigid.lander:
-		if all( [ ( rover, rover_loc, ) in state.at, ( l, lander_loc, ) in rigid.at_lander, ( rover_loc, lander_loc, ) in rigid.visible, ] ):
-			yield [ ( 'communicate_image_data_a', rover, l, obj, mode, rover_loc, lander_loc, ), ]
+		if all( [ ( rover, rover__loc, ) in state.at, ( l, lander__loc, ) in rigid.at_lander, ( rover__loc, lander__loc, ) in rigid.visible, ] ):
+			yield [ ( 'communicate_image_data', rover, l, obj, mode, rover__loc, lander__loc, ), ]
 
-def relocate_then_communicate_image( state, rover_loc, lander_loc, rover, obj, mode, rigid ):
+def relocate__then__communicate__image( state, rover__loc, lander__loc, rover, obj, mode, rigid ):
 	for l in rigid.lander:
-		for new_loc in rigid.location:
-			if all( [ ( rover, rover_loc, ) in state.at, ( l, lander_loc, ) in rigid.at_lander, not( ( rover_loc, lander_loc, ) in rigid.visible ), ( new_loc, lander_loc, ) in rigid.visible, ] ):
-				yield [ ( 'move_to', rover, new_loc, ), ( 'communicate_image_data_a', rover, l, obj, mode, new_loc, lander_loc, ), ]
+		for new__loc in rigid.location:
+			if all( [ ( rover, rover__loc, ) in state.at, ( l, lander__loc, ) in rigid.at_lander, not( ( rover__loc, lander__loc, ) in rigid.visible ), ( new__loc, lander__loc, ) in rigid.visible, ] ):
+				yield [ ( 'move__to', rover, new__loc, ), ( 'communicate_image_data', rover, l, obj, mode, new__loc, lander__loc, ), ]
 
-def have_line_of_sight_for_photo( state, rover, obj, photo_loc, rigid ):
-	if all( [ ( rover, photo_loc, ) in state.at, ( obj, photo_loc, ) in rigid.visible_from, ] ):
+def have__line__of__sight__for__photo( state, rover, obj, photo__loc, rigid ):
+	if all( [ ( rover, photo__loc, ) in state.at, ( obj, photo__loc, ) in rigid.visible_from, ] ):
 		yield [ ]
 
-def need_line_of_sight( state, rover, obj, photo_loc, rigid ):
-	for rover_loc in rigid.location:
-		if all( [ ( rover, rover_loc, ) in state.at, not( ( obj, rover_loc, ) in rigid.visible_from ), ( obj, photo_loc, ) in rigid.visible_from, ] ):
-			yield [ ( 'move_to', rover, photo_loc, ), ]
+def need__line__of__sight( state, rover, obj, photo__loc, rigid ):
+	for rover__loc in rigid.location:
+		if all( [ ( rover, rover__loc, ) in state.at, not( ( obj, rover__loc, ) in rigid.visible_from ), ( obj, photo__loc, ) in rigid.visible_from, ] ):
+			yield [ ( 'move__to', rover, photo__loc, ), ]
 
-def achieve_communicated_soil_data( state, goal_loc, rover, rigid ):
-	for rover_loc in rigid.location:
+def achieve__communicated__soil__data( state, goal__loc, rover, rigid ):
+	for rover__loc in rigid.location:
 		for s in rigid.store:
 			if ( s, rover, ) in rigid.store_of:
-				yield [ ( 'move_to', rover, goal_loc, ), ( 'empty_store', s, rover, ), ( 'sample_soil', rover, s, goal_loc, ), ( 'transmit_soil', goal_loc, rover_loc, rover, ), ]
+				yield [ ( 'move__to', rover, goal__loc, ), ( 'empty__store', s, rover, ), ( 'sample_soil', rover, s, goal__loc, ), ( 'transmit__soil', goal__loc, rover__loc, rover, ), ]
 
-def already_there( state, rover, to, rigid ):
+def already__there( state, rover, to, rigid ):
 	if ( rover, to, ) in state.at:
 		yield [ ]
 
-def go_there( state, rover, to, rigid ):
+def go__there( state, rover, to, rigid ):
 	for from___ in rigid.location:
-		for one_step in rigid.location:
-			if all( [ not( ( rover, to, ) in state.at ), ( rover, from___, ) in state.at, ( rover, from___, one_step, ) in rigid.can_traverse, ] ):
-				yield [ ( 'navigate', rover, from___, one_step, ), ( 'move_to', rover, to, ), ]
+		for one__step in rigid.location:
+			if all( [ not( ( rover, to, ) in state.at ), ( rover, from___, ) in state.at, ( rover, from___, one__step, ) in rigid.can_traverse, ] ):
+				yield [ ( 'navigate', rover, from___, one__step, ), ( 'move__to', rover, to, ), ]
 
-def have_line_of_sight_for_soil( state, analysis_loc, rover_loc, rover, rigid ):
+def have__line__of__sight__for__soil( state, analysis__loc, rover__loc, rover, rigid ):
 	for l in rigid.lander:
-		for lander_loc in rigid.location:
-			if all( [ ( rover, rover_loc, ) in state.at, ( l, lander_loc, ) in rigid.at_lander, ( rover_loc, lander_loc, ) in rigid.visible, ] ):
-				yield [ ( 'communicate_soil_data_a', rover, l, analysis_loc, rover_loc, lander_loc, ), ]
+		for lander__loc in rigid.location:
+			if all( [ ( rover, rover__loc, ) in state.at, ( l, lander__loc, ) in rigid.at_lander, ( rover__loc, lander__loc, ) in rigid.visible, ] ):
+				yield [ ( 'communicate_soil_data', rover, l, analysis__loc, rover__loc, lander__loc, ), ]
 
-def go_to_line_of_sight_for_soil( state, analysis_loc, rover_loc, rover, rigid ):
+def go__to__line__of__sight__for__soil( state, analysis__loc, rover__loc, rover, rigid ):
 	for l in rigid.lander:
-		for lander_loc in rigid.location:
-			for new_loc in rigid.location:
-				if all( [ ( rover, rover_loc, ) in state.at, ( l, lander_loc, ) in rigid.at_lander, not( ( rover_loc, lander_loc, ) in rigid.visible ), ( new_loc, lander_loc, ) in rigid.visible, ] ):
-					yield [ ( 'move_to', rover, new_loc, ), ( 'communicate_soil_data_a', rover, l, analysis_loc, new_loc, lander_loc, ), ]
+		for lander__loc in rigid.location:
+			for new__loc in rigid.location:
+				if all( [ ( rover, rover__loc, ) in state.at, ( l, lander__loc, ) in rigid.at_lander, not( ( rover__loc, lander__loc, ) in rigid.visible ), ( new__loc, lander__loc, ) in rigid.visible, ] ):
+					yield [ ( 'move__to', rover, new__loc, ), ( 'communicate_soil_data', rover, l, analysis__loc, new__loc, lander__loc, ), ]
 
-def have_line_of_sight_for_image( state, analysis_loc, rover_loc, rover, rigid ):
+def have__line__of__sight__for__image( state, analysis__loc, rover__loc, rover, rigid ):
 	for l in rigid.lander:
-		for lander_loc in rigid.location:
+		for lander__loc in rigid.location:
 			for mode in rigid.mode:
-				if all( [ ( rover, rover_loc, ) in state.at, ( rover, analysis_loc, mode, ) in state.have_image, ( l, lander_loc, ) in rigid.at_lander, ( rover_loc, lander_loc, ) in rigid.visible, ] ):
-					yield [ ( 'communicate_image_data_a', rover, l, analysis_loc, mode, rover_loc, lander_loc, ), ]
+				if all( [ ( rover, rover__loc, ) in state.at, ( rover, analysis__loc, mode, ) in state.have_image, ( l, lander__loc, ) in rigid.at_lander, ( rover__loc, lander__loc, ) in rigid.visible, ] ):
+					yield [ ( 'communicate_image_data', rover, l, analysis__loc, mode, rover__loc, lander__loc, ), ]
 
-def go_to_line_of_sight_for_image( state, analysis_loc, rover_loc, rover, rigid ):
+def go__to__line__of__sight__for__image( state, analysis__loc, rover__loc, rover, rigid ):
 	for l in rigid.lander:
-		for lander_loc in rigid.location:
+		for lander__loc in rigid.location:
 			for mode in rigid.mode:
-				for new_loc in rigid.location:
-					if all( [ ( rover, rover_loc, ) in state.at, ( rover, analysis_loc, mode, ) in state.have_image, ( l, lander_loc, ) in rigid.at_lander, not( ( rover_loc, lander_loc, ) in rigid.visible ), ( new_loc, lander_loc, ) in rigid.visible, ] ):
-						yield [ ( 'move_to', rover, new_loc, ), ( 'communicate_image_data_a', rover, l, analysis_loc, mode, new_loc, lander_loc, ), ]
+				for new__loc in rigid.location:
+					if all( [ ( rover, rover__loc, ) in state.at, ( rover, analysis__loc, mode, ) in state.have_image, ( l, lander__loc, ) in rigid.at_lander, not( ( rover__loc, lander__loc, ) in rigid.visible ), ( new__loc, lander__loc, ) in rigid.visible, ] ):
+						yield [ ( 'move__to', rover, new__loc, ), ( 'communicate_image_data', rover, l, analysis__loc, mode, new__loc, lander__loc, ), ]
 
-def already_empty( state, s, r, rigid ):
+def already__empty( state, s, r, rigid ):
 	if ( s, ) in state.empty:
 		yield [ ]
 
-def drop_to_empty( state, s, rover, rigid ):
+def drop__to__empty( state, s, rover, rigid ):
 	if not( ( s, ) in state.empty ):
 		yield [ ( 'drop', rover, s, ), ]
 
-def achieve_communicated_rock_data( state, goal_loc, rover, rigid ):
+def achieve__communicated__rock__data( state, goal__loc, rover, rigid ):
 	for l in rigid.lander:
-		for rover_loc in rigid.location:
+		for rover__loc in rigid.location:
 			for s in rigid.store:
 				if ( s, rover, ) in rigid.store_of:
-					yield [ ( 'move_to', rover, goal_loc, ), ( 'empty_store', s, rover, ), ( 'sample_rock', rover, s, goal_loc, ), ( 'transmit_rock', goal_loc, rover_loc, rover, ), ]
+					yield [ ( 'move__to', rover, goal__loc, ), ( 'empty__store', s, rover, ), ( 'sample_rock', rover, s, goal__loc, ), ( 'transmit__rock', goal__loc, rover__loc, rover, ), ]
 
-def have_line_of_sight_for_rock( state, analysis_loc, rover_loc, rover, rigid ):
+def have__line__of__sight__for__rock( state, analysis__loc, rover__loc, rover, rigid ):
 	for l in rigid.lander:
-		for lander_loc in rigid.location:
-			if all( [ ( rover, rover_loc, ) in state.at, ( l, lander_loc, ) in rigid.at_lander, ( rover_loc, lander_loc, ) in rigid.visible, ] ):
-				yield [ ( 'communicate_rock_data_a', rover, l, analysis_loc, rover_loc, lander_loc, ), ]
+		for lander__loc in rigid.location:
+			if all( [ ( rover, rover__loc, ) in state.at, ( l, lander__loc, ) in rigid.at_lander, ( rover__loc, lander__loc, ) in rigid.visible, ] ):
+				yield [ ( 'communicate_rock_data', rover, l, analysis__loc, rover__loc, lander__loc, ), ]
 
-def go_to_line_of_sight_for_rock( state, analysis_loc, rover_loc, rover, rigid ):
+def go__to__line__of__sight__for__rock( state, analysis__loc, rover__loc, rover, rigid ):
 	for l in rigid.lander:
-		for lander_loc in rigid.location:
-			for new_loc in rigid.location:
-				if all( [ ( rover, rover_loc, ) in state.at, ( l, lander_loc, ) in rigid.at_lander, not( ( rover_loc, lander_loc, ) in rigid.visible ), ( new_loc, lander_loc, ) in rigid.visible, ] ):
-					yield [ ( 'move_to', rover, new_loc, ), ( 'communicate_rock_data_a', rover, l, analysis_loc, new_loc, lander_loc, ), ]
+		for lander__loc in rigid.location:
+			for new__loc in rigid.location:
+				if all( [ ( rover, rover__loc, ) in state.at, ( l, lander__loc, ) in rigid.at_lander, not( ( rover__loc, lander__loc, ) in rigid.visible ), ( new__loc, lander__loc, ) in rigid.visible, ] ):
+					yield [ ( 'move__to', rover, new__loc, ), ( 'communicate_rock_data', rover, l, analysis__loc, new__loc, lander__loc, ), ]
 
-def check_for_all_goals_done( state, rigid ):
+def check__for__all__goals__done( state, rigid ):
 	if all( [ all( any( [ not( ( w, ) in rigid.goal_communicated_soil_data ), ( w, ) in state.communicated_soil_data, ] ) for ( w, ) in itertools.product( rigid.waypoint, ) ), all( any( [ not( ( w, ) in rigid.goal_communicated_rock_data ), ( w, ) in state.communicated_rock_data, ] ) for ( w, ) in itertools.product( rigid.waypoint, ) ), all( any( [ not( ( o, m, ) in rigid.goal_communicated_image_data ), ( o, m, ) in state.communicated_image_data, ] ) for ( m, o, ) in itertools.product( rigid.mode, rigid.objective, ) ), ] ):
 		yield [ ]
 
-def communicate_one_soil_data( state, rigid ):
-	for goal_loc in rigid.location:
+def communicate__one__soil__data( state, rigid ):
+	for goal__loc in rigid.location:
 		for r in rigid.rover:
-			if all( [ ( goal_loc, ) in rigid.goal_communicated_soil_data, not( ( goal_loc, ) in state.communicated_soil_data ), ] ):
-				yield [ ( 'communicate_soil_data_t', goal_loc, r, ), ( 'achieve_goals', ), ]
+			if all( [ ( goal__loc, ) in rigid.goal_communicated_soil_data, not( ( goal__loc, ) in state.communicated_soil_data ), ] ):
+				yield [ ( 'communicate__soil__data', goal__loc, r, ), ( 'achieve__goals', ), ]
 
-def communicate_one_rock_data( state, rigid ):
-	for goal_loc in rigid.location:
+def communicate__one__rock__data( state, rigid ):
+	for goal__loc in rigid.location:
 		for r in rigid.rover:
-			if all( [ ( goal_loc, ) in rigid.goal_communicated_rock_data, not( ( goal_loc, ) in state.communicated_rock_data ), ] ):
-				yield [ ( 'communicate_rock_data_t', goal_loc, r, ), ( 'achieve_goals', ), ]
+			if all( [ ( goal__loc, ) in rigid.goal_communicated_rock_data, not( ( goal__loc, ) in state.communicated_rock_data ), ] ):
+				yield [ ( 'communicate__rock__data', goal__loc, r, ), ( 'achieve__goals', ), ]
 
-def communicate_one_image_data( state, rigid ):
+def communicate__one__image__data( state, rigid ):
 	for mode in rigid.mode:
 		for obj in rigid.objective:
 			for r in rigid.rover:
 				if all( [ ( obj, mode, ) in rigid.goal_communicated_image_data, not( ( obj, mode, ) in state.communicated_image_data ), ] ):
-					yield [ ( 'communicate_image_data_t', obj, mode, r, ), ( 'achieve_goals', ), ]
+					yield [ ( 'communicate__image__data', obj, mode, r, ), ( 'achieve__goals', ), ]
 
 methods = Methods()
-methods.declare_task_methods( 'communicate_image_data_t', [ achieve_communicated_image_data, ] )
-methods.declare_task_methods( 'calibrate_camera', [ camera_already_calibrated, calibrate_the_camera, ] )
-methods.declare_task_methods( 'communicate_image', [ communicate_image_meth, relocate_then_communicate_image, ] )
-methods.declare_task_methods( 'get_line_of_sight', [ have_line_of_sight_for_photo, need_line_of_sight, ] )
-methods.declare_task_methods( 'communicate_soil_data_t', [ achieve_communicated_soil_data, ] )
-methods.declare_task_methods( 'move_to', [ already_there, go_there, ] )
-methods.declare_task_methods( 'transmit_soil', [ have_line_of_sight_for_soil, go_to_line_of_sight_for_soil, ] )
-methods.declare_task_methods( 'transmit_image', [ have_line_of_sight_for_image, go_to_line_of_sight_for_image, ] )
-methods.declare_task_methods( 'empty_store', [ already_empty, drop_to_empty, ] )
-methods.declare_task_methods( 'communicate_rock_data_t', [ achieve_communicated_rock_data, ] )
-methods.declare_task_methods( 'transmit_rock', [ have_line_of_sight_for_rock, go_to_line_of_sight_for_rock, ] )
-methods.declare_task_methods( 'achieve_goals', [ check_for_all_goals_done, communicate_one_soil_data, communicate_one_rock_data, communicate_one_image_data, ] )
+methods.declare_task_methods( 'communicate__image__data', [ achieve__communicated__image__data, ] )
+methods.declare_task_methods( 'calibrate__camera', [ camera__already__calibrated, calibrate__the__camera, ] )
+methods.declare_task_methods( 'communicate__image', [ communicate__image__meth, relocate__then__communicate__image, ] )
+methods.declare_task_methods( 'get__line__of__sight', [ have__line__of__sight__for__photo, need__line__of__sight, ] )
+methods.declare_task_methods( 'communicate__soil__data', [ achieve__communicated__soil__data, ] )
+methods.declare_task_methods( 'move__to', [ already__there, go__there, ] )
+methods.declare_task_methods( 'transmit__soil', [ have__line__of__sight__for__soil, go__to__line__of__sight__for__soil, ] )
+methods.declare_task_methods( 'transmit__image', [ have__line__of__sight__for__image, go__to__line__of__sight__for__image, ] )
+methods.declare_task_methods( 'empty__store', [ already__empty, drop__to__empty, ] )
+methods.declare_task_methods( 'communicate__rock__data', [ achieve__communicated__rock__data, ] )
+methods.declare_task_methods( 'transmit__rock', [ have__line__of__sight__for__rock, go__to__line__of__sight__for__rock, ] )
+methods.declare_task_methods( 'achieve__goals', [ check__for__all__goals__done, communicate__one__soil__data, communicate__one__rock__data, communicate__one__image__data, ] )
