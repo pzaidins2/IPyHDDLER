@@ -50,6 +50,8 @@ def constant_str_replacer( match_obj, constant_set ):
 def clean_string( input_str: str ) -> str:
     # ? must be removed
     new_str = input_str.replace( "?", "" )
+    # ! must be removed
+    new_str = new_str.replace( "!", "" )
     # - must be replaced with _
     new_str = new_str.replace( "-", "__" )
     # PDDL is case insensitive so we are going to make everything lower case
@@ -57,6 +59,8 @@ def clean_string( input_str: str ) -> str:
     # we cannot allow keywords
     if keyword.iskeyword(new_str):
         new_str += "___"
+    # remove leading and trailing
+    new_str = new_str.strip()
     return new_str
 
 
@@ -698,73 +702,73 @@ def make_task_network_str( tasks: List[ Dict[ str, Union[ str, Dict ] ] ] ) -> s
 #     else:
 #         return precondition
 
-# take predicate tree and return CNF as list of clauses
-# clauses dictate how predicates are evaluated together
-# IN PROGRESS
-def make_clause_cnf_list( precondition: Dict[ str, Union[ str, Dict ] ] ) -> List[ Tuple[ List, List ] ]:
-    # simplify to CNF
-    # cnf_precondition = make_precondition_cnf( deepcopy( precondition ) )
-    cnf_precondition = deepcopy( precondition )
-    # make into list
-    clause_list = [ ]
-    # PREDICATE
-    # NOT PREDICATE
-    # AND [ UNION[ PREDICATE, NOT PREDICATE, OR ] ]
-    # OR [ UNION[ PREDICATE, NOT PREDICATE ] ]
-    # form
-    # [ AND [ OR ( [IS], [NOT] ), ] ]
-    # NOTE THERE MUST BE A CLEANER WAY
-    # single predicate
-    if "predicate" in cnf_precondition.keys():
-        clause_list = [ ([ (clean_string( cnf_precondition[ "predicate" ] ),
-                            *map( clean_string, cnf_precondition[ "args" ] ),), ], [ ]) ]
-    # negation of predicate
-    elif cnf_precondition[ "op" ] == "not":
-        clause_list = [ ([ ], [ (clean_string( cnf_precondition[ "operand" ][ "predicate" ] ),
-                                 *map( clean_string, cnf_precondition[ "operand" ][ "args" ] ),), ]) ]
-    # conjunction
-    elif cnf_precondition[ "op" ] == "and":
-        clause_list = [ ]
-        for conjunct in cnf_precondition[ "operands" ]:
-            clause = ([ ], [ ])
-            if "predicate" in conjunct.keys():
-                clause[ 0 ].append(
-                    (clean_string( conjunct[ "predicate" ] ), *map( clean_string, conjunct[ "args" ] ),) )
-            # negation of predicate
-            elif conjunct[ "op" ] == "not":
-                clause[ 1 ].append( (clean_string( conjunct[ "operand" ][ "predicate" ] ),
-                                     *map( clean_string, conjunct[ "operand" ][ "args" ] ),) )
-            # disjunction of predicates annd negations
-            elif conjunct[ "op" ] == "or":
-                for conjunct_disjunct in conjunct[ "operands" ]:
-                    if "predicate" in conjunct_disjunct.keys():
-                        clause[ 0 ].append( (clean_string( conjunct_disjunct[ "predicate" ] ),
-                                             *map( clean_string, conjunct_disjunct[ "args" ] ),) )
-                    # negation of predicate
-                    elif conjunct_disjunct[ "op" ] == "not":
-                        clause[ 1 ].append(
-                            (clean_string( conjunct_disjunct[ "operand" ][ "predicate" ] ),
-                             *map( clean_string, conjunct_disjunct[ "operand" ][ "args" ] ),) )
-            else:
-                raise (Exception( "not CNF form" ))
-            clause_list.append( (tuple( clause[ 0 ] ), tuple( clause[ 1 ] )) )
-    # disjunction
-    elif cnf_precondition[ "op" ] == "or":
-        clause = ([ ], [ ])
-        for disjunct in cnf_precondition[ "operands" ]:
-            if "predicate" in disjunct.keys():
-                clause[ 0 ].append(
-                    (clean_string( disjunct[ "predicate" ] ), *map( clean_string, disjunct[ "args" ] ),) )
-            # negation of predicate
-            elif disjunct[ "op" ] == "not":
-                clause[ 1 ].append(
-                    (clean_string( disjunct[ "operand" ][ "predicate" ] ),
-                     *map( clean_string, disjunct[ "operand" ][ "args" ] ),) )
-        clause_list = [ clause ]
-    else:
-        raise (Exception( "unsupport op found while making clause list: " + cnf_precondition[ "op" ] ))
-
-    return clause_list
+# # take predicate tree and return CNF as list of clauses
+# # clauses dictate how predicates are evaluated together
+# # IN PROGRESS
+# def make_clause_cnf_list( precondition: Dict[ str, Union[ str, Dict ] ] ) -> List[ Tuple[ List, List ] ]:
+#     # simplify to CNF
+#     # cnf_precondition = make_precondition_cnf( deepcopy( precondition ) )
+#     cnf_precondition = deepcopy( precondition )
+#     # make into list
+#     clause_list = [ ]
+#     # PREDICATE
+#     # NOT PREDICATE
+#     # AND [ UNION[ PREDICATE, NOT PREDICATE, OR ] ]
+#     # OR [ UNION[ PREDICATE, NOT PREDICATE ] ]
+#     # form
+#     # [ AND [ OR ( [IS], [NOT] ), ] ]
+#     # NOTE THERE MUST BE A CLEANER WAY
+#     # single predicate
+#     if "predicate" in cnf_precondition.keys():
+#         clause_list = [ ([ (clean_string( cnf_precondition[ "predicate" ] ),
+#                             *map( clean_string, cnf_precondition[ "args" ] ),), ], [ ]) ]
+#     # negation of predicate
+#     elif cnf_precondition[ "op" ] == "not":
+#         clause_list = [ ([ ], [ (clean_string( cnf_precondition[ "operand" ][ "predicate" ] ),
+#                                  *map( clean_string, cnf_precondition[ "operand" ][ "args" ] ),), ]) ]
+#     # conjunction
+#     elif cnf_precondition[ "op" ] == "and":
+#         clause_list = [ ]
+#         for conjunct in cnf_precondition[ "operands" ]:
+#             clause = ([ ], [ ])
+#             if "predicate" in conjunct.keys():
+#                 clause[ 0 ].append(
+#                     (clean_string( conjunct[ "predicate" ] ), *map( clean_string, conjunct[ "args" ] ),) )
+#             # negation of predicate
+#             elif conjunct[ "op" ] == "not":
+#                 clause[ 1 ].append( (clean_string( conjunct[ "operand" ][ "predicate" ] ),
+#                                      *map( clean_string, conjunct[ "operand" ][ "args" ] ),) )
+#             # disjunction of predicates annd negations
+#             elif conjunct[ "op" ] == "or":
+#                 for conjunct_disjunct in conjunct[ "operands" ]:
+#                     if "predicate" in conjunct_disjunct.keys():
+#                         clause[ 0 ].append( (clean_string( conjunct_disjunct[ "predicate" ] ),
+#                                              *map( clean_string, conjunct_disjunct[ "args" ] ),) )
+#                     # negation of predicate
+#                     elif conjunct_disjunct[ "op" ] == "not":
+#                         clause[ 1 ].append(
+#                             (clean_string( conjunct_disjunct[ "operand" ][ "predicate" ] ),
+#                              *map( clean_string, conjunct_disjunct[ "operand" ][ "args" ] ),) )
+#             else:
+#                 raise (Exception( "not CNF form" ))
+#             clause_list.append( (tuple( clause[ 0 ] ), tuple( clause[ 1 ] )) )
+#     # disjunction
+#     elif cnf_precondition[ "op" ] == "or":
+#         clause = ([ ], [ ])
+#         for disjunct in cnf_precondition[ "operands" ]:
+#             if "predicate" in disjunct.keys():
+#                 clause[ 0 ].append(
+#                     (clean_string( disjunct[ "predicate" ] ), *map( clean_string, disjunct[ "args" ] ),) )
+#             # negation of predicate
+#             elif disjunct[ "op" ] == "not":
+#                 clause[ 1 ].append(
+#                     (clean_string( disjunct[ "operand" ][ "predicate" ] ),
+#                      *map( clean_string, disjunct[ "operand" ][ "args" ] ),) )
+#         clause_list = [ clause ]
+#     else:
+#         raise (Exception( "unsupport op found while making clause list: " + cnf_precondition[ "op" ] ))
+#
+#     return clause_list
 
 
 # iteration optimizer
@@ -872,8 +876,8 @@ def run_experiment( problem_dir, problem_json, output_dir ):
     print( (problem_json, total_time, plan) )
     return (problem_json, total_time, plan)
 
-
 if __name__ == '__main__':
+    # SINGLE TEST/PROFILING
     # # problem input, internal, and output files
     # problem_json="p30.json"
     # # problem_json = "p-045-045-045-045.json"
@@ -946,31 +950,43 @@ if __name__ == '__main__':
     # print(total_time)
     # with open( output_dir + "solutions/" + output_txt, "w") as f:
     #     f.write(hddl_plan_str)
-
+    # # BATCH TEST
     # input_dir = "../../domains/ipc-2023-snake-domain/"
     # output_dir = "Snake/"
-    input_dir = "../../domains/openstacks-adl/"
-    output_dir = "openstacks/"
-    # args = filter( lambda x: ".snake.json" in x, os.listdir( input_dir ) )
-    # args = filter( lambda x: "p-0" in x and ".json" in x, os.listdir( input_dir ) )
-    args = filter( lambda x: "p" in x and str.isnumeric( x[1:3] ) and ".json" in x, os.listdir( input_dir ) )
-    args = [*map( lambda x: ( input_dir, x, output_dir), args )]
-    # print(args)
-    time_arr = np.ndarray( len( args ), dtype=float )
-    plan_len_arr = np.empty_like( time_arr, dtype=int )
-    with Pool( processes=cpu_count() // 2 ) as pool:
-        output = pool.starmap_async( run_experiment, args, chunksize=1 )
-        while True:
-            if output.ready():
-                break
-            print( str( round( 100 - 100 * output._number_left / len( args ), 3 ) ) + " %" )
-            time.sleep( 60 )
-    i = 0
-    for exp in output.get():
-        time_arr[ i ] = exp[ 1 ]
-        plan_len_arr[ i ] = len( exp[ 2 ] )
-        i += 1
-    print(time_arr)
-    print(plan_len_arr)
-    plt.scatter(time_arr,plan_len_arr)
-    plt.show()
+    # input_dir = "../../domains/openstacks-adl/"
+    # output_dir = "openstacks/"
+    # # args = filter( lambda x: ".snake.json" in x, os.listdir( input_dir ) )
+    # # args = filter( lambda x: "p-0" in x and ".json" in x, os.listdir( input_dir ) )
+    # args = filter( lambda x: "p" in x and str.isnumeric( x[1:3] ) and ".json" in x, os.listdir( input_dir ) )
+    # args = [*map( lambda x: ( input_dir, x, output_dir), args )]
+    # # print(args)
+    # time_arr = np.ndarray( len( args ), dtype=float )
+    # plan_len_arr = np.empty_like( time_arr, dtype=int )
+    # with Pool( processes=cpu_count() // 2 ) as pool:
+    #     output = pool.starmap_async( run_experiment, args, chunksize=1 )
+    #     while True:
+    #         if output.ready():
+    #             break
+    #         print( str( round( 100 - 100 * output._number_left / len( args ), 3 ) ) + " %" )
+    #         time.sleep( 60 )
+    # i = 0
+    # for exp in output.get():
+    #     time_arr[ i ] = exp[ 1 ]
+    #     plan_len_arr[ i ] = len( exp[ 2 ] )
+    #     i += 1
+    # print(time_arr)
+    # print(plan_len_arr)
+    # plt.scatter(time_arr,plan_len_arr)
+    # plt.show()
+
+
+    # READ IN SHOP TREE
+    from rovers.domain.actions import actions
+    from rovers.domain.methods import methods
+    # make planner
+    planner = IPyHOP(methods, actions)
+    planner.read_SHOP("sample_shop_output",)
+    # get back in hddl format
+    print(planner.hddl_plan_str())
+
+
