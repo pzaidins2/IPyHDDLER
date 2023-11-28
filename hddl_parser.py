@@ -979,14 +979,39 @@ if __name__ == '__main__':
     # plt.scatter(time_arr,plan_len_arr)
     # plt.show()
 
+    # parsing (CURRENTLY READ, BUT CAN DYNAMICALLY MAKE ACTION/METHODS)
+    parser = HDDL_Parser()
+    problem_json = "p01.json"
+    input_domain_dir = "../../domains/rovers/"
+    output_py = problem_json.replace( "json", "py" )
+    output_txt = problem_json.replace( "json", "txt" )
+    output_dir = "rovers/"
+    parser.parse_domain( input_domain_dir + "domain.json" )
+    # make pythonic representation of state and constants
+    parser.parse_problem( input_domain_dir + problem_json )
 
     # READ IN SHOP TREE
     from rovers.domain.actions import actions
     from rovers.domain.methods import methods
+
+    temp_mod = importlib.import_module( output_dir[:-1] + ".problems_py." + output_py[:-3] )
+    init_state = temp_mod.state
+    task_list = temp_mod.task_list
+    rigid = temp_mod.rigid
+    # pass constants using rigid
+    local_methods = deepcopy( methods )
+    local_actions = deepcopy( actions )
+    local_methods.goal_method_dict.update(
+        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
+    local_methods.task_method_dict.update(
+        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.task_method_dict.items() } )
+    local_methods.multigoal_method_dict.update(
+        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
+    local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
     # make planner
-    planner = IPyHOP(methods, actions)
-    planner.read_SHOP("sample_shop_output",)
+    planner = IPyHOP(local_methods, local_actions)
+    planner.read_SHOP("sample_shop_output",init_state)
     # get back in hddl format
-    print(planner.hddl_plan_str())
+    print(planner.hddl_plan_str(parser.hddl_map))
 
 
