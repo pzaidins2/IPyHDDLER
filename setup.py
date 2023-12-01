@@ -9,5 +9,5 @@ setup(
     author='paulz',
     author_email='pzaidins@umd.edu',
     description='Parser for HDDL <-> IPyHOPPER',
-    dependency_links=['https://github.com/pzaidins2/IPyHDDLER.git']
+    dependency_links=['https://github.com/pzaidins2/IPyHDDLER.git#egg=ipyhopper']
 )
