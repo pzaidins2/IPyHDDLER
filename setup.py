@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='IPyHDDLER',
-    version='',
+    version='0.0.0',
     packages=[ 'ipyhop' ],
     url='https://github.com/pzaidins2/IPyHDDLER.git',
     license='',
