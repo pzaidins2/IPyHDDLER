@@ -3,6 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='IPyHDDLER',
     version='0.0.0',
+    packages=[ 'ipyhddler' ],
     url='https://github.com/pzaidins2/IPyHDDLER.git',
     license='',
     author='paulz',
