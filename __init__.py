@@ -7,7 +7,6 @@ Project:
 """
 
 from hddl_parser import HDDL_Parser
-import ipyhop
 """
 Author(s): Paul Zaidins
 Repository: https://github.com/pzaidins2/IPyHDDLER.git
