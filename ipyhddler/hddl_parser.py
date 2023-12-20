@@ -72,7 +72,7 @@ class HDDL_Parser:
         self.typed_sets = dict()
         self.constant_set = set()
 
-    def parse_domain( self, domain_json_path: str ) -> None:
+    def parse_domain( self, domain_json_path: str, deviation_possible_predicates: List[str]=None ) -> None:
         # read json as dictionary
         with open( domain_json_path ) as f:
             domain_dict = json.load( f )
@@ -82,9 +82,18 @@ class HDDL_Parser:
         for action in domain_dict[ "actions" ]:
             # append action function to actions.py str
             actions_str += make_action_function_str( action )
+        # # for ever deviation in deviations
+        # deviations_str = ""
+        # for deviation in domain_dict["deviations"]:
+        #     # append deviations function to deviations.py str
+        #     deviations_str += make_deviation_function_str( deviation )
 
-        # note all state components that are never modified in actions
+
+        # note all state components that are never modified in actions or deviations
         self.mutable = set( re_state_collect.findall( actions_str ) )
+        # self.mutable |= set( re_state_collect.findall( deviations_str ) )
+        if deviation_possible_predicates != None:
+            self.mutable |= {*map(lambda x: clean_string(x["predicate"]), deviation_possible_predicates)}
 
         # track domain constants
         # print(domain_dict["constants"])
@@ -112,6 +121,8 @@ class HDDL_Parser:
         method_tuples= map( lambda x: ("method", x[ "name" ]), domain_dict[ "methods" ] )
         # actions
         action_tuples= map( lambda x: ("action", x[ "name" ]), domain_dict[ "actions" ] )
+        # # deviations
+        # deviation_tuples = map( lambda x: ("deviation", x[ "name" ]), domain_dict[ "deviations" ] )
         # predicates
         predicate_tuples= [*map( lambda x: ("predicate", x[ "name" ]), domain_dict[ "predicates" ] )]
 
@@ -195,6 +206,29 @@ class HDDL_Parser:
         actions_str = re_constant_replace.sub( lambda x: constant_str_replacer( x, self.constant_set ), actions_str )
         with open( domain_path + "/actions.py", "w" ) as actions_file:
             actions_file.write( actions_str )
+        # # write deviations.py
+        # deviations_str = "from ipyhop import Actions\nimport itertools\n"
+        #
+        # # for every deviation in deviations
+        # for deviation in domain_dict[ "deviations" ]:
+        #     # append deviation function to deviations.py str
+        #     deviations_str += make_deviation_function_str( deviation )
+        # # Create a IPyHOP Actions object
+        # # NEED TO RESERVE KEYWORDS: deviations, methods
+        #
+        # deviations_str += "\ndeviations = {"
+        #
+        # for deviation in domain_dict[ "deviations" ]:
+        #     deviations_str += "\n\t'" + clean_string( deviation[ "name" ] ) + "'" + ": " + clean_string( deviation[ "name" ] ) + ","
+        # deviations_str += "}\n"
+        #
+        # # replace all instances of mutables
+        # deviations_str = re_state_replace.sub( lambda x: state_str_replacer( x, self.mutable ), deviations_str )
+        # # make all constants literals
+        # deviations_str = re_constant_replace.sub( lambda x: constant_str_replacer( x, self.constant_set ), deviations_str )
+        # with open( domain_path + "/deviations.py", "w" ) as deviations_file:
+        #     deviations_file.write( deviations_str )
+        
         # write methods.py
         methods_str = "from ipyhop import Methods\nimport itertools\n"
         # for every method in methods
@@ -297,7 +331,7 @@ def tabify( input_str: str, N: int ):
     return ("\n" + N * '\t').join( (input_str).splitlines() )
 
 
-# takes text representation of actions.py and appends action
+# takes action JSON and outputs IPyHOPPER str representation
 # act: Dict representing a single action template
 # actions_str: text representation of existing actions.py file
 def make_action_function_str( action: Dict[ str, Union[ str, Dict ] ] ) -> str:
@@ -323,8 +357,75 @@ def make_action_function_str( action: Dict[ str, Union[ str, Dict ] ] ) -> str:
     actions_str += "\n\t\treturn state\n"
     return actions_str
 
+# takes deviation JSON and outputs IPyHOPPER str representation
+def make_deviation_function_str( deviation: Dict[ str, Union[ str, Dict ] ] ):
+    # space out deviations
+    deviations_str = "\n"
+    # def <deviation_name>( state, *parameter_names ):
+    deviations_str += "def " + clean_string( deviation[ "name" ] ) + "( state"
+    parameters = deviation[ "parameters" ]
+    parameter_names = map( lambda x: clean_string( x[ "name" ] ), parameters )
+    for parameter_name in parameter_names:
+        deviations_str += ", " + parameter_name
+    deviations_str += ", rigid ):\n"
+    # if precondition
+    # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
+    precondition = deviation[ "precondition" ]
+    deviations_str += "\tif " + make_precondition_str( precondition ) + ":\n\t\t"
+    # print( make_precondition_str( precondition ) )
+    # effect
+    # add and delete from state in order
+    effect = deviation[ "effect" ]
+    # deviations effect is single and with unforeseenPos as all single predicates and
+    # unforeseenNeg as predicates in "not" operators
+    unforeseenPos = effect["unforeseenPos"]
+    unforeseenNeg = effect[ "unforeseenNeg"]
+    new_operands = [{"op": "not", "operands": x } for x in unforeseenNeg ]
+    new_operands += unforeseenPos
+    equiv_action_effect = {
+        "op": "and",
+        "operands": new_operands
+    }
+    if effect != None:
+        deviations_str += make_effects_str( equiv_action_effect )
+    deviations_str += "\n\t\treturn state\n"
+    return deviations_str
 
-# takes text representation of methods.py and appends method
+# # takes deviation JSON and outputs IPyHOPPER str representation
+# def make_deviation_function_str( deviation: Dict[ str, Union[ str, Dict ] ] ):
+#     # space out deviations
+#     deviations_str = "\n"
+#     # def <deviation_name>( state, *parameter_names ):
+#     deviations_str += "def " + clean_string( deviation[ "name" ] ) + "( state"
+#     parameters = deviation[ "parameters" ]
+#     parameter_names = map( lambda x: clean_string( x[ "name" ] ), parameters )
+#     for parameter_name in parameter_names:
+#         deviations_str += ", " + parameter_name
+#     deviations_str += ", rigid ):\n"
+#     # if precondition
+#     # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
+#     precondition = deviation[ "precondition" ]
+#     deviations_str += "\tif " + make_precondition_str( precondition ) + ":\n\t\t"
+#     # print( make_precondition_str( precondition ) )
+#     # effect
+#     # add and delete from state in order
+#     effect = deviation[ "effect" ]
+#     # deviations effect is single and with unforeseenPos as all single predicates and
+#     # unforeseenNeg as predicates in "not" operators
+#     unforeseenPos = effect["unforeseenPos"]
+#     unforeseenNeg = effect[ "unforeseenNeg"]
+#     new_operands = [{"op": "not", "operands": x } for x in unforeseenNeg ]
+#     new_operands += unforeseenPos
+#     equiv_action_effect = {
+#         "op": "and",
+#         "operands": new_operands
+#     }
+#     if effect != None:
+#         deviations_str += make_effects_str( equiv_action_effect )
+#     deviations_str += "\n\t\treturn state\n"
+#     return deviations_str
+
+# takes method JSON and outputs IPyHOPPER str representation
 # method: Dict representing a single method template
 # methods_str: text representation of existing methods.py file
 def make_method_function_str( method: Dict[ str, Union[ str, Dict ] ],
