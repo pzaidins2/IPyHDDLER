@@ -3,7 +3,7 @@
 import re
 import json
 from copy import deepcopy
-# import os
+import os
 from typing import List, Dict, Union, Set, Tuple
 from ipyhop import IPyHOP
 # from ipyhop.actor import Actor
@@ -18,6 +18,7 @@ import importlib
 # import cProfile, pstats, io
 # from pstats import SortKey
 import keyword
+from pathlib import Path
 
 # if used an actions will give all mutating states
 # we can avoid copying all other state properties
@@ -183,7 +184,10 @@ class HDDL_Parser:
         # create domain dict copy
         domain_dict = deepcopy( self.domain_dict )
         # create folder
-        domain_path = dir_path + "/domain"
+        domain_path = os.path.join(dir_path, "domain")
+        if not os.path.isdir(domain_path):
+            p = Path(domain_path)
+            p.mkdir(parents=True)
         # write actions.py
         actions_str = "from ipyhop import Actions\nimport itertools\n"
 
@@ -267,7 +271,7 @@ class HDDL_Parser:
         init_state_str += "rigid = State( 'rigid' )\n"
         # make typed sets
         objs = problem_dict[ "objects" ]
-        print( objs )
+        # print( objs )
         typed_sets = self.typed_sets
         # object primitives
         for obj in objs:
@@ -316,7 +320,7 @@ class HDDL_Parser:
         task_list = [ (task[ "taskName" ], *task[ "args" ]) for task in tasks ]
 
         task_list =[*map(lambda x: tuple(map(clean_string,x)),task_list)]
-        print( task_list )
+        # print( task_list )
         task_list_str += "\ntask_list = "
         task_list_str += str( task_list ) + "\n"
 
@@ -440,8 +444,8 @@ def make_method_function_str( method: Dict[ str, Union[ str, Dict ] ],
     # parameters from task are fixed, but all other parameters are only limited by preconditions
     # and typing
     task_parameter_names = [ *map( lambda x: clean_string( x ), method[ "task" ][ "args" ] ) ]
-    print(task_parameter_names)
-    print(parameter_names)
+    # print(task_parameter_names)
+    # print(parameter_names)
     parameter_set_diff = { *parameter_names } - { *task_parameter_names }
     parameter_set_diff = list( parameter_set_diff )
     parameter_set_diff.sort()
@@ -891,11 +895,11 @@ def iteration_optimizer( unboundVars: List[ str ], clauses: List[ Tuple[ List, L
         for unboundVar in unboundVars:
             boundVar_clause_dict[ unboundVar ] = set()
             for clause in clauses:
-                print( clause )
+                # print( clause )
                 # if boundVar in any predicate of clause associate clause with boundVar
                 if any( map( lambda x: unboundVar in x, [ *clause[ 0 ], *clause[ 1 ] ] ) ):
                     boundVar_clause_dict[ unboundVar ].update( clause )
-        print( boundVar_clause_dict )
+        # print( boundVar_clause_dict )
         # sort unbound boundVars by number of associated predicates
         # sort by size of union set of all unique unbound boundVar for all predicates associated with each boundVar
         # graph version: minimize increase in frontier size, pick vertex with smallest neighborhood discounting
@@ -917,7 +921,7 @@ def iteration_optimizer( unboundVars: List[ str ], clauses: List[ Tuple[ List, L
 
 
 def run_experiment( problem_dir, problem_json, output_dir ):
-    print( problem_json )
+    # print( problem_json )
 
     # load parser
     parser = HDDL_Parser()
@@ -974,7 +978,7 @@ def run_experiment( problem_dir, problem_json, output_dir ):
     hddl_plan_str = planner.hddl_plan_str( parser.hddl_map )
     with open( output_dir + "solutions/" + output_txt, "w" ) as f:
         f.write( hddl_plan_str )
-    print( (problem_json, total_time, plan) )
+    # print( (problem_json, total_time, plan) )
     return (problem_json, total_time, plan)
 
 if __name__ == '__main__':
@@ -1111,10 +1115,10 @@ if __name__ == '__main__':
     local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
     # make planner
     planner = IPyHOP(local_methods, local_actions)
-    print(local_methods.task_method_dict)
-    print(local_actions.action_dict)
+    # print(local_methods.task_method_dict)
+    # print(local_actions.action_dict)
     planner.read_SHOP("../sample_shop_output",init_state)
     # get back in hddl format
-    print(planner.hddl_plan_str(parser.hddl_map))
+    # print(planner.hddl_plan_str(parser.hddl_map))
 
 
