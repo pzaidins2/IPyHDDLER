@@ -93,7 +93,7 @@ class HDDL_Parser:
         self.mutable = set( re_state_collect.findall( actions_str ) )
         # self.mutable |= set( re_state_collect.findall( deviations_str ) )
         if deviation_possible_predicates != None:
-            self.mutable |= {*map(lambda x: clean_string(x["predicate"]), deviation_possible_predicates)}
+            self.mutable |= {*map(lambda x: clean_string(x), deviation_possible_predicates)}
 
         # track domain constants
         # print(domain_dict["constants"])
