@@ -20,27 +20,50 @@ import importlib
 import keyword
 from pathlib import Path
 
-# if used an actions will give all mutating states
-# we can avoid copying all other state properties
-# curry in rigid dictionary
-# easy to identify what properties need to be in state (they mutate)
-# UNUSED
+# regex for identifying what predicates can be mutated
 re_state_collect = re.compile( "rigid\.([\w_]+)\.(?=add|remove)" )
+# regex for moving mutable predicates from rigid dict to mutable state
 re_state_replace = re.compile( "rigid\.([\w_]+)(?=[\W\.])" )
+# regex for replacing constants with literals
 re_constant_replace =re.compile("(\w+),")
 
+def state_str_replacer( match_obj: re.Match, mutable: Set[str] ) -> str:
+    """ replace all statements of rigid.<predicate> with state.<predicate> if <predicate> is in mutable
 
-# replace all statements of rigid.<predicate> with state.<predicate> if
-#  <predicate> can mutate
-def state_str_replacer( match_obj, mutable ):
+    Parameters
+    ----------
+    match_obj : re.Match
+
+    mutable :   Set[str]
+                Set containing the names of all mutable predicates
+
+    Returns
+    -------
+    str
+                Either original str if predicate is immutable or the string with "rigid" substituted
+                with "state" if mutable
+    """
     if match_obj.group( 1 ) in mutable:
         return "state." + match_obj.group( 1 )
     else:
         return match_obj.group( 0 )
 
-# turn all defined constants into string literals
-#  <predicate> can mutate
-def constant_str_replacer( match_obj, constant_set ):
+#
+def constant_str_replacer( match_obj: re.Match, constant_set: Set[str] ) -> str:
+    """ replace all defined constants with equivalent string literals
+
+        Parameters
+        ----------
+        match_obj : re.Match
+
+        mutable :   Set[str]
+                    Set containing the names of all constants
+
+        Returns
+        -------
+        str
+                    Either original str if not constant else original string with string literal of constant
+    """
     if match_obj.group( 1) in constant_set:
         return "'" + match_obj.group( 1 ) + "',"
     else:
