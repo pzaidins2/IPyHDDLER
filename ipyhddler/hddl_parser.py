@@ -70,8 +70,19 @@ def constant_str_replacer( match_obj: re.Match, constant_set: Set[str] ) -> str:
         return match_obj.group( 0 )
 
 
-# takes PDDL strings and makes them assignable to python boundVars
 def clean_string( input_str: str ) -> str:
+    """ takes str and makes them assignable to python variables
+
+    Parameters
+    ----------
+    input_str : str
+
+    Returns
+    -------
+    str
+                python-friendly version of string
+
+    """
     # ? must be removed
     new_str = input_str.replace( "?", "" )
     # ! must be removed
