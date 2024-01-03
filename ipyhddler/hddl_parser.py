@@ -1,33 +1,36 @@
 # this file allows for hddl file to be read in and converted to python friendly representation
 # import io
-import re
-import json
-from copy import deepcopy
-import os
-from typing import List, Dict, Union, Set, Tuple
-from ipyhop import IPyHOP
-# from ipyhop.actor import Actor
-# from ipyhop.mc_executor import MonteCarloExecutor
-from functools import partial
-import time
-import networkx as nx
 import importlib
+import json
+import keyword
+import os
+import re
+import time
+from copy import deepcopy
+from functools import partial
+from pathlib import Path
+from typing import Dict, List, Set, Union
+
+import networkx as nx
+from ipyhop import IPyHOP
+
 # from multiprocessing import Pool, cpu_count
 # import numpy as np
 # import matplotlib.pyplot as plt
 # import cProfile, pstats, io
 # from pstats import SortKey
-import keyword
-from pathlib import Path
+# from ipyhop.actor import Actor
+# from ipyhop.mc_executor import MonteCarloExecutor
 
 # regex for identifying what predicates can be mutated
 re_state_collect = re.compile( "rigid\.([\w_]+)\.(?=add|remove)" )
 # regex for moving mutable predicates from rigid dict to mutable state
 re_state_replace = re.compile( "rigid\.([\w_]+)(?=[\W\.])" )
 # regex for replacing constants with literals
-re_constant_replace =re.compile("(\w+),")
+re_constant_replace = re.compile( "(\w+)," )
 
-def state_str_replacer( match_obj: re.Match, mutable: Set[str] ) -> str:
+
+def state_str_replacer( match_obj: re.Match, mutable: Set[ str ] ) -> str:
     """ replace all statements of rigid.<predicate> with state.<predicate> if <predicate> is in mutable
 
     Parameters
@@ -48,8 +51,9 @@ def state_str_replacer( match_obj: re.Match, mutable: Set[str] ) -> str:
     else:
         return match_obj.group( 0 )
 
+
 #
-def constant_str_replacer( match_obj: re.Match, constant_set: Set[str] ) -> str:
+def constant_str_replacer( match_obj: re.Match, constant_set: Set[ str ] ) -> str:
     """ replace all defined constants with equivalent string literals
 
         Parameters
@@ -64,7 +68,7 @@ def constant_str_replacer( match_obj: re.Match, constant_set: Set[str] ) -> str:
         str
                     Either original str if not constant else original string with string literal of constant
     """
-    if match_obj.group( 1) in constant_set:
+    if match_obj.group( 1 ) in constant_set:
         return "'" + match_obj.group( 1 ) + "',"
     else:
         return match_obj.group( 0 )
@@ -92,7 +96,7 @@ def clean_string( input_str: str ) -> str:
     # PDDL is case insensitive so we are going to make everything lower case
     new_str = new_str.lower()
     # we cannot allow keywords
-    if keyword.iskeyword(new_str):
+    if keyword.iskeyword( new_str ):
         new_str += "___"
     # remove leading and trailing
     new_str = new_str.strip()
@@ -107,7 +111,7 @@ class HDDL_Parser:
         self.typed_sets = dict()
         self.constant_set = set()
 
-    def parse_domain( self, domain_json_path: str, deviation_possible_predicates: List[str]=None ) -> None:
+    def parse_domain( self, domain_json_path: str, deviation_possible_predicates: List[ str ] = None ) -> None:
         # read json as dictionary
         with open( domain_json_path ) as f:
             domain_dict = json.load( f )
@@ -123,12 +127,11 @@ class HDDL_Parser:
         #     # append deviations function to deviations.py str
         #     deviations_str += make_deviation_function_str( deviation )
 
-
         # note all state components that are never modified in actions or deviations
         self.mutable = set( re_state_collect.findall( actions_str ) )
         # self.mutable |= set( re_state_collect.findall( deviations_str ) )
         if deviation_possible_predicates != None:
-            self.mutable |= {*map(lambda x: clean_string(x), deviation_possible_predicates)}
+            self.mutable |= { *map( lambda x: clean_string( x ), deviation_possible_predicates ) }
 
         # track domain constants
         # print(domain_dict["constants"])
@@ -147,32 +150,33 @@ class HDDL_Parser:
         # assumes uniqueness across types
         hddl_map = dict()
         # type hierarchy
-        supertype_tuples = [*map( lambda x: ( x["supertype"], x["type"] ), domain_dict[ "types" ] )]
+        supertype_tuples = [ *map( lambda x: (x[ "supertype" ], x[ "type" ]), domain_dict[ "types" ] ) ]
         # constants
-        constant_tuples= map( lambda x: ( x["type"], x["name"] ), domain_dict[ "constants" ] )
+        constant_tuples = map( lambda x: (x[ "type" ], x[ "name" ]), domain_dict[ "constants" ] )
         # tasks
-        task_tuples= map( lambda x: ("task", x[ "name" ]), domain_dict[ "tasks" ] )
+        task_tuples = map( lambda x: ("task", x[ "name" ]), domain_dict[ "tasks" ] )
         # methods
-        method_tuples= map( lambda x: ("method", x[ "name" ]), domain_dict[ "methods" ] )
+        method_tuples = map( lambda x: ("method", x[ "name" ]), domain_dict[ "methods" ] )
         # actions
-        action_tuples= map( lambda x: ("action", x[ "name" ]), domain_dict[ "actions" ] )
+        action_tuples = map( lambda x: ("action", x[ "name" ]), domain_dict[ "actions" ] )
         # # deviations
         # deviation_tuples = map( lambda x: ("deviation", x[ "name" ]), domain_dict[ "deviations" ] )
         # predicates
-        predicate_tuples= [*map( lambda x: ("predicate", x[ "name" ]), domain_dict[ "predicates" ] )]
+        predicate_tuples = [ *map( lambda x: ("predicate", x[ "name" ]), domain_dict[ "predicates" ] ) ]
 
-        for type_str, name_str in [ *supertype_tuples, *constant_tuples, *task_tuples, *method_tuples, *action_tuples, *predicate_tuples ]:
-            hddl_map[ clean_string(name_str) ] = name_str
+        for type_str, name_str in [ *supertype_tuples, *constant_tuples, *task_tuples, *method_tuples, *action_tuples,
+                                    *predicate_tuples ]:
+            hddl_map[ clean_string( name_str ) ] = name_str
         predicate_set = set()
         for type_str, name_str in predicate_tuples:
-            predicate_set.add(clean_string(name_str))
-        clean_supertype_set = set(map( lambda x: (clean_string( x[ 0 ] ), clean_string( x[ 1 ] )), supertype_tuples ))
+            predicate_set.add( clean_string( name_str ) )
+        clean_supertype_set = set( map( lambda x: (clean_string( x[ 0 ] ), clean_string( x[ 1 ] )), supertype_tuples ) )
         supertype_tree = nx.DiGraph()
-        supertype_tree.add_edges_from(clean_supertype_set)
+        supertype_tree.add_edges_from( clean_supertype_set )
         self.hddl_map = hddl_map
         self.predicate_set = predicate_set
         self.supertype_tree = supertype_tree
-        self.supertype_set = set(map(lambda x: x[0], clean_supertype_set))
+        self.supertype_set = set( map( lambda x: x[ 0 ], clean_supertype_set ) )
         return
 
     def parse_problem( self, problem_json_path: str ) -> None:
@@ -218,10 +222,10 @@ class HDDL_Parser:
         # create domain dict copy
         domain_dict = deepcopy( self.domain_dict )
         # create folder
-        domain_path = os.path.join(dir_path, "domain")
-        if not os.path.isdir(domain_path):
-            p = Path(domain_path)
-            p.mkdir(parents=True)
+        domain_path = os.path.join( dir_path, "domain" )
+        if not os.path.isdir( domain_path ):
+            p = Path( domain_path )
+            p.mkdir( parents=True )
         # write actions.py
         actions_str = "from ipyhop import Actions\nimport itertools\n"
 
@@ -244,29 +248,7 @@ class HDDL_Parser:
         actions_str = re_constant_replace.sub( lambda x: constant_str_replacer( x, self.constant_set ), actions_str )
         with open( domain_path + "/actions.py", "w" ) as actions_file:
             actions_file.write( actions_str )
-        # # write deviations.py
-        # deviations_str = "from ipyhop import Actions\nimport itertools\n"
-        #
-        # # for every deviation in deviations
-        # for deviation in domain_dict[ "deviations" ]:
-        #     # append deviation function to deviations.py str
-        #     deviations_str += make_deviation_function_str( deviation )
-        # # Create a IPyHOP Actions object
-        # # NEED TO RESERVE KEYWORDS: deviations, methods
-        #
-        # deviations_str += "\ndeviations = {"
-        #
-        # for deviation in domain_dict[ "deviations" ]:
-        #     deviations_str += "\n\t'" + clean_string( deviation[ "name" ] ) + "'" + ": " + clean_string( deviation[ "name" ] ) + ","
-        # deviations_str += "}\n"
-        #
-        # # replace all instances of mutables
-        # deviations_str = re_state_replace.sub( lambda x: state_str_replacer( x, self.mutable ), deviations_str )
-        # # make all constants literals
-        # deviations_str = re_constant_replace.sub( lambda x: constant_str_replacer( x, self.constant_set ), deviations_str )
-        # with open( domain_path + "/deviations.py", "w" ) as deviations_file:
-        #     deviations_file.write( deviations_str )
-        
+
         # write methods.py
         methods_str = "from ipyhop import Methods\nimport itertools\n"
         # for every method in methods
@@ -276,8 +258,9 @@ class HDDL_Parser:
             methods_str += make_method_function_str( method, domain_dict )
             # build task_method_dict
             if clean_string( method[ "task" ][ "taskName" ] ) not in task_method_dict.keys():
-                task_method_dict[ clean_string( method[ "task" ][ "taskName" ] ) ] = []
-            task_method_dict[ clean_string( method[ "task" ][ "taskName" ] ) ].append( clean_string( method[ "name" ] ) )
+                task_method_dict[ clean_string( method[ "task" ][ "taskName" ] ) ] = [ ]
+            task_method_dict[ clean_string( method[ "task" ][ "taskName" ] ) ].append(
+                clean_string( method[ "name" ] ) )
         # Create a IPyHOP Methods object
         methods_str += "\nmethods = Methods()\n"
         # associate methods to tasks
@@ -318,11 +301,11 @@ class HDDL_Parser:
         # lists all object of type and of subtypes
         for supertype in supertype_tree.nodes:
             init_state_str += "rigid." + supertype + " = "
-            desendant_types = {*nx.descendants(supertype_tree,supertype), supertype }
+            desendant_types = { *nx.descendants( supertype_tree, supertype ), supertype }
             supertype_set = set()
             for type in desendant_types:
                 if type in typed_sets.keys():
-                    supertype_set |= typed_sets[type]
+                    supertype_set |= typed_sets[ type ]
             init_state_str += str( supertype_set ) + "\n"
 
         # group atoms
@@ -353,7 +336,7 @@ class HDDL_Parser:
         tasks = problem_dict[ "htn" ][ "orderedSubtasks" ]
         task_list = [ (task[ "taskName" ], *task[ "args" ]) for task in tasks ]
 
-        task_list =[*map(lambda x: tuple(map(clean_string,x)),task_list)]
+        task_list = [ *map( lambda x: tuple( map( clean_string, x ) ), task_list ) ]
         # print( task_list )
         task_list_str += "\ntask_list = "
         task_list_str += str( task_list ) + "\n"
@@ -395,6 +378,7 @@ def make_action_function_str( action: Dict[ str, Union[ str, Dict ] ] ) -> str:
     actions_str += "\n\t\treturn state\n"
     return actions_str
 
+
 # takes deviation JSON and outputs IPyHOPPER str representation
 def make_deviation_function_str( deviation: Dict[ str, Union[ str, Dict ] ] ):
     # space out deviations
@@ -416,12 +400,12 @@ def make_deviation_function_str( deviation: Dict[ str, Union[ str, Dict ] ] ):
     effect = deviation[ "effect" ]
     # deviations effect is single and with unforeseenPos as all single predicates and
     # unforeseenNeg as predicates in "not" operators
-    unforeseenPos = effect["unforeseenPos"]
-    unforeseenNeg = effect[ "unforeseenNeg"]
-    new_operands = [{"op": "not", "operands": x } for x in unforeseenNeg ]
+    unforeseenPos = effect[ "unforeseenPos" ]
+    unforeseenNeg = effect[ "unforeseenNeg" ]
+    new_operands = [ { "op": "not", "operands": x } for x in unforeseenNeg ]
     new_operands += unforeseenPos
     equiv_action_effect = {
-        "op": "and",
+        "op":       "and",
         "operands": new_operands
     }
     if effect != None:
@@ -429,39 +413,6 @@ def make_deviation_function_str( deviation: Dict[ str, Union[ str, Dict ] ] ):
     deviations_str += "\n\t\treturn state\n"
     return deviations_str
 
-# # takes deviation JSON and outputs IPyHOPPER str representation
-# def make_deviation_function_str( deviation: Dict[ str, Union[ str, Dict ] ] ):
-#     # space out deviations
-#     deviations_str = "\n"
-#     # def <deviation_name>( state, *parameter_names ):
-#     deviations_str += "def " + clean_string( deviation[ "name" ] ) + "( state"
-#     parameters = deviation[ "parameters" ]
-#     parameter_names = map( lambda x: clean_string( x[ "name" ] ), parameters )
-#     for parameter_name in parameter_names:
-#         deviations_str += ", " + parameter_name
-#     deviations_str += ", rigid ):\n"
-#     # if precondition
-#     # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
-#     precondition = deviation[ "precondition" ]
-#     deviations_str += "\tif " + make_precondition_str( precondition ) + ":\n\t\t"
-#     # print( make_precondition_str( precondition ) )
-#     # effect
-#     # add and delete from state in order
-#     effect = deviation[ "effect" ]
-#     # deviations effect is single and with unforeseenPos as all single predicates and
-#     # unforeseenNeg as predicates in "not" operators
-#     unforeseenPos = effect["unforeseenPos"]
-#     unforeseenNeg = effect[ "unforeseenNeg"]
-#     new_operands = [{"op": "not", "operands": x } for x in unforeseenNeg ]
-#     new_operands += unforeseenPos
-#     equiv_action_effect = {
-#         "op": "and",
-#         "operands": new_operands
-#     }
-#     if effect != None:
-#         deviations_str += make_effects_str( equiv_action_effect )
-#     deviations_str += "\n\t\treturn state\n"
-#     return deviations_str
 
 # takes method JSON and outputs IPyHOPPER str representation
 # method: Dict representing a single method template
@@ -608,16 +559,16 @@ def make_precondition_str( precondition: Dict[ str, Union[ str, Dict ] ] ) -> st
             operand1 = precondition[ "operand1" ]
             operand2 = precondition[ "operand2" ]
             equivalent_precondition = {
-                "op": "or",
+                "op":       "or",
                 "operands": [
                     {
-                        "op":"not",
-                        "operand":operand1
+                        "op":      "not",
+                        "operand": operand1
                     },
                     operand2
                 ]
             }
-            return make_precondition_str(equivalent_precondition)
+            return make_precondition_str( equivalent_precondition )
         # at least 1 operand must be true
         elif op == "or":
             operands = precondition[ "operands" ]
@@ -627,7 +578,7 @@ def make_precondition_str( precondition: Dict[ str, Union[ str, Dict ] ] ) -> st
             precondition_str += "] )"
             return precondition_str
         else:
-            raise ValueError(op + " is an unsupported op for precondition!")
+            raise ValueError( op + " is an unsupported op for precondition!" )
     # predicate precondition
     else:
         predicate = precondition[ "predicate" ]
@@ -635,12 +586,12 @@ def make_precondition_str( precondition: Dict[ str, Union[ str, Dict ] ] ) -> st
         # equality predicate
         if predicate == "=":
             if (len( args ) != 2):
-                raise ValueError("only supports binary equality predicate")
+                raise ValueError( "only supports binary equality predicate" )
             predicate_str = "( " + clean_string( args[ 0 ] ) + " == " + clean_string( args[ 1 ] ) + " )"
         # inequality predicate
         elif predicate == "different":
             if (len( args ) != 2):
-                raise ValueError("only supports binary inequality predicate")
+                raise ValueError( "only supports binary inequality predicate" )
             predicate_str = "( " + clean_string( args[ 0 ] ) + " != " + clean_string( args[ 1 ] ) + " )"
         # standard predicate
         else:
@@ -662,8 +613,8 @@ def make_effects_str( effects: Dict[ str, Union[ str, Dict ] ], tab_level=0 ) ->
         if op == "and":
             operands = effects[ "effects" ]
             effects_str = ""
-            effects_str += make_effects_str( operands[0] )
-            for operand in operands[1:]:
+            effects_str += make_effects_str( operands[ 0 ] )
+            for operand in operands[ 1: ]:
                 effects_str += "\n\t\t" + make_effects_str( operand )
             return effects_str
         # operand will remove predicate
@@ -680,11 +631,11 @@ def make_effects_str( effects: Dict[ str, Union[ str, Dict ] ], tab_level=0 ) ->
             return predicate_str
         # effect only when condition
         elif op == "when":
-            condition = effects["condition"]
-            effect = effects["effect"]
-            return make_effects_str(effect) + " if " + make_precondition_str(condition) + " else None"
+            condition = effects[ "condition" ]
+            effect = effects[ "effect" ]
+            return make_effects_str( effect ) + " if " + make_precondition_str( condition ) + " else None"
         else:
-            raise ValueError(op + " is an unsupported op for effects!")
+            raise ValueError( op + " is an unsupported op for effects!" )
     # predicate effects
     else:
         predicate = clean_string( effects[ "predicate" ] )
@@ -920,38 +871,38 @@ clause_to_boundVar_set = lambda x: boundVar_set_list_flatten( clause_to_boundVar
 count_intersection_size = lambda x, y: len( y.intersection( clause_to_boundVar_set( x ) ) )
 
 
-def iteration_optimizer( unboundVars: List[ str ], clauses: List[ Tuple[ List, List ] ] ):
-    # need iteration for all unbound boundVars
-    ordering = [ ]
-    while len( unboundVars ) > 0:
-        # get clauses with each unbound boundVar
-        boundVar_clause_dict = dict()
-        for unboundVar in unboundVars:
-            boundVar_clause_dict[ unboundVar ] = set()
-            for clause in clauses:
-                # print( clause )
-                # if boundVar in any predicate of clause associate clause with boundVar
-                if any( map( lambda x: unboundVar in x, [ *clause[ 0 ], *clause[ 1 ] ] ) ):
-                    boundVar_clause_dict[ unboundVar ].update( clause )
-        # print( boundVar_clause_dict )
-        # sort unbound boundVars by number of associated predicates
-        # sort by size of union set of all unique unbound boundVar for all predicates associated with each boundVar
-        # graph version: minimize increase in frontier size, pick vertex with smallest neighborhood discounting
-        # for vertices that have already been picked or neighbor a pick
-        unboundVars.sort( key=lambda x: count_intersection_size( x, set( unboundVars ) ) )
-
-        # bind boundVar with fewest untouched neighbors
-        bindingVar = unboundVars.pop( 0 )
-        # get predicates that only have binding boundVar as unbound
-        # these predicates are safe to check now as all boundVars will be grounded
-        for unboundVar in unboundVars:
-            boundVar_clause_dict[ bindingVar ] -= boundVar_clause_dict[ unboundVar ]
-        ordering.append( (bindingVar, [ *boundVar_clause_dict[ bindingVar ] ]) )
-        # remove these predicates from list
-        # dont do duplicate checks
-        for boundClause in boundVar_clause_dict[ bindingVar ]:
-            clauses.remove( boundClause )
-    return ordering
+# def iteration_optimizer( unboundVars: List[ str ], clauses: List[ Tuple[ List, List ] ] ):
+#     # need iteration for all unbound boundVars
+#     ordering = [ ]
+#     while len( unboundVars ) > 0:
+#         # get clauses with each unbound boundVar
+#         boundVar_clause_dict = dict()
+#         for unboundVar in unboundVars:
+#             boundVar_clause_dict[ unboundVar ] = set()
+#             for clause in clauses:
+#                 # print( clause )
+#                 # if boundVar in any predicate of clause associate clause with boundVar
+#                 if any( map( lambda x: unboundVar in x, [ *clause[ 0 ], *clause[ 1 ] ] ) ):
+#                     boundVar_clause_dict[ unboundVar ].update( clause )
+#         # print( boundVar_clause_dict )
+#         # sort unbound boundVars by number of associated predicates
+#         # sort by size of union set of all unique unbound boundVar for all predicates associated with each boundVar
+#         # graph version: minimize increase in frontier size, pick vertex with smallest neighborhood discounting
+#         # for vertices that have already been picked or neighbor a pick
+#         unboundVars.sort( key=lambda x: count_intersection_size( x, set( unboundVars ) ) )
+#
+#         # bind boundVar with fewest untouched neighbors
+#         bindingVar = unboundVars.pop( 0 )
+#         # get predicates that only have binding boundVar as unbound
+#         # these predicates are safe to check now as all boundVars will be grounded
+#         for unboundVar in unboundVars:
+#             boundVar_clause_dict[ bindingVar ] -= boundVar_clause_dict[ unboundVar ]
+#         ordering.append( (bindingVar, [ *boundVar_clause_dict[ bindingVar ] ]) )
+#         # remove these predicates from list
+#         # dont do duplicate checks
+#         for boundClause in boundVar_clause_dict[ bindingVar ]:
+#             clauses.remove( boundClause )
+#     return ordering
 
 
 def run_experiment( problem_dir, problem_json, output_dir ):
@@ -966,7 +917,6 @@ def run_experiment( problem_dir, problem_json, output_dir ):
     # output_txt = problem_json.replace( ".snake.json", ".txt" )
     output_py = problem_json.replace( ".json", ".py" )
     output_txt = problem_json.replace( ".json", ".txt" )
-
 
     # read in actions and methods as moduless
     actions_mod = importlib.import_module( output_dir[ :-1 ] + ".domain.actions" )
@@ -984,7 +934,6 @@ def run_experiment( problem_dir, problem_json, output_dir ):
     task_list = state_mod.task_list
     rigid = state_mod.rigid
 
-
     # update methods and actions to use rigid
     local_methods = deepcopy( methods )
     local_actions = deepcopy( actions )
@@ -1001,7 +950,7 @@ def run_experiment( problem_dir, problem_json, output_dir ):
     try:
         planner = IPyHOP( local_methods, local_actions )
     except:
-        print("Something went wrong for " + problem_json)
+        print( "Something went wrong for " + problem_json )
     # print(init_state)
 
     start_time = time.process_time_ns()
@@ -1015,108 +964,8 @@ def run_experiment( problem_dir, problem_json, output_dir ):
     # print( (problem_json, total_time, plan) )
     return (problem_json, total_time, plan)
 
+
 if __name__ == '__main__':
-    # SINGLE TEST/PROFILING
-    # # problem input, internal, and output files
-    # problem_json="p30.json"
-    # # problem_json = "p-045-045-045-045.json"
-    # output_py = problem_json.replace( "json", "py" )
-    # output_txt = problem_json.replace( "json", "txt" )
-    # # output_py = problem_json.replace( "snake.json", "py" )
-    # # output_txt = problem_json.replace( "snake.json", "txt" )
-    # # write methods and actions
-    # # WRITE IS COMMENTED OUT DUE TO LOCAL OPTIMIZATION
-    # parser = HDDL_Parser()
-    # # input_domain_dir = "../../domains/ipc-2023-snake-domain/"
-    # # output_dir = "Snake/"
-    # input_domain_dir = "../../domains/openstacks-adl/"
-    # output_dir = "openstacks/"
-    # parser.parse_domain( input_domain_dir + "domain.json" )
-    #
-    # # parser.write_domain(output_dir[:-1])
-    # # make pythonic representation of state and constants
-    # parser.parse_problem( input_domain_dir + problem_json )
-    # parser.write_problem( output_dir + "problems_py/" + output_py)
-    # # helps with modularity, partly inherited quirk
-    # # by treating as modules we don't need conversions between plain text and python code
-    # from openstacks.domain.actions import actions
-    # from openstacks.domain.methods import methods
-    # # temp_mod = importlib.import_module( "Snake.problems_py." + output_py[ :-3 ] )
-    # temp_mod = importlib.import_module( "openstacks.problems_py." + output_py[ :-3 ] )
-    # init_state = temp_mod.state
-    # task_list = temp_mod.task_list
-    # rigid = temp_mod.rigid
-    # # pass constants using rigid
-    # local_methods = deepcopy( methods )
-    # local_actions = deepcopy( actions )
-    # local_methods.goal_method_dict.update(
-    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
-    # local_methods.task_method_dict.update(
-    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.task_method_dict.items() } )
-    # local_methods.multigoal_method_dict.update(
-    #     { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
-    # local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
-    # # make planner
-    # planner = IPyHOP(local_methods, local_actions)
-    # print(parser.hddl_map)
-    # # # deviation handler is essentially a function, but stores information between calls
-    # # dev_hand = snake_deviation_handler( planner, rigid, active_mouse_ratio=0.0, move_activity_ratio=0.00 )
-    # # # simulator
-    # # mc_executor = MonteCarloExecutor( local_actions, dev_hand )
-    # # # agent
-    # # actor = Actor( planner, mc_executor )
-    # start_time = time.perf_counter_ns()
-    # #############################################################################
-    # # pr = cProfile.Profile()
-    # # pr.enable()
-    # ################################################################################
-    # # complete task_list, repairing as needed
-    # # history = actor.complete_to_do( init_state, task_list, verbose=0)
-    # plan = planner.plan(init_state, task_list, verbose=3)
-    # ###################################################################################
-    # # pr.disable()
-    # # s = io.StringIO()
-    # # sortby = "tottime"
-    # # ps = pstats.Stats( pr, stream=s ).sort_stats( sortby )
-    # # ps.print_stats()
-    # # print( s.getvalue() )
-    # #################################################################################
-    # end_time = time.perf_counter_ns()
-    # total_time = (end_time - start_time) / 1E9
-    # print(plan)
-    # hddl_plan_str = planner.hddl_plan_str( parser.hddl_map )
-    # print(hddl_plan_str)
-    # print(total_time)
-    # with open( output_dir + "solutions/" + output_txt, "w") as f:
-    #     f.write(hddl_plan_str)
-    # # BATCH TEST
-    # input_dir = "../../domains/ipc-2023-snake-domain/"
-    # output_dir = "Snake/"
-    # input_dir = "../../domains/openstacks-adl/"
-    # output_dir = "openstacks/"
-    # # args = filter( lambda x: ".snake.json" in x, os.listdir( input_dir ) )
-    # # args = filter( lambda x: "p-0" in x and ".json" in x, os.listdir( input_dir ) )
-    # args = filter( lambda x: "p" in x and str.isnumeric( x[1:3] ) and ".json" in x, os.listdir( input_dir ) )
-    # args = [*map( lambda x: ( input_dir, x, output_dir), args )]
-    # # print(args)
-    # time_arr = np.ndarray( len( args ), dtype=float )
-    # plan_len_arr = np.empty_like( time_arr, dtype=int )
-    # with Pool( processes=cpu_count() // 2 ) as pool:
-    #     output = pool.starmap_async( run_experiment, args, chunksize=1 )
-    #     while True:
-    #         if output.ready():
-    #             break
-    #         print( str( round( 100 - 100 * output._number_left / len( args ), 3 ) ) + " %" )
-    #         time.sleep( 60 )
-    # i = 0
-    # for exp in output.get():
-    #     time_arr[ i ] = exp[ 1 ]
-    #     plan_len_arr[ i ] = len( exp[ 2 ] )
-    #     i += 1
-    # print(time_arr)
-    # print(plan_len_arr)
-    # plt.scatter(time_arr,plan_len_arr)
-    # plt.show()
 
     # parsing (CURRENTLY READ, BUT CAN DYNAMICALLY MAKE ACTION/METHODS)
     parser = HDDL_Parser()
@@ -1133,7 +982,8 @@ if __name__ == '__main__':
     from IPyHDDLER.rovers.domain.actions import actions
     from IPyHDDLER.rovers.domain.methods import methods
 
-    temp_mod = importlib.import_module( output_dir[:2] + output_dir[3:-1] + ".problems_py." + output_py[:-3], package="IPyHDDLER.ipyhddler")
+    temp_mod = importlib.import_module( output_dir[ :2 ] + output_dir[ 3:-1 ] + ".problems_py." + output_py[ :-3 ],
+                                        package="IPyHDDLER.ipyhddler" )
     init_state = temp_mod.state
     task_list = temp_mod.task_list
     rigid = temp_mod.rigid
@@ -1148,11 +998,9 @@ if __name__ == '__main__':
         { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
     local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
     # make planner
-    planner = IPyHOP(local_methods, local_actions)
+    planner = IPyHOP( local_methods, local_actions )
     # print(local_methods.task_method_dict)
     # print(local_actions.action_dict)
-    planner.read_SHOP("../sample_shop_output",init_state)
+    planner.read_SHOP( "../sample_shop_output", init_state )
     # get back in hddl format
     # print(planner.hddl_plan_str(parser.hddl_map))
-
-

@@ -6,7 +6,8 @@ Project:
 
 """
 
-import ipyhddler.hddl_parser 
+import ipyhddler.hddl_parser
+
 """
 Author(s): Paul Zaidins
 Repository: https://github.com/pzaidins2/IPyHDDLER.git
