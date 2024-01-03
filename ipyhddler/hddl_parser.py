@@ -1,5 +1,5 @@
 # this file allows for hddl file to be read in and converted to python friendly representation
-# import io
+
 import importlib
 import json
 import keyword
@@ -14,6 +14,7 @@ from typing import Dict, List, Set, Union
 import networkx as nx
 from ipyhop import IPyHOP
 
+# import io
 # from multiprocessing import Pool, cpu_count
 # import numpy as np
 # import matplotlib.pyplot as plt
