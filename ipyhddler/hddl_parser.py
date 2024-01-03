@@ -197,7 +197,7 @@ class HDDL_Parser:
     # domain dictionary
     # "$schema": str
     # "constants": List[Constant]
-    # Constant: ???
+    # Constant: str
     # "name": str (UNIQUE)
     # "predicates": List[Predicate]
     # Predicate := { "name": str (UNIQUE), "parameters": List[Parameter] }
@@ -217,7 +217,7 @@ class HDDL_Parser:
     # Method := { "name": str (UNIQUE), "parameters": List[Parameter], "precondition": Operation, "task": TypelessTask, ...
     # "taskNetwork": OrderedSubtasks }
     # TypelessTask := { "predicate": str, "args": str }
-    # OrderedSubtasks := ???
+    # OrderedSubtasks := List[Predicate]
 
     def write_domain( self, dir_path: str = "." ) -> None:
         # create domain dict copy
