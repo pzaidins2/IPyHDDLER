@@ -9,7 +9,7 @@ import time
 from copy import deepcopy
 from functools import partial
 from pathlib import Path
-from typing import Dict, List, Set, Union
+from typing import Dict, List, Optional, Set, Union
 
 import networkx as nx
 from ipyhop import IPyHOP
@@ -112,7 +112,20 @@ class HDDL_Parser:
         self.typed_sets = dict()
         self.constant_set = set()
 
-    def parse_domain( self, domain_json_path: str, deviation_possible_predicates: List[ str ] = None ) -> None:
+    def parse_domain( self, domain_json_path: str, deviation_possible_predicates: Optional[List[ str ]] = None ) -> None:
+        """ parse domain JSON for future conversion into IPyHOPPER format
+
+        Parameters
+        ----------
+        domain_json_path                :   str
+                                            domain JSON file path
+        deviation_possible_predicates   :   Optional[List[str]]
+                                            list of predicate names that deviations can effect
+
+        Returns
+        -------
+
+        """
         # read json as dictionary
         with open( domain_json_path ) as f:
             domain_dict = json.load( f )
@@ -122,11 +135,6 @@ class HDDL_Parser:
         for action in domain_dict[ "actions" ]:
             # append action function to actions.py str
             actions_str += make_action_function_str( action )
-        # # for ever deviation in deviations
-        # deviations_str = ""
-        # for deviation in domain_dict["deviations"]:
-        #     # append deviations function to deviations.py str
-        #     deviations_str += make_deviation_function_str( deviation )
 
         # note all state components that are never modified in actions or deviations
         self.mutable = set( re_state_collect.findall( actions_str ) )
@@ -181,6 +189,17 @@ class HDDL_Parser:
         return
 
     def parse_problem( self, problem_json_path: str ) -> None:
+        """ parse problem JSON for future conversion into IPyHOPPER format
+
+        Parameters
+        ----------
+        problem_json_path   :   str
+                                problem JSON file path
+
+        Returns
+        -------
+
+        """
         # read json as dictionary
         with open( problem_json_path ) as f:
             problem_dict = json.load( f )
@@ -220,6 +239,22 @@ class HDDL_Parser:
     # OrderedSubtasks := List[Predicate]
 
     def write_domain( self, dir_path: str = "." ) -> None:
+        """ make and fill directory with action and methods for domain last parsed
+
+        Parameters
+        ----------
+        dir_path    :   Optional[str]
+                        the file path to the directory where domain/actions.py and domain/methods.py will be written,
+                        defaults to working directory
+
+        Returns
+        -------
+
+        Notes
+        _____
+        parse_domain must be used prior to this method
+
+        """
         # create domain dict copy
         domain_dict = deepcopy( self.domain_dict )
         # create folder
@@ -279,6 +314,20 @@ class HDDL_Parser:
             methods_file.write( methods_str )
 
     def write_problem( self, output_path: str = "./problem.py" ) -> None:
+        """ write initial state, invariant state features, and task list for last parsed domain and problem
+
+        Parameters
+        ----------
+        output_path :   file path where problem will be written in IPyHOPPER format
+
+        Returns
+        -------
+
+        Notes
+        _____
+        parse_domain and parse_problem must be used for this same domain prior to this method
+
+        """
         # create dict copies
         problem_dict = deepcopy( self.problem_dict )
         domain_dict = deepcopy( self.domain_dict )
@@ -348,15 +397,28 @@ class HDDL_Parser:
             f.write( task_list_str )
 
 
-# add N number of tabs for every line in string
-def tabify( input_str: str, N: int ):
-    return ("\n" + N * '\t').join( (input_str).splitlines() )
+# # add N number of tabs for every line in string
+# def tabify( input_str: str, N: int ):
+#     return ("\n" + N * '\t').join( (input_str).splitlines() )
 
 
-# takes action JSON and outputs IPyHOPPER str representation
+
 # act: Dict representing a single action template
 # actions_str: text representation of existing actions.py file
 def make_action_function_str( action: Dict[ str, Union[ str, Dict ] ] ) -> str:
+    """ takes action JSON and outputs IPyHOPPER str representation
+
+    Parameters
+    ----------
+    action  :   Dict[ str, Union[ str, Dict ] ]
+                action JSON Dict representation
+
+    Returns
+    -------
+    str
+                str of JSON equivalent Python function
+
+    """
     # space out actions
     actions_str = "\n"
     # def <action_name>( state, *parameter_names ):
@@ -380,46 +442,23 @@ def make_action_function_str( action: Dict[ str, Union[ str, Dict ] ] ) -> str:
     return actions_str
 
 
-# takes deviation JSON and outputs IPyHOPPER str representation
-def make_deviation_function_str( deviation: Dict[ str, Union[ str, Dict ] ] ):
-    # space out deviations
-    deviations_str = "\n"
-    # def <deviation_name>( state, *parameter_names ):
-    deviations_str += "def " + clean_string( deviation[ "name" ] ) + "( state"
-    parameters = deviation[ "parameters" ]
-    parameter_names = map( lambda x: clean_string( x[ "name" ] ), parameters )
-    for parameter_name in parameter_names:
-        deviations_str += ", " + parameter_name
-    deviations_str += ", rigid ):\n"
-    # if precondition
-    # def <op>( *<operands> ) | (*<args>) in state[<predicate>] :
-    precondition = deviation[ "precondition" ]
-    deviations_str += "\tif " + make_precondition_str( precondition ) + ":\n\t\t"
-    # print( make_precondition_str( precondition ) )
-    # effect
-    # add and delete from state in order
-    effect = deviation[ "effect" ]
-    # deviations effect is single and with unforeseenPos as all single predicates and
-    # unforeseenNeg as predicates in "not" operators
-    unforeseenPos = effect[ "unforeseenPos" ]
-    unforeseenNeg = effect[ "unforeseenNeg" ]
-    new_operands = [ { "op": "not", "operands": x } for x in unforeseenNeg ]
-    new_operands += unforeseenPos
-    equiv_action_effect = {
-        "op":       "and",
-        "operands": new_operands
-    }
-    if effect != None:
-        deviations_str += make_effects_str( equiv_action_effect )
-    deviations_str += "\n\t\treturn state\n"
-    return deviations_str
-
-
 # takes method JSON and outputs IPyHOPPER str representation
 # method: Dict representing a single method template
 # methods_str: text representation of existing methods.py file
 def make_method_function_str( method: Dict[ str, Union[ str, Dict ] ],
                               domain_dict: Dict[ str, Union[ str, Dict ] ] ) -> str:
+    """
+
+    Parameters
+    ----------
+    method      :   Dict[ str, Union[ str, Dict ] ]
+    domain_dict :   Dict[ str, Union[ str, Dict ] ]
+
+    Returns
+    -------
+    str
+
+    """
     # space out methods
     methods_str = "\n"
 
@@ -1005,3 +1044,4 @@ if __name__ == '__main__':
     planner.read_SHOP( "../sample_shop_output", init_state )
     # get back in hddl format
     # print(planner.hddl_plan_str(parser.hddl_map))
+
