@@ -9,5 +9,6 @@ setup(
     author='paulz',
     author_email='pzaidins@umd.edu',
     description='Parser for HDDL <-> IPyHOPPER',
+    install_requires=["ordered_set"],
     dependency_links=['https://github.com/pzaidins2/IPyHOPPER.git']
 )

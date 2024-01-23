@@ -1,21 +1,23 @@
 from ipyhop import State
 
+from ordered_set import OrderedSet
+
 state = State( 'init_state' )
 rigid = State( 'rigid' )
-rigid.object = {'star0', 'star10', 'planet5', 'instrument0', 'star2', 'thermograph2', 'infrared1', 'satellite0', 'star9', 'star7', 'star1', 'phenomenon8', 'instrument1', 'instrument2', 'satellite2', 'instrument3', 'instrument4', 'planet4', 'spectrograph0', 'infrared3', 'groundstation3', 'satellite1', 'star6'}
-rigid.mode = {'infrared1', 'spectrograph0', 'infrared3', 'thermograph2'}
-rigid.instrument = {'instrument4', 'instrument1', 'instrument2', 'instrument0', 'instrument3'}
-rigid.satellite = {'satellite1', 'satellite0', 'satellite2'}
-rigid.direction = {'star9', 'star1', 'star0', 'phenomenon8', 'star10', 'planet5', 'star2', 'planet4', 'groundstation3', 'star7', 'star6'}
-rigid.supports = set( [('instrument2', 'infrared1'), ('instrument1', 'infrared3'), ('instrument4', 'infrared3'), ('instrument2', 'infrared3'), ('instrument0', 'spectrograph0'), ('instrument2', 'thermograph2'), ('instrument3', 'infrared1'), ('instrument3', 'spectrograph0'), ('instrument3', 'infrared3'), ('instrument0', 'infrared1'), ] )
-rigid.calibration_target = set( [('instrument2', 'star2'), ('instrument0', 'star1'), ('instrument3', 'star2'), ('instrument4', 'star0'), ('instrument1', 'star2'), ] )
-rigid.on_board = set( [('instrument4', 'satellite2'), ('instrument1', 'satellite1'), ('instrument0', 'satellite0'), ('instrument2', 'satellite1'), ('instrument3', 'satellite1'), ] )
-state.power_avail = set( [('satellite2',), ('satellite0',), ('satellite1',), ] )
-state.pointing = set( [('satellite1', 'star6'), ('satellite0', 'phenomenon8'), ('satellite2', 'star6'), ] )
-rigid.goal_have_image = set( [('star6', 'thermograph2'), ('phenomenon8', 'spectrograph0'), ('star7', 'infrared3'), ('star9', 'infrared1'), ('planet5', 'spectrograph0'), ('star10', 'infrared3'), ('planet4', 'thermograph2'), ] )
-rigid.goal_pointing = set( [] )
-state.power_on = set( [] )
-state.calibrated = set( [] )
-state.have_image = set( [] )
+rigid.object = OrderedSet(['instrument0', 'instrument1', 'instrument2', 'instrument3', 'instrument4', 'satellite0', 'satellite1', 'satellite2', 'groundstation3', 'star1', 'star2', 'star0', 'planet4', 'planet5', 'star6', 'star7', 'phenomenon8', 'star9', 'star10', 'thermograph2', 'spectrograph0', 'infrared1', 'infrared3'])
+rigid.satellite = OrderedSet(['satellite0', 'satellite1', 'satellite2'])
+rigid.direction = OrderedSet(['groundstation3', 'star1', 'star2', 'star0', 'planet4', 'planet5', 'star6', 'star7', 'phenomenon8', 'star9', 'star10'])
+rigid.instrument = OrderedSet(['instrument0', 'instrument1', 'instrument2', 'instrument3', 'instrument4'])
+rigid.mode = OrderedSet(['thermograph2', 'spectrograph0', 'infrared1', 'infrared3'])
+rigid.supports = OrderedSet( [('instrument0', 'infrared1'), ('instrument0', 'spectrograph0'), ('instrument1', 'infrared3'), ('instrument2', 'infrared1'), ('instrument2', 'infrared3'), ('instrument2', 'thermograph2'), ('instrument3', 'infrared1'), ('instrument3', 'infrared3'), ('instrument3', 'spectrograph0'), ('instrument4', 'infrared3'), ] )
+rigid.calibration_target = OrderedSet( [('instrument0', 'star1'), ('instrument1', 'star2'), ('instrument2', 'star2'), ('instrument3', 'star2'), ('instrument4', 'star0'), ] )
+rigid.on_board = OrderedSet( [('instrument0', 'satellite0'), ('instrument1', 'satellite1'), ('instrument2', 'satellite1'), ('instrument3', 'satellite1'), ('instrument4', 'satellite2'), ] )
+state.power_avail = OrderedSet( [('satellite0',), ('satellite1',), ('satellite2',), ] )
+state.pointing = OrderedSet( [('satellite0', 'phenomenon8'), ('satellite1', 'star6'), ('satellite2', 'star6'), ] )
+rigid.goal_have_image = OrderedSet( [('planet4', 'thermograph2'), ('planet5', 'spectrograph0'), ('star6', 'thermograph2'), ('star7', 'infrared3'), ('phenomenon8', 'spectrograph0'), ('star9', 'infrared1'), ('star10', 'infrared3'), ] )
+state.power_on = OrderedSet( [] )
+state.calibrated = OrderedSet( [] )
+state.have_image = OrderedSet( [] )
+rigid.goal_pointing = OrderedSet( [] )
 
 task_list = [('main',)]

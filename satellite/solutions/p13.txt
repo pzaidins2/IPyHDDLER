@@ -1,212 +1,236 @@
 ==>
-8 switch_on instrument5 satellite3 
-9 turn_to satellite3 groundstation3 star4 
-10 calibrate satellite3 instrument5 groundstation3 
-11 turn_to satellite3 planet25 groundstation3 
-12 take_image satellite3 planet25 instrument5 thermograph1 
-47 switch_on instrument6 satellite4 
-48 turn_to satellite4 star4 phenomenon5 
-49 calibrate satellite4 instrument6 star4 
-50 turn_to satellite4 phenomenon12 star4 
-51 take_image satellite4 phenomenon12 instrument6 image3 
-58 turn_to satellite3 star21 planet25 
-59 take_image satellite3 star21 instrument5 thermograph1 
-98 turn_to satellite4 planet9 phenomenon12 
-99 take_image satellite4 planet9 instrument6 thermograph0 
-106 turn_to satellite3 planet13 star21 
-107 take_image satellite3 planet13 instrument5 thermograph1 
-114 turn_to satellite3 planet10 planet13 
-115 take_image satellite3 planet10 instrument5 thermograph1 
-154 turn_to satellite4 planet8 planet9 
-155 take_image satellite4 planet8 instrument6 image3 
-162 turn_to satellite3 star22 planet10 
-163 take_image satellite3 star22 instrument5 image4 
-202 turn_to satellite4 planet16 planet8 
-203 take_image satellite4 planet16 instrument6 image3 
-210 turn_to satellite3 planet23 star22 
-211 take_image satellite3 planet23 instrument5 thermograph1 
-250 turn_to satellite4 star26 planet16 
-251 take_image satellite4 star26 instrument6 thermograph0 
-290 turn_to satellite4 planet15 star26 
-291 take_image satellite4 planet15 instrument6 thermograph0 
-330 turn_to satellite4 planet29 planet15 
-331 take_image satellite4 planet29 instrument6 thermograph0 
-338 turn_to satellite3 phenomenon27 planet23 
-339 take_image satellite3 phenomenon27 instrument5 thermograph1 
-346 turn_to satellite3 planet17 phenomenon27 
-347 take_image satellite3 planet17 instrument5 image4 
-392 switch_on instrument2 satellite1 
-393 turn_to satellite1 groundstation3 planet17 
-394 calibrate satellite1 instrument2 groundstation3 
-395 turn_to satellite1 planet28 groundstation3 
-396 take_image satellite1 planet28 instrument2 thermograph2 
-403 turn_to satellite3 planet6 planet17 
-404 take_image satellite3 planet6 instrument5 image4 
-447 turn_to satellite4 planet7 planet29 
-448 take_image satellite4 planet7 instrument6 image3 
-491 turn_to satellite4 phenomenon18 planet7 
-492 take_image satellite4 phenomenon18 instrument6 image3 
-535 turn_to satellite4 star19 phenomenon18 
-536 take_image satellite4 star19 instrument6 thermograph0 
-543 turn_to satellite3 phenomenon5 planet6 
-544 take_image satellite3 phenomenon5 instrument5 thermograph1 
-593 turn_to satellite1 planet11 planet28 
-594 take_image satellite1 planet11 instrument2 thermograph2 
-637 turn_to satellite4 star14 star19 
-638 take_image satellite4 star14 instrument6 image3 
-687 turn_to satellite1 planet24 planet11 
-688 take_image satellite1 planet24 instrument2 thermograph2 
-689 turn_to satellite1 phenomenon5 planet24 
-691 turn_to satellite2 planet11 planet7 
-693 turn_to satellite4 planet11 star14 
+17 switch_on instrument1 satellite0 
+18 turn_to satellite0 groundstation3 star19 
+19 calibrate satellite0 instrument1 groundstation3 
+20 turn_to satellite0 phenomenon5 groundstation3 
+21 take_image satellite0 phenomenon5 instrument1 thermograph1 
+28 switch_off instrument1 satellite0 
+29 switch_on instrument0 satellite0 
+30 turn_to satellite0 groundstation3 phenomenon5 
+31 calibrate satellite0 instrument0 groundstation3 
+32 turn_to satellite0 planet6 groundstation3 
+33 take_image satellite0 planet6 instrument0 image4 
+67 switch_on instrument3 satellite2 
+68 turn_to satellite2 star1 planet7 
+69 calibrate satellite2 instrument3 star1 
+70 turn_to satellite2 planet7 star1 
+71 take_image satellite2 planet7 instrument3 image3 
+109 turn_to satellite2 planet8 planet7 
+110 take_image satellite2 planet8 instrument3 image3 
+135 switch_on instrument2 satellite1 
+136 turn_to satellite1 groundstation3 planet17 
+137 calibrate satellite1 instrument2 groundstation3 
+138 turn_to satellite1 planet9 groundstation3 
+139 take_image satellite1 planet9 instrument2 thermograph0 
+152 switch_off instrument0 satellite0 
+153 switch_on instrument1 satellite0 
+154 turn_to satellite0 groundstation3 planet6 
+155 calibrate satellite0 instrument1 groundstation3 
+156 turn_to satellite0 planet10 groundstation3 
+157 take_image satellite0 planet10 instrument1 thermograph1 
+184 turn_to satellite1 planet11 planet9 
+185 take_image satellite1 planet11 instrument2 thermograph2 
+218 turn_to satellite2 phenomenon12 planet8 
+219 take_image satellite2 phenomenon12 instrument3 image3 
+240 turn_to satellite0 planet13 planet10 
+241 take_image satellite0 planet13 instrument1 thermograph1 
+274 turn_to satellite2 star14 phenomenon12 
+275 take_image satellite2 star14 instrument3 image3 
+302 turn_to satellite1 planet15 planet11 
+303 take_image satellite1 planet15 instrument2 thermograph0 
+336 turn_to satellite2 planet16 star14 
+337 take_image satellite2 planet16 instrument3 image3 
+344 switch_off instrument1 satellite0 
+345 switch_on instrument0 satellite0 
+346 turn_to satellite0 groundstation3 planet13 
+347 calibrate satellite0 instrument0 groundstation3 
+348 turn_to satellite0 planet17 groundstation3 
+349 take_image satellite0 planet17 instrument0 image4 
+382 turn_to satellite2 phenomenon18 planet16 
+383 take_image satellite2 phenomenon18 instrument3 image3 
+410 turn_to satellite1 star19 planet15 
+411 take_image satellite1 star19 instrument2 thermograph0 
+424 switch_off instrument0 satellite0 
+425 switch_on instrument1 satellite0 
+426 turn_to satellite0 groundstation3 planet17 
+427 calibrate satellite0 instrument1 groundstation3 
+428 turn_to satellite0 star21 groundstation3 
+429 take_image satellite0 star21 instrument1 thermograph1 
+436 switch_off instrument1 satellite0 
+437 switch_on instrument0 satellite0 
+438 turn_to satellite0 groundstation3 star21 
+439 calibrate satellite0 instrument0 groundstation3 
+440 turn_to satellite0 star22 groundstation3 
+441 take_image satellite0 star22 instrument0 image4 
+454 switch_off instrument0 satellite0 
+455 switch_on instrument1 satellite0 
+456 turn_to satellite0 groundstation3 star22 
+457 calibrate satellite0 instrument1 groundstation3 
+458 turn_to satellite0 planet23 groundstation3 
+459 take_image satellite0 planet23 instrument1 thermograph1 
+486 turn_to satellite1 planet24 star19 
+487 take_image satellite1 planet24 instrument2 thermograph2 
+508 turn_to satellite0 planet25 planet23 
+509 take_image satellite0 planet25 instrument1 thermograph1 
+536 turn_to satellite1 star26 planet24 
+537 take_image satellite1 star26 instrument2 thermograph0 
+558 turn_to satellite0 phenomenon27 planet25 
+559 take_image satellite0 phenomenon27 instrument1 thermograph1 
+586 turn_to satellite1 planet28 star26 
+587 take_image satellite1 planet28 instrument2 thermograph2 
+614 turn_to satellite1 planet29 planet28 
+615 take_image satellite1 planet29 instrument2 thermograph0 
+616 turn_to satellite1 phenomenon5 planet29 
+618 turn_to satellite4 planet11 phenomenon5 
+620 turn_to satellite2 planet11 phenomenon18 
 
 root 1 
 1 main -> take-one 2 3 
-2 have-image planet25 thermograph1 -> prepare-then-take 4 5 
-4 prepare-instrument satellite3 instrument5 -> prepare 6 7 
-6 turn-on-instrument satellite3 instrument5 -> turn-on 8 
-7 calibrate-instrument satellite3 instrument5 -> repoint-then-calibrate 9 10 
-5 take-image satellite3 instrument5 planet25 thermograph1 -> turn-then-take 11 12 
-3 main -> take-one 13 14 
-13 have-image phenomenon12 image3 -> prepare-then-take 43 44 
-43 prepare-instrument satellite4 instrument6 -> prepare 45 46 
-45 turn-on-instrument satellite4 instrument6 -> turn-on 47 
-46 calibrate-instrument satellite4 instrument6 -> repoint-then-calibrate 48 49 
-44 take-image satellite4 instrument6 phenomenon12 image3 -> turn-then-take 50 51 
-14 main -> take-one 52 53 
-52 have-image star21 thermograph1 -> prepare-then-take 54 55 
-54 prepare-instrument satellite3 instrument5 -> prepare 56 57 
-56 turn-on-instrument satellite3 instrument5 -> already-on 
-57 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-55 take-image satellite3 instrument5 star21 thermograph1 -> turn-then-take 58 59 
-53 main -> take-one 60 61 
-60 have-image planet9 thermograph0 -> prepare-then-take 94 95 
-94 prepare-instrument satellite4 instrument6 -> prepare 96 97 
-96 turn-on-instrument satellite4 instrument6 -> already-on 
-97 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-95 take-image satellite4 instrument6 planet9 thermograph0 -> turn-then-take 98 99 
-61 main -> take-one 100 101 
-100 have-image planet13 thermograph1 -> prepare-then-take 102 103 
-102 prepare-instrument satellite3 instrument5 -> prepare 104 105 
-104 turn-on-instrument satellite3 instrument5 -> already-on 
-105 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-103 take-image satellite3 instrument5 planet13 thermograph1 -> turn-then-take 106 107 
-101 main -> take-one 108 109 
-108 have-image planet10 thermograph1 -> prepare-then-take 110 111 
-110 prepare-instrument satellite3 instrument5 -> prepare 112 113 
-112 turn-on-instrument satellite3 instrument5 -> already-on 
-113 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-111 take-image satellite3 instrument5 planet10 thermograph1 -> turn-then-take 114 115 
-109 main -> take-one 116 117 
-116 have-image planet8 image3 -> prepare-then-take 150 151 
-150 prepare-instrument satellite4 instrument6 -> prepare 152 153 
-152 turn-on-instrument satellite4 instrument6 -> already-on 
-153 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-151 take-image satellite4 instrument6 planet8 image3 -> turn-then-take 154 155 
-117 main -> take-one 156 157 
-156 have-image star22 image4 -> prepare-then-take 158 159 
-158 prepare-instrument satellite3 instrument5 -> prepare 160 161 
-160 turn-on-instrument satellite3 instrument5 -> already-on 
-161 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-159 take-image satellite3 instrument5 star22 image4 -> turn-then-take 162 163 
-157 main -> take-one 164 165 
-164 have-image planet16 image3 -> prepare-then-take 198 199 
-198 prepare-instrument satellite4 instrument6 -> prepare 200 201 
-200 turn-on-instrument satellite4 instrument6 -> already-on 
-201 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-199 take-image satellite4 instrument6 planet16 image3 -> turn-then-take 202 203 
-165 main -> take-one 204 205 
-204 have-image planet23 thermograph1 -> prepare-then-take 206 207 
-206 prepare-instrument satellite3 instrument5 -> prepare 208 209 
-208 turn-on-instrument satellite3 instrument5 -> already-on 
-209 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-207 take-image satellite3 instrument5 planet23 thermograph1 -> turn-then-take 210 211 
-205 main -> take-one 212 213 
-212 have-image star26 thermograph0 -> prepare-then-take 246 247 
-246 prepare-instrument satellite4 instrument6 -> prepare 248 249 
-248 turn-on-instrument satellite4 instrument6 -> already-on 
-249 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-247 take-image satellite4 instrument6 star26 thermograph0 -> turn-then-take 250 251 
-213 main -> take-one 252 253 
-252 have-image planet15 thermograph0 -> prepare-then-take 286 287 
-286 prepare-instrument satellite4 instrument6 -> prepare 288 289 
-288 turn-on-instrument satellite4 instrument6 -> already-on 
-289 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-287 take-image satellite4 instrument6 planet15 thermograph0 -> turn-then-take 290 291 
-253 main -> take-one 292 293 
-292 have-image planet29 thermograph0 -> prepare-then-take 326 327 
-326 prepare-instrument satellite4 instrument6 -> prepare 328 329 
-328 turn-on-instrument satellite4 instrument6 -> already-on 
-329 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-327 take-image satellite4 instrument6 planet29 thermograph0 -> turn-then-take 330 331 
-293 main -> take-one 332 333 
-332 have-image phenomenon27 thermograph1 -> prepare-then-take 334 335 
-334 prepare-instrument satellite3 instrument5 -> prepare 336 337 
-336 turn-on-instrument satellite3 instrument5 -> already-on 
-337 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-335 take-image satellite3 instrument5 phenomenon27 thermograph1 -> turn-then-take 338 339 
-333 main -> take-one 340 341 
-340 have-image planet17 image4 -> prepare-then-take 342 343 
-342 prepare-instrument satellite3 instrument5 -> prepare 344 345 
-344 turn-on-instrument satellite3 instrument5 -> already-on 
-345 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-343 take-image satellite3 instrument5 planet17 image4 -> turn-then-take 346 347 
-341 main -> take-one 348 349 
-348 have-image planet28 thermograph2 -> prepare-then-take 388 389 
-388 prepare-instrument satellite1 instrument2 -> prepare 390 391 
-390 turn-on-instrument satellite1 instrument2 -> turn-on 392 
-391 calibrate-instrument satellite1 instrument2 -> repoint-then-calibrate 393 394 
-389 take-image satellite1 instrument2 planet28 thermograph2 -> turn-then-take 395 396 
-349 main -> take-one 397 398 
-397 have-image planet6 image4 -> prepare-then-take 399 400 
-399 prepare-instrument satellite3 instrument5 -> prepare 401 402 
-401 turn-on-instrument satellite3 instrument5 -> already-on 
-402 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-400 take-image satellite3 instrument5 planet6 image4 -> turn-then-take 403 404 
-398 main -> take-one 405 406 
-405 have-image planet7 image3 -> prepare-then-take 443 444 
-443 prepare-instrument satellite4 instrument6 -> prepare 445 446 
-445 turn-on-instrument satellite4 instrument6 -> already-on 
-446 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-444 take-image satellite4 instrument6 planet7 image3 -> turn-then-take 447 448 
-406 main -> take-one 449 450 
-449 have-image phenomenon18 image3 -> prepare-then-take 487 488 
-487 prepare-instrument satellite4 instrument6 -> prepare 489 490 
-489 turn-on-instrument satellite4 instrument6 -> already-on 
-490 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-488 take-image satellite4 instrument6 phenomenon18 image3 -> turn-then-take 491 492 
-450 main -> take-one 493 494 
-493 have-image star19 thermograph0 -> prepare-then-take 531 532 
-531 prepare-instrument satellite4 instrument6 -> prepare 533 534 
-533 turn-on-instrument satellite4 instrument6 -> already-on 
-534 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-532 take-image satellite4 instrument6 star19 thermograph0 -> turn-then-take 535 536 
-494 main -> take-one 537 538 
-537 have-image phenomenon5 thermograph1 -> prepare-then-take 539 540 
-539 prepare-instrument satellite3 instrument5 -> prepare 541 542 
-541 turn-on-instrument satellite3 instrument5 -> already-on 
-542 calibrate-instrument satellite3 instrument5 -> no-calibration-needed 
-540 take-image satellite3 instrument5 phenomenon5 thermograph1 -> turn-then-take 543 544 
-538 main -> take-one 545 546 
-545 have-image planet11 thermograph2 -> prepare-then-take 589 590 
-589 prepare-instrument satellite1 instrument2 -> prepare 591 592 
-591 turn-on-instrument satellite1 instrument2 -> already-on 
-592 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
-590 take-image satellite1 instrument2 planet11 thermograph2 -> turn-then-take 593 594 
-546 main -> take-one 595 596 
-595 have-image star14 image3 -> prepare-then-take 633 634 
-633 prepare-instrument satellite4 instrument6 -> prepare 635 636 
-635 turn-on-instrument satellite4 instrument6 -> already-on 
-636 calibrate-instrument satellite4 instrument6 -> no-calibration-needed 
-634 take-image satellite4 instrument6 star14 image3 -> turn-then-take 637 638 
-596 main -> take-one 639 640 
-639 have-image planet24 thermograph2 -> prepare-then-take 683 684 
-683 prepare-instrument satellite1 instrument2 -> prepare 685 686 
-685 turn-on-instrument satellite1 instrument2 -> already-on 
-686 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
-684 take-image satellite1 instrument2 planet24 thermograph2 -> turn-then-take 687 688 
-640 main -> turn-first 689 690 
-690 main -> turn-first 691 692 
-692 main -> turn-first 693 694 
-694 main -> all-done 
+2 have-image phenomenon5 thermograph1 -> prepare-then-take 13 14 
+13 prepare-instrument satellite0 instrument1 -> prepare 15 16 
+15 turn-on-instrument satellite0 instrument1 -> turn-on 17 
+16 calibrate-instrument satellite0 instrument1 -> repoint-then-calibrate 18 19 
+14 take-image satellite0 instrument1 phenomenon5 thermograph1 -> turn-then-take 20 21 
+3 main -> take-one 22 23 
+22 have-image planet6 image4 -> prepare-then-take 24 25 
+24 prepare-instrument satellite0 instrument0 -> prepare 26 27 
+26 turn-on-instrument satellite0 instrument0 -> swap-instruments 28 29 
+27 calibrate-instrument satellite0 instrument0 -> repoint-then-calibrate 30 31 
+25 take-image satellite0 instrument0 planet6 image4 -> turn-then-take 32 33 
+23 main -> take-one 34 35 
+34 have-image planet7 image3 -> prepare-then-take 63 64 
+63 prepare-instrument satellite2 instrument3 -> prepare 65 66 
+65 turn-on-instrument satellite2 instrument3 -> turn-on 67 
+66 calibrate-instrument satellite2 instrument3 -> repoint-then-calibrate 68 69 
+64 take-image satellite2 instrument3 planet7 image3 -> turn-then-take 70 71 
+35 main -> take-one 72 73 
+72 have-image planet8 image3 -> prepare-then-take 105 106 
+105 prepare-instrument satellite2 instrument3 -> prepare 107 108 
+107 turn-on-instrument satellite2 instrument3 -> already-on 
+108 calibrate-instrument satellite2 instrument3 -> no-calibration-needed 
+106 take-image satellite2 instrument3 planet8 image3 -> turn-then-take 109 110 
+73 main -> take-one 111 112 
+111 have-image planet9 thermograph0 -> prepare-then-take 131 132 
+131 prepare-instrument satellite1 instrument2 -> prepare 133 134 
+133 turn-on-instrument satellite1 instrument2 -> turn-on 135 
+134 calibrate-instrument satellite1 instrument2 -> repoint-then-calibrate 136 137 
+132 take-image satellite1 instrument2 planet9 thermograph0 -> turn-then-take 138 139 
+112 main -> take-one 140 141 
+140 have-image planet10 thermograph1 -> prepare-then-take 148 149 
+148 prepare-instrument satellite0 instrument1 -> prepare 150 151 
+150 turn-on-instrument satellite0 instrument1 -> swap-instruments 152 153 
+151 calibrate-instrument satellite0 instrument1 -> repoint-then-calibrate 154 155 
+149 take-image satellite0 instrument1 planet10 thermograph1 -> turn-then-take 156 157 
+141 main -> take-one 158 159 
+158 have-image planet11 thermograph2 -> prepare-then-take 180 181 
+180 prepare-instrument satellite1 instrument2 -> prepare 182 183 
+182 turn-on-instrument satellite1 instrument2 -> already-on 
+183 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
+181 take-image satellite1 instrument2 planet11 thermograph2 -> turn-then-take 184 185 
+159 main -> take-one 186 187 
+186 have-image phenomenon12 image3 -> prepare-then-take 214 215 
+214 prepare-instrument satellite2 instrument3 -> prepare 216 217 
+216 turn-on-instrument satellite2 instrument3 -> already-on 
+217 calibrate-instrument satellite2 instrument3 -> no-calibration-needed 
+215 take-image satellite2 instrument3 phenomenon12 image3 -> turn-then-take 218 219 
+187 main -> take-one 220 221 
+220 have-image planet13 thermograph1 -> prepare-then-take 236 237 
+236 prepare-instrument satellite0 instrument1 -> prepare 238 239 
+238 turn-on-instrument satellite0 instrument1 -> already-on 
+239 calibrate-instrument satellite0 instrument1 -> no-calibration-needed 
+237 take-image satellite0 instrument1 planet13 thermograph1 -> turn-then-take 240 241 
+221 main -> take-one 242 243 
+242 have-image star14 image3 -> prepare-then-take 270 271 
+270 prepare-instrument satellite2 instrument3 -> prepare 272 273 
+272 turn-on-instrument satellite2 instrument3 -> already-on 
+273 calibrate-instrument satellite2 instrument3 -> no-calibration-needed 
+271 take-image satellite2 instrument3 star14 image3 -> turn-then-take 274 275 
+243 main -> take-one 276 277 
+276 have-image planet15 thermograph0 -> prepare-then-take 298 299 
+298 prepare-instrument satellite1 instrument2 -> prepare 300 301 
+300 turn-on-instrument satellite1 instrument2 -> already-on 
+301 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
+299 take-image satellite1 instrument2 planet15 thermograph0 -> turn-then-take 302 303 
+277 main -> take-one 304 305 
+304 have-image planet16 image3 -> prepare-then-take 332 333 
+332 prepare-instrument satellite2 instrument3 -> prepare 334 335 
+334 turn-on-instrument satellite2 instrument3 -> already-on 
+335 calibrate-instrument satellite2 instrument3 -> no-calibration-needed 
+333 take-image satellite2 instrument3 planet16 image3 -> turn-then-take 336 337 
+305 main -> take-one 338 339 
+338 have-image planet17 image4 -> prepare-then-take 340 341 
+340 prepare-instrument satellite0 instrument0 -> prepare 342 343 
+342 turn-on-instrument satellite0 instrument0 -> swap-instruments 344 345 
+343 calibrate-instrument satellite0 instrument0 -> repoint-then-calibrate 346 347 
+341 take-image satellite0 instrument0 planet17 image4 -> turn-then-take 348 349 
+339 main -> take-one 350 351 
+350 have-image phenomenon18 image3 -> prepare-then-take 378 379 
+378 prepare-instrument satellite2 instrument3 -> prepare 380 381 
+380 turn-on-instrument satellite2 instrument3 -> already-on 
+381 calibrate-instrument satellite2 instrument3 -> no-calibration-needed 
+379 take-image satellite2 instrument3 phenomenon18 image3 -> turn-then-take 382 383 
+351 main -> take-one 384 385 
+384 have-image star19 thermograph0 -> prepare-then-take 406 407 
+406 prepare-instrument satellite1 instrument2 -> prepare 408 409 
+408 turn-on-instrument satellite1 instrument2 -> already-on 
+409 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
+407 take-image satellite1 instrument2 star19 thermograph0 -> turn-then-take 410 411 
+385 main -> take-one 412 413 
+412 have-image star21 thermograph1 -> prepare-then-take 420 421 
+420 prepare-instrument satellite0 instrument1 -> prepare 422 423 
+422 turn-on-instrument satellite0 instrument1 -> swap-instruments 424 425 
+423 calibrate-instrument satellite0 instrument1 -> repoint-then-calibrate 426 427 
+421 take-image satellite0 instrument1 star21 thermograph1 -> turn-then-take 428 429 
+413 main -> take-one 430 431 
+430 have-image star22 image4 -> prepare-then-take 432 433 
+432 prepare-instrument satellite0 instrument0 -> prepare 434 435 
+434 turn-on-instrument satellite0 instrument0 -> swap-instruments 436 437 
+435 calibrate-instrument satellite0 instrument0 -> repoint-then-calibrate 438 439 
+433 take-image satellite0 instrument0 star22 image4 -> turn-then-take 440 441 
+431 main -> take-one 442 443 
+442 have-image planet23 thermograph1 -> prepare-then-take 450 451 
+450 prepare-instrument satellite0 instrument1 -> prepare 452 453 
+452 turn-on-instrument satellite0 instrument1 -> swap-instruments 454 455 
+453 calibrate-instrument satellite0 instrument1 -> repoint-then-calibrate 456 457 
+451 take-image satellite0 instrument1 planet23 thermograph1 -> turn-then-take 458 459 
+443 main -> take-one 460 461 
+460 have-image planet24 thermograph2 -> prepare-then-take 482 483 
+482 prepare-instrument satellite1 instrument2 -> prepare 484 485 
+484 turn-on-instrument satellite1 instrument2 -> already-on 
+485 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
+483 take-image satellite1 instrument2 planet24 thermograph2 -> turn-then-take 486 487 
+461 main -> take-one 488 489 
+488 have-image planet25 thermograph1 -> prepare-then-take 504 505 
+504 prepare-instrument satellite0 instrument1 -> prepare 506 507 
+506 turn-on-instrument satellite0 instrument1 -> already-on 
+507 calibrate-instrument satellite0 instrument1 -> no-calibration-needed 
+505 take-image satellite0 instrument1 planet25 thermograph1 -> turn-then-take 508 509 
+489 main -> take-one 510 511 
+510 have-image star26 thermograph0 -> prepare-then-take 532 533 
+532 prepare-instrument satellite1 instrument2 -> prepare 534 535 
+534 turn-on-instrument satellite1 instrument2 -> already-on 
+535 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
+533 take-image satellite1 instrument2 star26 thermograph0 -> turn-then-take 536 537 
+511 main -> take-one 538 539 
+538 have-image phenomenon27 thermograph1 -> prepare-then-take 554 555 
+554 prepare-instrument satellite0 instrument1 -> prepare 556 557 
+556 turn-on-instrument satellite0 instrument1 -> already-on 
+557 calibrate-instrument satellite0 instrument1 -> no-calibration-needed 
+555 take-image satellite0 instrument1 phenomenon27 thermograph1 -> turn-then-take 558 559 
+539 main -> take-one 560 561 
+560 have-image planet28 thermograph2 -> prepare-then-take 582 583 
+582 prepare-instrument satellite1 instrument2 -> prepare 584 585 
+584 turn-on-instrument satellite1 instrument2 -> already-on 
+585 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
+583 take-image satellite1 instrument2 planet28 thermograph2 -> turn-then-take 586 587 
+561 main -> take-one 588 589 
+588 have-image planet29 thermograph0 -> prepare-then-take 610 611 
+610 prepare-instrument satellite1 instrument2 -> prepare 612 613 
+612 turn-on-instrument satellite1 instrument2 -> already-on 
+613 calibrate-instrument satellite1 instrument2 -> no-calibration-needed 
+611 take-image satellite1 instrument2 planet29 thermograph0 -> turn-then-take 614 615 
+589 main -> turn-first 616 617 
+617 main -> turn-first 618 619 
+619 main -> turn-first 620 621 
+621 main -> all-done 
 <==

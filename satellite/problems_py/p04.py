@@ -1,21 +1,23 @@
 from ipyhop import State
 
+from ordered_set import OrderedSet
+
 state = State( 'init_state' )
 rigid = State( 'rigid' )
-rigid.object = {'star7', 'satellite0', 'instrument0', 'star6', 'satellite1', 'infrared0', 'instrument2', 'star0', 'star4', 'groundstation1', 'phenomenon8', 'star2', 'infrared1', 'planet5', 'planet3', 'phenomenon9', 'thermograph2', 'instrument1'}
-rigid.instrument = {'instrument0', 'instrument1', 'instrument2'}
-rigid.direction = {'star0', 'star4', 'groundstation1', 'phenomenon8', 'star7', 'star2', 'planet5', 'planet3', 'star6', 'phenomenon9'}
-rigid.mode = {'thermograph2', 'infrared0', 'infrared1'}
-rigid.satellite = {'satellite0', 'satellite1'}
-rigid.supports = set( [('instrument1', 'thermograph2'), ('instrument2', 'thermograph2'), ('instrument0', 'thermograph2'), ('instrument1', 'infrared0'), ('instrument0', 'infrared0'), ('instrument1', 'infrared1'), ('instrument2', 'infrared1'), ] )
-rigid.calibration_target = set( [('instrument2', 'star2'), ('instrument0', 'star0'), ('instrument1', 'star2'), ] )
-rigid.on_board = set( [('instrument1', 'satellite1'), ('instrument2', 'satellite1'), ('instrument0', 'satellite0'), ] )
-state.power_avail = set( [('satellite0',), ('satellite1',), ] )
-state.pointing = set( [('satellite0', 'star6'), ('satellite1', 'star0'), ] )
-rigid.goal_pointing = set( [('satellite1', 'planet5'), ] )
-rigid.goal_have_image = set( [('phenomenon8', 'thermograph2'), ('planet5', 'thermograph2'), ('planet3', 'infrared1'), ('star6', 'infrared1'), ('star7', 'infrared0'), ('phenomenon9', 'infrared0'), ('star4', 'infrared1'), ] )
-state.power_on = set( [] )
-state.have_image = set( [] )
-state.calibrated = set( [] )
+rigid.object = OrderedSet(['instrument0', 'instrument1', 'instrument2', 'satellite0', 'satellite1', 'groundstation1', 'star0', 'star2', 'planet3', 'star4', 'planet5', 'star6', 'star7', 'phenomenon8', 'phenomenon9', 'infrared0', 'infrared1', 'thermograph2'])
+rigid.satellite = OrderedSet(['satellite0', 'satellite1'])
+rigid.direction = OrderedSet(['groundstation1', 'star0', 'star2', 'planet3', 'star4', 'planet5', 'star6', 'star7', 'phenomenon8', 'phenomenon9'])
+rigid.instrument = OrderedSet(['instrument0', 'instrument1', 'instrument2'])
+rigid.mode = OrderedSet(['infrared0', 'infrared1', 'thermograph2'])
+rigid.supports = OrderedSet( [('instrument0', 'thermograph2'), ('instrument0', 'infrared0'), ('instrument1', 'infrared0'), ('instrument1', 'thermograph2'), ('instrument1', 'infrared1'), ('instrument2', 'thermograph2'), ('instrument2', 'infrared1'), ] )
+rigid.calibration_target = OrderedSet( [('instrument0', 'star0'), ('instrument1', 'star2'), ('instrument2', 'star2'), ] )
+rigid.on_board = OrderedSet( [('instrument0', 'satellite0'), ('instrument1', 'satellite1'), ('instrument2', 'satellite1'), ] )
+state.power_avail = OrderedSet( [('satellite0',), ('satellite1',), ] )
+state.pointing = OrderedSet( [('satellite0', 'star6'), ('satellite1', 'star0'), ] )
+rigid.goal_pointing = OrderedSet( [('satellite1', 'planet5'), ] )
+rigid.goal_have_image = OrderedSet( [('planet3', 'infrared1'), ('star4', 'infrared1'), ('planet5', 'thermograph2'), ('star6', 'infrared1'), ('star7', 'infrared0'), ('phenomenon8', 'thermograph2'), ('phenomenon9', 'infrared0'), ] )
+state.power_on = OrderedSet( [] )
+state.calibrated = OrderedSet( [] )
+state.have_image = OrderedSet( [] )
 
 task_list = [('main',)]

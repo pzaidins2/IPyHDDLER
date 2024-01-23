@@ -2,35 +2,35 @@
 8 switch_on instrument0 satellite0 
 9 turn_to satellite0 star1 star4 
 10 calibrate satellite0 instrument0 star1 
-11 turn_to satellite0 star4 star1 
-12 take_image satellite0 star4 instrument0 spectrograph2 
-19 turn_to satellite0 phenomenon5 star4 
-20 take_image satellite0 phenomenon5 instrument0 spectrograph2 
-27 turn_to satellite0 star3 phenomenon5 
-28 take_image satellite0 star3 instrument0 infrared0 
-35 turn_to satellite0 phenomenon7 star3 
+11 turn_to satellite0 star3 star1 
+12 take_image satellite0 star3 instrument0 infrared0 
+19 turn_to satellite0 star4 star3 
+20 take_image satellite0 star4 instrument0 spectrograph2 
+27 turn_to satellite0 phenomenon5 star4 
+28 take_image satellite0 phenomenon5 instrument0 spectrograph2 
+35 turn_to satellite0 phenomenon7 phenomenon5 
 36 take_image satellite0 phenomenon7 instrument0 spectrograph2 
 37 turn_to satellite0 phenomenon5 phenomenon7 
 
 root 1 
 1 main -> take-one 2 3 
-2 have-image star4 spectrograph2 -> prepare-then-take 4 5 
+2 have-image star3 infrared0 -> prepare-then-take 4 5 
 4 prepare-instrument satellite0 instrument0 -> prepare 6 7 
 6 turn-on-instrument satellite0 instrument0 -> turn-on 8 
 7 calibrate-instrument satellite0 instrument0 -> repoint-then-calibrate 9 10 
-5 take-image satellite0 instrument0 star4 spectrograph2 -> turn-then-take 11 12 
+5 take-image satellite0 instrument0 star3 infrared0 -> turn-then-take 11 12 
 3 main -> take-one 13 14 
-13 have-image phenomenon5 spectrograph2 -> prepare-then-take 15 16 
+13 have-image star4 spectrograph2 -> prepare-then-take 15 16 
 15 prepare-instrument satellite0 instrument0 -> prepare 17 18 
 17 turn-on-instrument satellite0 instrument0 -> already-on 
 18 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
-16 take-image satellite0 instrument0 phenomenon5 spectrograph2 -> turn-then-take 19 20 
+16 take-image satellite0 instrument0 star4 spectrograph2 -> turn-then-take 19 20 
 14 main -> take-one 21 22 
-21 have-image star3 infrared0 -> prepare-then-take 23 24 
+21 have-image phenomenon5 spectrograph2 -> prepare-then-take 23 24 
 23 prepare-instrument satellite0 instrument0 -> prepare 25 26 
 25 turn-on-instrument satellite0 instrument0 -> already-on 
 26 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
-24 take-image satellite0 instrument0 star3 infrared0 -> turn-then-take 27 28 
+24 take-image satellite0 instrument0 phenomenon5 spectrograph2 -> turn-then-take 27 28 
 22 main -> take-one 29 30 
 29 have-image phenomenon7 spectrograph2 -> prepare-then-take 31 32 
 31 prepare-instrument satellite0 instrument0 -> prepare 33 34 

@@ -5,12 +5,14 @@ import json
 import keyword
 import os
 import re
+import sys
 import time
 from copy import deepcopy
 from functools import partial
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Union
 
+from ordered_set import OrderedSet
 import networkx as nx
 from ipyhop import IPyHOP
 
@@ -108,9 +110,9 @@ class HDDL_Parser:
     def __init__( self ):
         self.domain_dict = None
         self.problem_dict = None
-        self.mutable = set()
+        self.mutable = OrderedSet()
         self.typed_sets = dict()
-        self.constant_set = set()
+        self.constant_set = OrderedSet()
 
     def parse_domain( self, domain_json_path: str, deviation_possible_predicates: Optional[List[ str ]] = None ) -> None:
         """ parse domain JSON for future conversion into IPyHOPPER format
@@ -137,10 +139,10 @@ class HDDL_Parser:
             actions_str += make_action_function_str( action )
 
         # note all state components that are never modified in actions or deviations
-        self.mutable = set( re_state_collect.findall( actions_str ) )
-        # self.mutable |= set( re_state_collect.findall( deviations_str ) )
+        self.mutable = OrderedSet( re_state_collect.findall( actions_str ) )
+        # self.mutable |= OrderedSet( re_state_collect.findall( deviations_str ) )
         if deviation_possible_predicates != None:
-            self.mutable |= { *map( lambda x: clean_string( x ), deviation_possible_predicates ) }
+            self.mutable |= OrderedSet( map( lambda x: clean_string( x ), deviation_possible_predicates ) )
 
         # track domain constants
         # print(domain_dict["constants"])
@@ -152,7 +154,7 @@ class HDDL_Parser:
             type = clean_string( const[ "type" ] )
             constant_set.add( name )
             if type not in typed_sets.keys():
-                typed_sets[ type ] = set()
+                typed_sets[ type ] = OrderedSet()
             typed_sets[ type ].add( name )
 
         # hddl map of cleaned names to original names
@@ -176,16 +178,16 @@ class HDDL_Parser:
         for type_str, name_str in [ *supertype_tuples, *constant_tuples, *task_tuples, *method_tuples, *action_tuples,
                                     *predicate_tuples ]:
             hddl_map[ clean_string( name_str ) ] = name_str
-        predicate_set = set()
+        predicate_set = OrderedSet()
         for type_str, name_str in predicate_tuples:
             predicate_set.add( clean_string( name_str ) )
-        clean_supertype_set = set( map( lambda x: (clean_string( x[ 0 ] ), clean_string( x[ 1 ] )), supertype_tuples ) )
+        clean_supertype_set = OrderedSet( map( lambda x: (clean_string( x[ 0 ] ), clean_string( x[ 1 ] )), supertype_tuples ) )
         supertype_tree = nx.DiGraph()
         supertype_tree.add_edges_from( clean_supertype_set )
         self.hddl_map = hddl_map
         self.predicate_set = predicate_set
         self.supertype_tree = supertype_tree
-        self.supertype_set = set( map( lambda x: x[ 0 ], clean_supertype_set ) )
+        self.supertype_set = OrderedSet( map( lambda x: x[ 0 ], clean_supertype_set ) )
         return
 
     def parse_problem( self, problem_json_path: str ) -> None:
@@ -334,6 +336,7 @@ class HDDL_Parser:
         # make and save state and task network for easy load at runtime
         init_state_str = ""
         init_state_str += "from ipyhop import State\n\n"
+        init_state_str += "from ordered_set import OrderedSet\n\n"
         init_state_str += "state = State( 'init_state' )\n"
         init_state_str += "rigid = State( 'rigid' )\n"
         # make typed sets
@@ -345,14 +348,14 @@ class HDDL_Parser:
             name = clean_string( obj[ "name" ] )
             type = clean_string( obj[ "type" ] )
             if type not in typed_sets.keys():
-                typed_sets[ type ] = set()
+                typed_sets[ type ] = OrderedSet()
             typed_sets[ type ].add( name )
         supertype_tree = self.supertype_tree
         # lists all object of type and of subtypes
         for supertype in supertype_tree.nodes:
             init_state_str += "rigid." + supertype + " = "
-            desendant_types = { *nx.descendants( supertype_tree, supertype ), supertype }
-            supertype_set = set()
+            desendant_types = OrderedSet( [ *nx.descendants( supertype_tree, supertype ), supertype ] )
+            supertype_set = OrderedSet()
             for type in desendant_types:
                 if type in typed_sets.keys():
                     supertype_set |= typed_sets[ type ]
@@ -364,13 +367,13 @@ class HDDL_Parser:
             name = clean_string( atom[ "predicate" ] )
             args = tuple( map( clean_string, atom[ "args" ] ) )
             if name not in atom_arg_dict.keys():
-                atom_arg_dict[ name ] = set()
+                atom_arg_dict[ name ] = OrderedSet()
             atom_arg_dict[ name ].add( args )
-        for pred in self.predicate_set - set( atom_arg_dict.keys() ):
-            atom_arg_dict[ pred ] = set()
+        for pred in self.predicate_set - OrderedSet( atom_arg_dict.keys() ):
+            atom_arg_dict[ pred ] = OrderedSet()
         # write atoms by predicate
         for name in atom_arg_dict.keys():
-            init_state_str += "rigid." + name + " = set( ["
+            init_state_str += "rigid." + name + " = OrderedSet( ["
             for args in atom_arg_dict[ name ]:
                 init_state_str += str( args ) + ", "
             init_state_str += "] )\n"
@@ -471,11 +474,11 @@ def make_method_function_str( method: Dict[ str, Union[ str, Dict ] ],
     task_parameter_names = [ *map( lambda x: clean_string( x ), method[ "task" ][ "args" ] ) ]
     # print(task_parameter_names)
     # print(parameter_names)
-    parameter_set_diff = { *parameter_names } - { *task_parameter_names }
+    parameter_set_diff = OrderedSet( parameter_names ) - OrderedSet( task_parameter_names )
     parameter_set_diff = list( parameter_set_diff )
     parameter_set_diff.sort()
     # dict to get type with parameter name
-    parameter_name_type_dict = { }
+    parameter_name_type_dict = dict()
     for parameter in parameters:
         parameter_name_type_dict[ clean_string( parameter[ "name" ] ) ] = clean_string( parameter[ "type" ] )
 
@@ -485,7 +488,7 @@ def make_method_function_str( method: Dict[ str, Union[ str, Dict ] ],
     # print(task_parameter_names)
     # deal with duplicates
     # relabel all occurrences after first and alter precondition to require equality
-    precondition_equalities = set()
+    precondition_equalities = OrderedSet()
     for i in range( len( task_parameter_names ) ):
         check_name = task_parameter_names[ i ]
         count = 0
@@ -904,9 +907,9 @@ def make_task_network_str( tasks: List[ Dict[ str, Union[ str, Dict ] ] ] ) -> s
 # iteration optimizer
 # NEEDS INTEGRATION AND TESTING
 # NEED WAY TO CONVERT PREDICATES INTO CNF
-predicate_to_boundVar_set = lambda x: { *x[ 1: ] }
+predicate_to_boundVar_set = lambda x: OrderedSet( x[ 1: ] )
 clause_to_boundVar_set_list = lambda x: [ predicate_to_boundVar_set( predicate ) for predicate in x ]
-boundVar_set_list_flatten = lambda x: set().union( *x )
+boundVar_set_list_flatten = lambda x: OrderedSet().union( *x )
 clause_to_boundVar_set = lambda x: boundVar_set_list_flatten( clause_to_boundVar_set_list( x ) )
 count_intersection_size = lambda x, y: len( y.intersection( clause_to_boundVar_set( x ) ) )
 
@@ -918,7 +921,7 @@ count_intersection_size = lambda x, y: len( y.intersection( clause_to_boundVar_s
 #         # get clauses with each unbound boundVar
 #         boundVar_clause_dict = dict()
 #         for unboundVar in unboundVars:
-#             boundVar_clause_dict[ unboundVar ] = set()
+#             boundVar_clause_dict[ unboundVar ] = OrderedSet()
 #             for clause in clauses:
 #                 # print( clause )
 #                 # if boundVar in any predicate of clause associate clause with boundVar
@@ -929,7 +932,7 @@ count_intersection_size = lambda x, y: len( y.intersection( clause_to_boundVar_s
 #         # sort by size of union set of all unique unbound boundVar for all predicates associated with each boundVar
 #         # graph version: minimize increase in frontier size, pick vertex with smallest neighborhood discounting
 #         # for vertices that have already been picked or neighbor a pick
-#         unboundVars.sort( key=lambda x: count_intersection_size( x, set( unboundVars ) ) )
+#         unboundVars.sort( key=lambda x: count_intersection_size( x, OrderedSet( unboundVars ) ) )
 #
 #         # bind boundVar with fewest untouched neighbors
 #         bindingVar = unboundVars.pop( 0 )
@@ -1008,40 +1011,48 @@ def run_experiment( problem_dir, problem_json, output_dir ):
 if __name__ == '__main__':
 
     # parsing (CURRENTLY READ, BUT CAN DYNAMICALLY MAKE ACTION/METHODS)
-    parser = HDDL_Parser()
-    problem_json = "p01.json"
-    input_domain_dir = "../../../domains/rovers/"
-    output_py = problem_json.replace( "json", "py" )
-    output_txt = problem_json.replace( "json", "txt" )
-    output_dir = "../rovers/"
-    parser.parse_domain( input_domain_dir + "domain.json" )
-    # make pythonic representation of state and constants
-    parser.parse_problem( input_domain_dir + problem_json )
+    base_prob = "p00.json"
+    for p in map(lambda x: ( base_prob[0:2] if x < 10 else base_prob[0] ) + str(x) + base_prob[3:], [*range(1,31)] ):
+        print(p)
+        parser = HDDL_Parser()
+        problem_json = p
+        input_domain_dir = "../../../domains/openstacks-adl/"
+        output_py = problem_json.replace( "json", "py" )
+        output_txt = problem_json.replace( "json", "txt" )
+        output_dir = "../openstacks/"
+        parser.parse_domain( input_domain_dir + "domain.json" )
+        # make pythonic representation of state and constants
+        parser.parse_problem( input_domain_dir + problem_json )
+        parser.write_problem(output_dir + "problems_py/" + output_py)
+        parser.write_domain(output_dir)
 
-    # READ IN SHOP TREE
-    from IPyHDDLER.rovers.domain.actions import actions
-    from IPyHDDLER.rovers.domain.methods import methods
+        # READ IN SHOP TREE
+        from IPyHDDLER.openstacks.domain.actions import actions
+        from IPyHDDLER.openstacks.domain.methods import methods
 
-    temp_mod = importlib.import_module( output_dir[ :2 ] + output_dir[ 3:-1 ] + ".problems_py." + output_py[ :-3 ],
-                                        package="IPyHDDLER.ipyhddler" )
-    init_state = temp_mod.state
-    task_list = temp_mod.task_list
-    rigid = temp_mod.rigid
-    # pass constants using rigid
-    local_methods = deepcopy( methods )
-    local_actions = deepcopy( actions )
-    local_methods.goal_method_dict.update(
-        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
-    local_methods.task_method_dict.update(
-        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.task_method_dict.items() } )
-    local_methods.multigoal_method_dict.update(
-        { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
-    local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
-    # make planner
-    planner = IPyHOP( local_methods, local_actions )
-    # print(local_methods.task_method_dict)
-    # print(local_actions.action_dict)
-    planner.read_SHOP( "../sample_shop_output", init_state )
-    # get back in hddl format
-    # print(planner.hddl_plan_str(parser.hddl_map))
+        temp_mod = importlib.import_module( output_dir[ :2 ] + output_dir[ 3:-1 ] + ".problems_py." + output_py[ :-3 ],
+                                            package="IPyHDDLER.ipyhddler" )
+        init_state = temp_mod.state
+        task_list = temp_mod.task_list
+        rigid = temp_mod.rigid
+        # pass constants using rigid
+        local_methods = deepcopy( methods )
+        local_actions = deepcopy( actions )
+        local_methods.goal_method_dict.update(
+            { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.goal_method_dict.items() } )
+        local_methods.task_method_dict.update(
+            { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.task_method_dict.items() } )
+        local_methods.multigoal_method_dict.update(
+            { l: [ partial( m, rigid=rigid ) for m in ms ] for l, ms in local_methods.multigoal_method_dict.items() } )
+        local_actions.action_dict.update( { l: partial( a, rigid=rigid ) for l, a in local_actions.action_dict.items() } )
+        # make planner
+        planner = IPyHOP( local_methods, local_actions )
+        # print(local_methods.task_method_dict)
+        # print(local_actions.action_dict)
+        # planner.read_SHOP( "../sample_shop_output", init_state )
+        planner.plan(task_list=task_list,state=init_state,actions=local_actions,methods=local_methods)
+        # get back in hddl format
+        # print(planner.hddl_plan_str(parser.hddl_map))
+        with open(output_dir+"solutions/"+output_txt, "w") as f:
+            f.write(planner.hddl_plan_str(parser.hddl_map))
 

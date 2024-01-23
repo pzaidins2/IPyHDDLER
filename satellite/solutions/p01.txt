@@ -2,20 +2,20 @@
 8 switch_on instrument0 satellite0 
 9 turn_to satellite0 groundstation2 phenomenon6 
 10 calibrate satellite0 instrument0 groundstation2 
-11 turn_to satellite0 phenomenon6 groundstation2 
-12 take_image satellite0 phenomenon6 instrument0 thermograph0 
-19 turn_to satellite0 star5 phenomenon6 
+11 turn_to satellite0 phenomenon4 groundstation2 
+12 take_image satellite0 phenomenon4 instrument0 thermograph0 
+19 turn_to satellite0 star5 phenomenon4 
 20 take_image satellite0 star5 instrument0 thermograph0 
-27 turn_to satellite0 phenomenon4 star5 
-28 take_image satellite0 phenomenon4 instrument0 thermograph0 
+27 turn_to satellite0 phenomenon6 star5 
+28 take_image satellite0 phenomenon6 instrument0 thermograph0 
 
 root 1 
 1 main -> take-one 2 3 
-2 have-image phenomenon6 thermograph0 -> prepare-then-take 4 5 
+2 have-image phenomenon4 thermograph0 -> prepare-then-take 4 5 
 4 prepare-instrument satellite0 instrument0 -> prepare 6 7 
 6 turn-on-instrument satellite0 instrument0 -> turn-on 8 
 7 calibrate-instrument satellite0 instrument0 -> repoint-then-calibrate 9 10 
-5 take-image satellite0 instrument0 phenomenon6 thermograph0 -> turn-then-take 11 12 
+5 take-image satellite0 instrument0 phenomenon4 thermograph0 -> turn-then-take 11 12 
 3 main -> take-one 13 14 
 13 have-image star5 thermograph0 -> prepare-then-take 15 16 
 15 prepare-instrument satellite0 instrument0 -> prepare 17 18 
@@ -23,10 +23,10 @@ root 1
 18 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
 16 take-image satellite0 instrument0 star5 thermograph0 -> turn-then-take 19 20 
 14 main -> take-one 21 22 
-21 have-image phenomenon4 thermograph0 -> prepare-then-take 23 24 
+21 have-image phenomenon6 thermograph0 -> prepare-then-take 23 24 
 23 prepare-instrument satellite0 instrument0 -> prepare 25 26 
 25 turn-on-instrument satellite0 instrument0 -> already-on 
 26 calibrate-instrument satellite0 instrument0 -> no-calibration-needed 
-24 take-image satellite0 instrument0 phenomenon4 thermograph0 -> turn-then-take 27 28 
+24 take-image satellite0 instrument0 phenomenon6 thermograph0 -> turn-then-take 27 28 
 22 main -> all-done 
 <==

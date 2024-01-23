@@ -28,5 +28,11 @@ def open__new__stack( state, open, new__open, rigid ):
 		state.stacks__avail.add( ( new__open, ) )
 		return state
 
+def reset( state, o, rigid ):
+	if all( [ ( o, ) in state.started, not( ( o, ) in state.shipped ), not( ( o, ) in state.waiting ), ] ):
+		state.waiting.add( ( o, ) )
+		state.started.remove( ( o, ) )
+		return state
+
 actions = Actions()
-actions.declare_actions( [ make__product, start__order, ship__order, open__new__stack, ] )
+actions.declare_actions( [ make__product, start__order, ship__order, open__new__stack, reset, ] )
